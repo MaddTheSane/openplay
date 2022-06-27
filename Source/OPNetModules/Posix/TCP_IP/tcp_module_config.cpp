@@ -206,7 +206,7 @@ static NMErr _get_standard_config_strings(char *string, NMConfigRef config)
 {
 	DEBUG_ENTRY_EXIT("_get_standard_config_strings");
 
-	long       length;
+	NMSInt32   length;
 	NMBoolean  status;
 	NMType     type;
 	NMErr      error = kNMNoError;
@@ -296,7 +296,7 @@ static NMErr _parse_config_string(char *string, NMUInt32 GameID, NMConfigRef con
 
   if (!err)
   {
-    long length;
+	NMSInt32 length;
 
     err = kNMInvalidConfigErr;
 

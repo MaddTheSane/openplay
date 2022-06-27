@@ -522,7 +522,7 @@ NSpProtocol_CreateIP(NMInetPort inPort, NMUInt32 inMaxRTT, NMUInt32 inMinThruput
 #ifdef OP_API_NETWORK_OT
 			sprintf(customConfig, "IPport=%u\tnetSprocket=true\0", inPort);
 #else
-			sprintf(customConfig, "type=%ld\tversion=256\tgameID=%lu\tgameName=unknown\t"
+		sprintf(customConfig, "type=%d\tversion=256\tgameID=%u\tgameName=unknown\t"
 							"mode=%u\tIPaddr=127.0.0.1\tIPport=%u\tnetSprocket=true", 
 							netModuleType, gameID, kUberMode, inPort);
 #endif
@@ -629,7 +629,7 @@ NSpGame_Host(
 	NSpGamePrivate		*theGame = NULL;
 	NSpGameInfo			*info;
 	NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
-	UInt32ListMember	*theMember = NULL;
+	uintptrtListMember	*theMember = NULL;
 	NSpProtocolPriv		*theProt;
 	NMUInt32			count;
 	NMType				netModuleType;
@@ -664,7 +664,7 @@ NSpGame_Host(
 	
 	
 	//Ä	We need to keep track of these game objects.  Create a new q element.  Do this now since it might fail
-	theMember = new UInt32ListMember( (NMUInt32) theGame);
+	theMember = new uintptrtListMember( (uintptr_t) theGame);
 	if (!theMember){
 		status = kNSpMemAllocationErr;
 		goto error;
@@ -898,7 +898,7 @@ NSpGame_Join(
 		NMUInt32			inCustomDataLen,
 		NSpFlags			inFlags)
 {
-	UInt32ListMember	*theMember;
+	uintptrtListMember	*theMember;
 	NSpGamePrivate		*theGame = NULL;
 	NSpGameSlave		*slave = NULL;
 	NSpGameInfo			*info;
@@ -929,7 +929,7 @@ NSpGame_Join(
 		slave->InstallCallbackHandler(gCallbackHandler, gCallbackContext);
 
 	//Ä	Insert the pointer to the game into our list
-	theMember = new UInt32ListMember( (NMUInt32) theGame);
+	theMember = new uintptrtListMember( (uintptr_t) theGame);
 	if (theMember == NULL){
 		status = kNSpMemAllocationErr;
 		goto error;
@@ -974,7 +974,7 @@ NSpGame_Dispose(NSpGameReference inGame, NSpFlags inFlags)
 {
 	NSp_InterruptSafeListIterator	iter(*gGameList);
 	NSp_InterruptSafeListMember	*item;
-	UInt32ListMember			*member;
+	uintptrtListMember			*member;
 	NMErr						err = kNMNoError;
 	NSpGamePrivate				*theGame = (NSpGamePrivate *)inGame;
 		
@@ -982,9 +982,9 @@ NSpGame_Dispose(NSpGameReference inGame, NSpFlags inFlags)
 
 	while (iter.Next(&item))
 	{
-		member = (UInt32ListMember *) item;
+		member = (uintptrtListMember *) item;
 
-		if (member->GetValue() == (NMUInt32) theGame)
+		if (member->GetValue() == (uintptr_t) theGame)
 		{
 			err = theGame->PrepareForDeletion(inFlags);
 			
@@ -1932,7 +1932,7 @@ NSpAddressReference NSpCreateIPAddressReference(const char *inIPAddress, const c
 	
 	gameID = (NMUInt32) gCreatorType;
 			
-	sprintf(customConfig, "type=%ld\tversion=256\tgameID=%lu\tgameName=unknown\t"
+	sprintf(customConfig, "type=%d\tversion=256\tgameID=%u\tgameName=unknown\t"
 							"mode=%u\tIPaddr=%s\tIPport=%s\tnetSprocket=true", 
 							netModuleType, gameID, kUberMode,
 							inIPAddress, inIPPort);

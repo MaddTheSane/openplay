@@ -63,7 +63,6 @@
 		9758F22A0588DE88008F071A /* op_module_mgmt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64402556F3701A80105 /* op_module_mgmt.cpp */; };
 		9758F22B0588DE88008F071A /* op_packet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64502556F3701A80105 /* op_packet.cpp */; };
 		9758F22C0588DE88008F071A /* openplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64602556F3701A80105 /* openplay.cpp */; };
-		9758F22D0588DE88008F071A /* op_dlopen.c in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64702556F3701A80105 /* op_dlopen.c */; };
 		9758F22E0588DE88008F071A /* openplay_posix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64802556F3701A80105 /* openplay_posix.cpp */; };
 		9758F22F0588DE88008F071A /* CATEndpoint_OP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64902556F3701A80105 /* CATEndpoint_OP.cpp */; };
 		9758F2300588DE88008F071A /* CEndpoint_OP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64A02556F3701A80105 /* CEndpoint_OP.cpp */; };
@@ -319,7 +318,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2C25E81F26C55B1A000E73E5 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C8547F226E46DD6005A70D9 /* String_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = String_Utils.h; sourceTree = "<group>"; };
 		2C8547F326E522A2005A70D9 /* DebugPrint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugPrint.h; sourceTree = "<group>"; };
 		2C8547F426E522B8005A70D9 /* machine_lock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = machine_lock.h; sourceTree = "<group>"; };
@@ -339,7 +337,6 @@
 		2C85480426E52655005A70D9 /* PrivateMessages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivateMessages.h; sourceTree = "<group>"; };
 		2C85480526E52684005A70D9 /* op_resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = op_resources.h; sourceTree = "<group>"; };
 		2C85480626E52696005A70D9 /* module_management.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = module_management.h; sourceTree = "<group>"; };
-		2C85480726E526C6005A70D9 /* op_dlfcn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = op_dlfcn.h; sourceTree = "<group>"; };
 		2C85480826E52704005A70D9 /* NSpPrefix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSpPrefix.h; sourceTree = "<group>"; };
 		2C85480926E549D1005A70D9 /* log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
 		2C85480A26E549E8005A70D9 /* dialog_lists.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dialog_lists.h; sourceTree = "<group>"; };
@@ -358,6 +355,7 @@
 		2CF0566A26E460F600163478 /* Mini_NSp_App.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mini_NSp_App.cpp; sourceTree = "<group>"; };
 		2CF0566C26E4614A00163478 /* OPGetURL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OPGetURL.cpp; sourceTree = "<group>"; };
 		2CF0566D26E4614A00163478 /* OPDownloadHTTP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OPDownloadHTTP.cpp; sourceTree = "<group>"; };
+		55771431286A710B0012D520 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9758F24A0588DE88008F071A /* Info-OpenPlay_Framework.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-OpenPlay_Framework.plist"; sourceTree = "<group>"; };
 		9758F24B0588DE88008F071A /* OpenPlay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OpenPlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9758F2600588DE88008F071A /* Info-IP_Module.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-IP_Module.plist"; sourceTree = "<group>"; };
@@ -398,7 +396,6 @@
 		F5ABE64402556F3701A80105 /* op_module_mgmt.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = op_module_mgmt.cpp; sourceTree = "<group>"; };
 		F5ABE64502556F3701A80105 /* op_packet.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = op_packet.cpp; sourceTree = "<group>"; };
 		F5ABE64602556F3701A80105 /* openplay.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = openplay.cpp; sourceTree = "<group>"; };
-		F5ABE64702556F3701A80105 /* op_dlopen.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = op_dlopen.c; sourceTree = "<group>"; };
 		F5ABE64802556F3701A80105 /* openplay_posix.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = openplay_posix.cpp; sourceTree = "<group>"; };
 		F5ABE64902556F3701A80105 /* CATEndpoint_OP.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CATEndpoint_OP.cpp; sourceTree = "<group>"; };
 		F5ABE64A02556F3701A80105 /* CEndpoint_OP.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CEndpoint_OP.cpp; sourceTree = "<group>"; };
@@ -834,8 +831,6 @@
 		2C5B322726C407B300217E09 /* Posix */ = {
 			isa = PBXGroup;
 			children = (
-				2C85480726E526C6005A70D9 /* op_dlfcn.h */,
-				F5ABE64702556F3701A80105 /* op_dlopen.c */,
 				F5ABE64802556F3701A80105 /* openplay_posix.cpp */,
 			);
 			path = Posix;
@@ -1204,12 +1199,14 @@
 /* Begin PBXProject section */
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = 2CF360A526AE179900D26910 /* Build configuration list for PBXProject "OpenPlay" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
+				en,
 			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* OpenPlay */;
 			productRefGroup = 034768DDFF38A45A11DB9C8B /* Products,Libs,Frameworks */;
@@ -1441,7 +1438,6 @@
 				9758F22A0588DE88008F071A /* op_module_mgmt.cpp in Sources */,
 				9758F22B0588DE88008F071A /* op_packet.cpp in Sources */,
 				9758F22C0588DE88008F071A /* openplay.cpp in Sources */,
-				9758F22D0588DE88008F071A /* op_dlopen.c in Sources */,
 				9758F22E0588DE88008F071A /* openplay_posix.cpp in Sources */,
 				9758F23B0588DE88008F071A /* dll_utils_posix.cpp in Sources */,
 				9758F23C0588DE88008F071A /* find_files_posix.cpp in Sources */,
@@ -1614,7 +1610,7 @@
 		2C25E81E26C55B1A000E73E5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2C25E81F26C55B1A000E73E5 /* English */,
+				55771431286A710B0012D520 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1672,13 +1668,10 @@
 					"DEBUGCALLCHAIN=0",
 					"project_builder=1",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
-				WARNING_CFLAGS = (
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
 			};
 			name = Debug;
 		};
@@ -1692,13 +1685,9 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = "project_builder=1";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
-				WARNING_CFLAGS = (
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
 			};
 			name = Release;
 		};

@@ -42,15 +42,7 @@
 /* We must bind! */
 /*----------------------------------posix Section-----------------------------*/
 
-#ifdef OP_API_PLUGIN_MACHO
-	#include "op_dlfcn.h"
-	#define dlopen op_dlopen
-	#define dlsym op_dlsym
-	#define dlerror op_dlerror
-	#define dlclose op_dlclose
-#else
-	#include <dlfcn.h>
-#endif
+#include <dlfcn.h>
 
 extern "C" {
 
@@ -109,7 +101,7 @@ void *load_proc(ConnectionRef conn_id, short proc_id)
 	{
 	#ifdef OP_API_PLUGIN_MACHO
 
-			CFStringRef funcName = CFStringCreateWithCString(kCFAllocatorDefault,module_names[proc_id],kCFStringEncodingMacRoman);
+			CFStringRef funcName = CFStringCreateWithCString(kCFAllocatorDefault,module_names[proc_id],kCFStringEncodingASCII);
 
 			op_assert(funcName);
 			proc_ptr = (void*)CFBundleGetFunctionPointerForName(conn_id,funcName);

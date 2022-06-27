@@ -193,7 +193,7 @@ const char	*put_string;
 			break;
 
 		case LONG_DATA:
-			sprintf(temp_string, "%ld", *(NMSInt32 *)token_data);
+			sprintf(temp_string, "%d", *(NMSInt32 *)token_data);
 			put_string = (const char *)temp_string;
 			break;
 

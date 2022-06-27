@@ -389,7 +389,7 @@ NMErr ProtocolRejectConnection(
 */
 NMErr ProtocolSetTimeout(
 	PEndpointRef endpoint, 
-	long timeout)
+	NMSInt32 timeout)
 {
 	NMErr err= kNMNoError;
 

@@ -169,14 +169,14 @@ int main(int argc, char **argv)
 									NULL,
 									&config);
 		if (err){
-			printf("err %ld on doProtocolCreateConfig\n",err);
+			printf("err %d on doProtocolCreateConfig\n",err);
 			return 0;
 		}
 		
 		//use our config to launch a game
 		err = ProtocolOpenEndpoint(config,ourOPCallback,(void*)NULL, &ourEndPoint, (NMOpenFlags)0);
 		if (err){
-			printf("err %ld on ProtocolOpenEndpoint\n",err);
+			printf("err %d on ProtocolOpenEndpoint\n",err);
 			return 0;
 		}
 		
@@ -188,7 +188,7 @@ int main(int argc, char **argv)
 	//until we're quit
 	err = ProtocolStartEnumeration(config,ourEnumerationCallback,NULL,true);
 	if (err){
-		printf("err %ld on ProtocolStartEnumeration",err);
+		printf("err %d on ProtocolStartEnumeration",err);
 		fflush(stdout);
 		return 0;
 	}
@@ -234,7 +234,7 @@ int main(int argc, char **argv)
 				//we've got a game - bind to it and try connecting
 				err = ProtocolBindEnumerationToConfig(config,theGame->hostID);
 				if (err){
-					printf("err %ld binding to config\n",err);
+					printf("err %d binding to config\n",err);
 					fflush(stdout);
 					return 0;
 				}
@@ -251,7 +251,7 @@ int main(int argc, char **argv)
 					printf("in that case, check the machine you tried to join for a connection attempt notice\n");
 				}
 				else
-					printf("error %ld on ProtocolOpenEndpoint\n",err);
+					printf("error %d on ProtocolOpenEndpoint\n",err);
 			}
 			else
 				printf("invalid game number\n");	
@@ -266,7 +266,7 @@ int main(int argc, char **argv)
 			fflush(stdout);
 			err = ProtocolIdleEnumeration(config);
 			if (err){
-				printf("error type %ld on ProtocolIdleEnumeration\n",err);
+				printf("error type %d on ProtocolIdleEnumeration\n",err);
 				fflush(stdout);
 				return 0;
 			}

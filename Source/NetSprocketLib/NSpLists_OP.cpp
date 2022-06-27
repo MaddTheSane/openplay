@@ -75,14 +75,14 @@ GroupListItem::~GroupListItem()
 NMBoolean
 GroupListItem::AddPlayer(PlayerListItem *inPlayer)
 {
-UInt32ListMember	*item;
+	uintptrtListMember	*item;
 
 	if (NULL == players)
 		return (false);
 		
 	//Ä	We can't just add this item, since it belongs to another list
 	//Ä	Instead add an item that contains a pointer to it
-	item = new UInt32ListMember((NMUInt32) inPlayer);
+	item = new uintptrtListMember((uintptr_t) inPlayer);
 
 	if (NULL == item)
 		return (false);
@@ -111,7 +111,7 @@ NMBoolean						found = false;
 	//Ä	First find the player in the list
 	while ((false == found) && iter.Next(&theItem))
 	{
-		player = (PlayerListItem *) (((UInt32ListMember *) theItem)->GetValue());
+		player = (PlayerListItem *) (((uintptrtListMember *) theItem)->GetValue());
 
 		if (player->id == inPlayer)
 			found = true;

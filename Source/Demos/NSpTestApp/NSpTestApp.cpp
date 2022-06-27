@@ -1325,10 +1325,10 @@ Send_Message( NSpGameReference  gGameObject, int messageType )
 
 	if (messageType == kNSpSendFlag_Registered)
 		//strcpy( gDataToSend->dataStr, kCannedRegisteredMessage );
-		sprintf(gDataToSend->dataStr,"just a friendly registered message from player %ld",ourNSpID);
+		sprintf(gDataToSend->dataStr,"just a friendly registered message from player %d",ourNSpID);
 	else
 		//strcpy( gDataToSend->dataStr, kCannedJunkMessage );
-		sprintf(gDataToSend->dataStr,"just a friendly junk message from player %ld",ourNSpID);
+		sprintf(gDataToSend->dataStr,"just a friendly junk message from player %d",ourNSpID);
 	
 	gDataToSend->header.messageLen = sizeof(NSpMessageHeader) + 
 										strlen(gDataToSend->dataStr) + 1;
@@ -1977,7 +1977,7 @@ Get_Indexed_Protocol_From_List( NSpProtocolListReference  gProtocolListRef,
 	else
 	{
 		cout << "\t Index " << index << " of ProtocolList is " 
-		<< (NMUInt32) gProtocolRef << endl;
+		<< (uintptr_t) gProtocolRef << endl;
 	}
 }
 

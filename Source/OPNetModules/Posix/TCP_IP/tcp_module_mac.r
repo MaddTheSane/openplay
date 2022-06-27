@@ -67,7 +67,7 @@ resource 'vers' (1) {
 		0x5,
 		verUS,
 		"2.2r5",
-		"2.2r5, ï¿½ 1999-2021 Apple Inc."
+		"2.2r5, © 1999-2021 Apple Inc."
 	};
 
 resource 'vers' (2) {

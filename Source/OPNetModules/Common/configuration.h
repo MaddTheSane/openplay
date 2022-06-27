@@ -52,7 +52,7 @@ extern "C" {
  *	io_length is size of buffer(in), and length of data retrieved(out).
  */
 
-	extern NMBoolean get_token( const char * s, const char * token_label, short token_type, void * token_data, long * io_length );
+	extern NMBoolean get_token( const char * s, const char * token_label, short token_type, void * token_data, NMSInt32 * io_length );
 
 /*	put_token	put data of the token_type with the token_label into the configuration string s
  *
@@ -60,7 +60,7 @@ extern "C" {
  *	returns false if the config string was not long enough to hold the data, or if the token_type was invalid
  */
 
-	extern NMBoolean put_token( char * s, long s_max_length, const char * token_label, short token_type, void * token_data, long data_len );
+	extern NMBoolean put_token( char * s, NMSInt32 s_max_length, const char * token_label, short token_type, void * token_data, NMSInt32 data_len );
 
 #ifdef __cplusplus
 }

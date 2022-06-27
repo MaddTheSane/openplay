@@ -190,7 +190,7 @@ NMSInt32					messageLength;
 
 	while (iter.Next(&theItem))
 	{
-		if ((EPCookie *) (((UInt32ListMember *) theItem)->GetValue()) == theCookie)
+		if ((EPCookie *) (((uintptrtListMember *) theItem)->GetValue()) == theCookie)
 		{
 			mPendingJoinConnections->Remove(theItem);
 			bFound = true;
@@ -489,7 +489,7 @@ CEndpoint::Clone(void *inCookie)
 	{
 		while (iter.Next(&theItem))
 		{
-			if ((EPCookie *) (((UInt32ListMember *) theItem)->GetValue()) == cookie)
+			if ((EPCookie *) (((uintptrtListMember *) theItem)->GetValue()) == cookie)
 			{
 				mPendingJoinConnections->Remove(theItem);
 				bFound = true;
@@ -548,7 +548,7 @@ CEndpoint::FindPendingJoin(void *inCookie)
 	
 	while (iter.Next(&theItem))
 	{
-		if ((EPCookie *) (((UInt32ListMember *) theItem)->GetValue()) == cookie)
+		if ((EPCookie *) (((uintptrtListMember *) theItem)->GetValue()) == cookie)
 		{
 			mPendingJoinConnections->Remove(theItem);
 			bFound = true;
@@ -600,7 +600,7 @@ EPCookie						*theCookie = NULL;
 		{			
 			while (iter->Next(&theItem))
 			{
-				theCookie = (EPCookie *)(((UInt32ListMember *)theItem)->GetValue());
+				theCookie = (EPCookie *)(((uintptrtListMember *)theItem)->GetValue());
 
 				if (kOPInvalidEndpointRef != theCookie->endpointRefOP)
 				{
@@ -1199,7 +1199,7 @@ CEndpoint::DoReceiveStream(PEndpointRef inEndpoint, EPCookie *inCookie)
 {
 	NMErr				result = kNMNoError;
 	NMUInt8				*receiveBuffer;
-	unsigned long		bytesToRead;
+	unsigned int		bytesToRead;
 	NSpMessageHeader	*theHeader;
 	NMFlags				flags;
 	NMUInt32			time;
@@ -1349,7 +1349,7 @@ CEndpoint::DoReceiveStream(PEndpointRef inEndpoint, EPCookie *inCookie)
 			
 			while (iter.Next(&theItem))
 			{
-				if ( ( (EPCookie *) (((UInt32ListMember *) theItem)->GetValue())) -> endpointRefOP == inEndpoint)
+				if ( ( (EPCookie *) (((uintptrtListMember *) theItem)->GetValue())) -> endpointRefOP == inEndpoint)
 				{
 					DEBUG_PRINT("Removing pending join connection in CEndpoint::DoReceiveStream");
 					mPendingJoinConnections->Remove(theItem);
@@ -1525,10 +1525,10 @@ error:
 NMErr
 CEndpoint::HandleAcceptComplete(PEndpointRef inEP, EPCookie *inCookie)
 {
-	UInt32ListMember	*theMember = NULL;
+	uintptrtListMember	*theMember = NULL;
 	NMErr			status = kNMNoError;
 	
-	theMember = new UInt32ListMember((NMUInt32) inCookie);
+	theMember = new uintptrtListMember((uintptr_t) inCookie);
 	if (theMember == NULL)
 	{
 		status = kNSpMemAllocationErr;

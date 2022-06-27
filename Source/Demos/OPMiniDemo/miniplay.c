@@ -518,7 +518,7 @@ Get_Protocol( NMType *type, ProtocolType protocolTarget )
 	}
 	else {
 
-		printf( "ERROR: %ld from GetIndexedProtocol()...\n", err);
+		printf( "ERROR: %d from GetIndexedProtocol()...\n", err);
 		fflush(stdout);
 	}
 
@@ -571,7 +571,7 @@ Send_Packet( void )
 		                          0 );
 		
 		if ( IsError( err ) ) {
-			printf( "ERROR: %ld on ProtocolSendPacket!\n", err );
+			printf( "ERROR: %d on ProtocolSendPacket!\n", err );
 			fflush(stdout);
 		}
 	}
@@ -636,7 +636,7 @@ Create_Endpoint( PConfigRef config, NMBoolean active )
 
 	if ( IsError( err ) ) {
 		newEndpoint = NULL;
-		printf( "\tERROR: %ld opening endpoint. (Verify a server is running \n", err );
+		printf( "\tERROR: %d opening endpoint. (Verify a server is running \n", err );
 		printf( "\t       and that your network connection is active.) \n" );
 		fflush(stdout);
 	}
@@ -681,7 +681,7 @@ OpenPlay_Callback( PEndpointRef inEndpoint,
 {
 	NMErr err;
 	PlayerPacket  packet;
-	unsigned long  data_length = sizeof( packet );
+	unsigned int  data_length = sizeof( packet );
 	NMFlags flags;
 
 	// Re-entrant programs are annoying....
@@ -764,7 +764,7 @@ OpenPlay_Callback( PEndpointRef inEndpoint,
 
 		case kNMHandoffComplete:
 			printf( "Handoff complete!\n" );
-			printf( "Got kHandoffComplete: Cookie: 0x%lx\n", (NMUInt32)inCookie );
+			printf( "Got kHandoffComplete: Cookie: 0x%lx\n", (uintptr_t)inCookie );
 			fflush(stdout);
 			break;
 
@@ -834,7 +834,7 @@ Create_Config( EndpointType endpointType,
 		// to module-defined constant data types instead of having to 
 		// hardcode it themselves.
 
-		sprintf( configStr, "%s=%ld\t%s=%u\t%s=%ld\t%s=%s\t%s=%u\t%s=%s\t%s=%u",
+		sprintf( configStr, "%s=%d\t%s=%u\t%s=%d\t%s=%s\t%s=%u\t%s=%s\t%s=%u",
 		              kTypeTag, protocol,
 		              kVersionTag, 0x00000100,
 		              kGameIDTag, kGameID,
@@ -876,7 +876,7 @@ Create_Config( EndpointType endpointType,
 	}
 	else {
 	
-		printf( "ERROR: %ld creating config.\n", err );
+		printf( "ERROR: %d creating config.\n", err );
 		fflush(stdout);
 	}
 		
@@ -969,7 +969,7 @@ Open_Connection( EndpointType endpointType,
 			
 			if ( IsError( err ) ) {
 				// Not a fatal error, but need to report it.
-				printf( "ERROR: %ld disposing the config.\n", err );
+				printf( "ERROR: %d disposing the config.\n", err );
 				fflush(stdout);
 			}
 		} 
@@ -1018,7 +1018,7 @@ Accept_Connection( PEndpointRef inEndpoint, void* inCookie )
 			fflush(stdout);
 		} 
 		else {
-			printf( "ERROR: %ld Failed connection request!\n", err );
+			printf( "ERROR: %d Failed connection request!\n", err );
 			fflush(stdout);
 		}
 	} 
@@ -1035,7 +1035,7 @@ Accept_Connection( PEndpointRef inEndpoint, void* inCookie )
 		err = ProtocolRejectConnection( inEndpoint, inCookie );
 		
 		if ( IsError( err ) ) {
-			printf( "ERROR: %ld in ProtocolRejectConnection()!\n", err );
+			printf( "ERROR: %d in ProtocolRejectConnection()!\n", err );
 			fflush(stdout);
 		}
 	}
@@ -1071,7 +1071,7 @@ Close_Connection( void )
 		err = ProtocolCloseEndpoint( gLocalEndpoint, false );	
 
 		if ( IsError( err ) ) {
-			printf( "ERROR: %ld closing endpoint!\n", err );
+			printf( "ERROR: %d closing endpoint!\n", err );
 			fflush(stdout);
 		}
 
@@ -1142,10 +1142,10 @@ Do_Enumeration( PConfigRef config ) {
 		sleep( 1 );
 	}
 
-	printf( "\n\tHost Found: \t HostID = %lu, Name = %s \n\n", gEnumHostID, gEnumHostName );
+	printf( "\n\tHost Found: \t HostID = %u, Name = %s \n\n", gEnumHostID, gEnumHostName );
 	fflush(stdout);
 
-	printf( "Bind to Host %s / ID %lu? (y/n):  ", gEnumHostName, gEnumHostID );
+	printf( "Bind to Host %s / ID %u? (y/n):  ", gEnumHostName, gEnumHostID );
 	fflush(stdout);
 	
 	while ( c != 'y' && c != 'Y' && c != 'n' && c != 'N' ) {
@@ -1194,7 +1194,7 @@ Print_Packets( void )
 	
 	for ( x = 0; x < gPacketCount && x < kMaxPackets; x++ ) {
 	
-		printf( "\tPacket[ %d ]: ID=%lu, data=%lu\n",
+		printf( "\tPacket[ %d ]: ID=%u, data=%u\n",
 		        x, gPackets[ x ].id, gPackets[ x ].data );
 		fflush(stdout);
 	}

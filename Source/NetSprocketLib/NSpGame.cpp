@@ -759,7 +759,7 @@ NSpGame::NSpGroup_GetInfo(NSpGroupID inGroupID, NSpGroupInfoPtr *outInfo)
 	//Ä	Fill in the info with the play IDs
 	while (playerIterator->Next(&theItem))
 	{
-		thePlayer = (PlayerListItem *)((UInt32ListMember *)theItem)->GetValue();
+		thePlayer = (PlayerListItem *)((uintptrtListMember *)theItem)->GetValue();
 		theInfo->players[count] = thePlayer->id;
 		count++;
 	}
@@ -1081,7 +1081,7 @@ NSpGame::FillInGroups(NSpPlayerID inPlayer, NSpGroupID **outGroups, NMUInt32 *ou
 
 			while (playerIterator->Next(&theItem) && !found)
 			{
-				thePlayer = (PlayerListItem *)((UInt32ListMember *)theItem)->GetValue();
+				thePlayer = (PlayerListItem *)((uintptrtListMember *)theItem)->GetValue();
 
 				if (thePlayer->id == inPlayer)
 					found = true;

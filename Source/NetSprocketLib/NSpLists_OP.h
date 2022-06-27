@@ -71,6 +71,17 @@
 		NMUInt32	mValue;
 	};
 
+	class uintptrtListMember : public NSp_InterruptSafeListMember
+	{
+	public:
+		uintptrtListMember(uintptr_t inItem) {mValue = inItem;}
+		~uintptrtListMember() {}
+
+		inline uintptr_t GetValue(void) {return mValue;}
+	protected:
+		uintptr_t	mValue;
+	};
+
 	class SendQItem : public NMLink
 	{
 	public:

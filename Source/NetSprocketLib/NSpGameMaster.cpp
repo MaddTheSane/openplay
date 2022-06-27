@@ -670,7 +670,7 @@ NSpGameMaster::RouteMessage(NSpMessageHeader *inHeader, NMUInt8 *inBody, NSpFlag
 		//Ä	Now loop through all players in the group...
 		while (playerIterator->Next(&theItem))
 		{
-			thePlayer = (PlayerListItem *)((UInt32ListMember *)theItem)->GetValue();
+			thePlayer = (PlayerListItem *)((uintptrtListMember *)theItem)->GetValue();
 
 			if (thePlayer->id != fromPlayer)
 			{
@@ -781,7 +781,7 @@ NSpGameMaster::SendUserMessage(NSpMessageHeader *inMessage, NSpFlags inFlags)
 				
 				while (playerIter->Next(&theItem))
 				{
-					thePlayer = (PlayerListItem *)(((UInt32ListMember *)theItem)->GetValue());
+					thePlayer = (PlayerListItem *)(((uintptrtListMember *)theItem)->GetValue());
 
 					if (thePlayer->id == mPlayerID)
 					{
@@ -907,7 +907,7 @@ NSpGameMaster::SendTo(NSpPlayerID inTo, NMSInt32 inWhat, void *inData, NMUInt32 
 				
 				while (playerIter->Next(&theItem))
 				{
-					thePlayer = (PlayerListItem *)(((UInt32ListMember *)theItem)->GetValue());
+					thePlayer = (PlayerListItem *)(((uintptrtListMember *)theItem)->GetValue());
 
 					if (thePlayer->id == mPlayerID)
 					{

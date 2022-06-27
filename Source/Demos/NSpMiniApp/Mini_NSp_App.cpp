@@ -616,7 +616,7 @@ Wait_For_Approval(NSpGameReference &gGameObject, char *theDenyReason)
 					break;			
 							
 					case kNSpError:
-						sprintf(theDenyReason, "Error # %ld", ((NSpErrorMessage *) message) -> error );
+						sprintf(theDenyReason, "Error # %d", ((NSpErrorMessage *) message) -> error );
 						response = true;
 						approved = false;
 					break;

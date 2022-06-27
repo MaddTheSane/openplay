@@ -50,7 +50,7 @@
 					
 		OP_PLATFORM_WINDOWS: 		Windows 32-bit using the WinSock API
 		
-		OP_PLATFORM_MAC_MACHO:	MacOSXin this case we use bundles, frameworks like coreservices, carbon, etc
+		OP_PLATFORM_MAC_MACHO:	MacOSX in this case we use bundles, frameworks like coreservices, carbon, etc
 			
 			OP_PLATFORM_MAC_CARBON_FLAG: can be defined.
 
@@ -112,7 +112,21 @@
 		#undef  has_unused_pragma
 		#undef  has_byte_type
 		
-	#else	/* lump everything else under Posix -- linux, unix, etc. */		
+	#elif defined(__MACH__)
+		#define OP_PLATFORM_MAC_MACHO	1
+		#define OP_API_NETWORK_SOCKETS 1
+
+		#include <machine/endian.h> /*bsd,osx,etc*/
+
+		#ifdef __BIG_ENDIAN__
+			#define big_endian 1
+		#endif
+		#ifdef __LITTLE_ENDIAN__
+			#define little_endian 1
+		#endif
+		#undef  has_byte_type
+
+	#else	/* lump everything else under Posix -- linux, unix, etc. */
 
 		#ifdef linux
 			#include <endian.h>
@@ -171,8 +185,8 @@
 	#if (!DOXYGEN)
 		typedef unsigned char	NMBoolean;
 
-		typedef unsigned long	NMUInt32;
-		typedef signed long		NMSInt32;
+		typedef unsigned int	NMUInt32;
+		typedef signed int		NMSInt32;
 
 		typedef unsigned short	NMUInt16;
 		typedef signed short	NMSInt16;
@@ -409,7 +423,7 @@
 	typedef NMUInt32 		NMHostID;
 
 	/**Callback codes passed to an endpoint's notifier function by OpenPlay.*/
-	typedef enum
+	typedef CF_ENUM(int, NMCallbackCode)
 	{
 		/**The endpoint has received a connection request - you should call either \ref ProtocolAcceptConnection() or \ref ProtocolRejectConnection() in response, though you do not have to do so immediately.*/
 		kNMConnectRequest	= 1,
@@ -433,7 +447,7 @@
 		/**Define the next free callback # available (also an easy way to avoid ending , on updates) */
 		kNMNextFreeCallbackCode
 
-	} NMCallbackCode;
+	};
 	
 	/**Special values for a \ref NMModuleInfoStruct 's maxEndpoints member.*/
 	typedef enum
@@ -454,7 +468,7 @@
 	} NMMaxStringLength;
 		
 	/**A \ref NMModuleInfoStruct 's flags member may contain one or more of the following values.*/
-	typedef enum
+	typedef CF_OPTIONS(NMFlags, NMNetModuleFlag)
 	{
 		/**This NetModule can create endpoints with stream functionality.*/
 		kNMModuleHasStream			= 0x00000001,
@@ -464,7 +478,7 @@
 		kNMModuleHasExpedited		= 0x00000004,
 		/**For this NetModule to function correctly, \ref ProtocolIdle() must be called regularly.*/
 		kNMModuleRequiresIdleTime	= 0x00000008
-	} NMNetModuleFlag;
+	};
 	
 	/**Struct describing an OpenPlay NetModule in detail - used with \ref ProtocolGetEndpointInfo().*/
 	struct NMModuleInfoStruct
@@ -482,7 +496,7 @@
 		/**The maximum number of concurrent endpoints this NetModule supports - may be set to the special values \ref kNMNoEndpointLimit or \ref kNMNoPassiveEndpoints.*/
 		NMUInt32	maxEndpoints;
 		/**Flags.*/
-		NMFlags		flags;
+		NMNetModuleFlag		flags;
 	};
 	typedef struct NMModuleInfoStruct NMModuleInfo;
 
@@ -507,7 +521,7 @@
 		kNMEnumClear
 	} NMEnumerationCommand;
 	
-	typedef enum
+	typedef CF_OPTIONS(NMFlags, NMEndpointMode)
 	{
 		/**Neither packet nor stream functionality.*/
 		kNMModeNone = 0,
@@ -517,7 +531,7 @@
 		kNMStreamMode = 2,
 		/**Both packet and stream functionality.*/
 		kNMNormalMode = kNMStreamMode + kNMDatagramMode
-	} NMEndpointMode;
+	};
 	
 	/**Struct which is filled out for you by OpenPlay when enumerating hosts on the network.*/
 	struct NMEnumItemStruct
@@ -548,7 +562,7 @@
 	}NMDataTranferFlag;
 	
 	/**OpenPlay Error Codes */
-	typedef enum
+	typedef CF_ENUM(NMErr, NMErrorCode)
 	{
 		/**OpenPlay has run out of memory. Ouch.*/
 		kNMOutOfMemoryErr			= -4999,
@@ -630,7 +644,7 @@
 */
 		/**No error! woohoo!*/
 		kNMNoError					= 0
-	} NMErrorCode;
+	};
 	
 /*	------------------------------	Public Definitions */
 
@@ -645,13 +659,13 @@
 	
 	typedef NMSInt16 _packet_data_size;
 	
-	typedef enum
+	CF_ENUM(_packet_data_size)
 	{
 		/**Two! Two bytes! ... ah ah ah ah!*/
 		k2Byte	= -1,
 		/**Four! Four bytes! ... ah ah ah ah!*/
 		k4Byte	= -2
-	} NMByteCount;
+	};
 	
 	/**Struct describing a specific OpenPlay protocol, obtained from \ref GetIndexedProtocol().*/
 	struct NMProtocolStruct
@@ -689,13 +703,13 @@
 	} NMOpenFlags;
 
 	/**A few established NetModule types.*/
-	typedef enum
+	typedef CF_ENUM(NMType, NMEstablishedModuleTypes)
 	{
 		/**AppleTalk NetModule type.*/
 		kATModuleType = 'Atlk',
 		/**TCPIP NetModule type.*/
 		kIPModuleType = 'Inet'
-	} NMEstablishedModuleTypes;
+	};
 	
 /** @}*/	
 /*	------------------------------	Public Variables */

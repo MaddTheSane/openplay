@@ -234,7 +234,7 @@ static NMErr _startClient( void )
 		fflush(stdout);
 		port = kGamePort;
 	}
-	sprintf( thePort, "%li", port );
+	sprintf( thePort, "%u", port );
 
 	/* Get the name this player wishes to go by */
 

@@ -693,7 +693,7 @@ static NMErr _send_data(	NMEndpointRef 		Endpoint,
  */
 
 static NMErr _receive_data(NMEndpointRef inEndpoint, int which_socket, 
-                           void *ioData, unsigned long *ioSize, NMFlags *outFlags)
+                           void *ioData, NMUInt32 *ioSize, NMFlags *outFlags)
 {
 	NMErr		err = kNMNoError;
 	NMSInt32	result;
@@ -850,10 +850,11 @@ internally_handled_datagram(NMEndpointRef endpoint)
 				result= sendto(endpoint->sockets[_datagram_socket], response_packet, 
 					bytes_to_send, 0, (sockaddr*) &remote_address, sizeof (remote_address));
 
-				if (result > 0)
+				if (result > 0) {
 					op_assert(result==bytes_to_send);
-				else if (result < 0)
+				} else if (result < 0) {
 					DEBUG_NETWORK_API("Sendto on enum response",result);
+				}
 			}
 			// we handled it.
 			handled_internally= true;
@@ -1383,7 +1384,7 @@ NMBoolean NMIsAlive(NMEndpointRef Endpoint)
  *--------------------------------------------------------------------
  */
 
-NMErr NMSetTimeout(NMEndpointRef Endpoint, unsigned long Timeout)
+NMErr NMSetTimeout(NMEndpointRef Endpoint, NMUInt32 Timeout)
 {
 
 	DEBUG_ENTRY_EXIT("NMSetTimeout");
@@ -1520,7 +1521,7 @@ NMErr NMIdle(NMEndpointRef Endpoint)
  *--------------------------------------------------------------------
  */
 
-NMErr NMFunctionPassThrough(NMEndpointRef Endpoint, unsigned long Selector, void *ParamBlock)
+NMErr NMFunctionPassThrough(NMEndpointRef Endpoint, NMUInt32 Selector, void *ParamBlock)
 {
 
 	DEBUG_ENTRY_EXIT("NMFunctionPassThrough");
@@ -1567,7 +1568,7 @@ NMErr NMFunctionPassThrough(NMEndpointRef Endpoint, unsigned long Selector, void
  *--------------------------------------------------------------------
  */
 
-NMErr NMSendDatagram(NMEndpointRef Endpoint, NMUInt8 *Data, unsigned long Size, NMFlags Flags)
+NMErr NMSendDatagram(NMEndpointRef Endpoint, NMUInt8 *Data, NMUInt32 Size, NMFlags Flags)
 {
 	DEBUG_ENTRY_EXIT("NMSendDatagram");
 
@@ -1618,7 +1619,7 @@ NMErr NMSendDatagram(NMEndpointRef Endpoint, NMUInt8 *Data, unsigned long Size, 
  *--------------------------------------------------------------------
  */
 
-NMErr NMReceiveDatagram(NMEndpointRef Endpoint, NMUInt8 *Data, unsigned long *Size, NMFlags *Flags)
+NMErr NMReceiveDatagram(NMEndpointRef Endpoint, NMUInt8 *Data, NMUInt32 *Size, NMFlags *Flags)
 {
 
 	DEBUG_ENTRY_EXIT("NMReceiveDatagram");
@@ -1660,7 +1661,7 @@ NMErr NMReceiveDatagram(NMEndpointRef Endpoint, NMUInt8 *Data, unsigned long *Si
  *--------------------------------------------------------------------
  */
 
-NMErr NMSend(NMEndpointRef Endpoint, void *Data, unsigned long Size, NMFlags Flags)
+NMErr NMSend(NMEndpointRef Endpoint, void *Data, NMUInt32 Size, NMFlags Flags)
 {
 	DEBUG_ENTRY_EXIT("NMSend");
 
@@ -1705,7 +1706,7 @@ NMErr NMSend(NMEndpointRef Endpoint, void *Data, unsigned long Size, NMFlags Fla
  *--------------------------------------------------------------------
  */
 
-NMErr NMReceive(NMEndpointRef Endpoint, void *Data, unsigned long *Size, NMFlags *Flags)
+NMErr NMReceive(NMEndpointRef Endpoint, void *Data, NMUInt32 *Size, NMFlags *Flags)
 {
 
 	DEBUG_ENTRY_EXIT("NMReceive");
@@ -2496,7 +2497,7 @@ receive_udp_port(NMEndpointRef endpoint)
 	udp_port_struct_from_server	port_data;
 	NMSInt32	err;
 	NMUInt32	size= sizeof(port_data);
-	NMUInt32	flags;
+	NMFlags		flags;
 
 	DEBUG_ENTRY_EXIT("receive_udp_port");
 	

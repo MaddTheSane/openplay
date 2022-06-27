@@ -272,7 +272,7 @@ NMBoolean					swapBack = false;	//?? why here and not below?
 
 					while (playerIter->Next(&theItem))
 					{
-						thePlayer = (PlayerListItem *)(((UInt32ListMember *)theItem)->GetValue());
+						thePlayer = (PlayerListItem *)(((uintptrtListMember *)theItem)->GetValue());
 						if (thePlayer->id == mPlayerID)
 						{
 							status = DoSelfSend(inMessage, (NMUInt8 *)inMessage + sizeof (NSpMessageHeader), inFlags);
@@ -391,7 +391,7 @@ NMBoolean						bSelfSent = false;
 
 					while (playerIter->Next(&theItem))
 					{
-						thePlayer = (PlayerListItem *)(((UInt32ListMember *)theItem)->GetValue());
+						thePlayer = (PlayerListItem *)(((uintptrtListMember *)theItem)->GetValue());
 						if (thePlayer->id == mPlayerID)
 						{
 							status = DoSelfSend(headerPtr, inData, inFlags);

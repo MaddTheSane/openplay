@@ -117,7 +117,7 @@ int main(int argc, char **argv)
 	{
 		OPHTTPDownload *theDownload;
 		char buffer[5];
-		unsigned long bufferSize;
+		unsigned int bufferSize;
 		OPHTTPDownloadStatus dlStatus;
 		unsigned int bytesReceived = 0;
 	

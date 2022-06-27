@@ -483,7 +483,7 @@ void NetworkHandleMessage( void )
 				thePlayer->closed = false;
 				
 				/*announce the arrival - we don't have a name for the guy until his name message arrives though*/
-				printf("===> Player %ld joined game '%s', %ld players now!\n",thePlayer->id,_gameName,NetworkGetPlayerCount());
+				printf("===> Player %ld joined game '%s', %u players now!\n",thePlayer->id,_gameName,NetworkGetPlayerCount());
 				fflush(stdout);
 				
 				/*Lets go ahead and re-send the current question, as the new guy deserves a shot at it too*/
@@ -522,7 +522,7 @@ void NetworkHandleMessage( void )
 				/*otherwise its a client disconnecting from us*/
 				/* inform of their departure */
 				_playerCount--;
-				printf("===> Player %ld left game '%s', %ld players now!\n",thePlayer->id,_gameName,NetworkGetPlayerCount());
+				printf("===> Player %ld left game '%s', %u players now!\n",thePlayer->id,_gameName,NetworkGetPlayerCount());
 				fflush(stdout);
 
 				/* go ahead and close it, and mark it as closing so we don't send it any more datagrams - we leave it on the list

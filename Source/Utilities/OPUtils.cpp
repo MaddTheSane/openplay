@@ -282,7 +282,7 @@ NMSInt16	length;
 	{
 	  char buffer[256];
 
-	  sprintf((char *) buffer, "%s in %s,#%lu: %s", fatal ? "op_halt" : "op_pause", file, line,
+	  sprintf((char *) buffer, "%s in %s,#%u: %s", fatal ? "op_halt" : "op_pause", file, line,
 	          information ? information : "<no reason given>");
 
 	  debug_message(buffer);
