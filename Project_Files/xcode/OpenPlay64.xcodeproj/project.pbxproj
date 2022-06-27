@@ -296,7 +296,7 @@
 		2CF0566A26E460F600163478 /* Mini_NSp_App.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mini_NSp_App.cpp; sourceTree = "<group>"; };
 		2CF0566C26E4614A00163478 /* OPGetURL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OPGetURL.cpp; sourceTree = "<group>"; };
 		2CF0566D26E4614A00163478 /* OPDownloadHTTP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OPDownloadHTTP.cpp; sourceTree = "<group>"; };
-		557713F8286A58C70012D520 /* en */ = {isa = PBXFileReference; fileEncoding = 2483028224; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		557713F8286A58C70012D520 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		557713FA286A5DE00012D520 /* NSpLists_OP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSpLists_OP.h; sourceTree = "<group>"; };
 		5577142F286A6BBC0012D520 /* tcp_module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp_module.h; sourceTree = "<group>"; };
 		9758F24A0588DE88008F071A /* Info-OpenPlay_Framework.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-OpenPlay_Framework.plist"; sourceTree = "<group>"; };
