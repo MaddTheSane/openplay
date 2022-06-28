@@ -26,6 +26,7 @@
 #ifndef __FIND_FILES__
 #define __FIND_FILES__
 
+#include <CoreFoundation/CoreFoundation.h>
 #include "OPUtils.h"
 
 //	------------------------------	Public Definitions
@@ -33,26 +34,26 @@
 	#define WILDCARD_TYPE '****'
 	#define FIND_FILE_VERSION (0)
 
-	enum
+	typedef CF_ENUM(NMSInt16, find_file_pb_search_type)
 	{
-		_fill_buffer, 			/* Fill the buffer with matches */
-		_callback_only			/* Ignore the buffer, and call the callback for each. */
+		_fill_buffer, 			/*!< Fill the buffer with matches */
+		_callback_only			/*!< Ignore the buffer, and call the callback for each. */
 	};
 
-	enum
+	typedef CF_OPTIONS(NMSInt16, find_file_pb_flags)
 	{
-		_ff_create_buffer= 0x0001,	/* Create the destination buffer, free later w/ Dispose */
-		_ff_alphabetical= 0x0002,	/* Matches are returned in alphabetical order */
-		_ff_recurse= 0x0004,		/* Recurse when I find a subdirectory */
-		_ff_callback_with_catinfo= 0x0008 /* Callback with CInfoPBRec as second paramter */
+		_ff_create_buffer= 0x0001,	/*!< Create the destination buffer, free later w/ Dispose */
+		_ff_alphabetical= 0x0002,	/*!< Matches are returned in alphabetical order */
+		_ff_recurse= 0x0004,		/*!< Recurse when I find a subdirectory */
+		_ff_callback_with_catinfo= 0x0008 /*!< Callback with \c CInfoPBRec as second paramter */
 	};
 
 //	------------------------------	Public Types
 
 	struct find_file_pb {
 		NMSInt16 version;			/* Version Control (Set to 0)		<-  */
-		NMSInt16 flags;			/* Search flags 			<-  */
-		NMSInt16 search_type;		/* Search type				<-  */
+		find_file_pb_flags flags;			/* Search flags 			<-  */
+		find_file_pb_search_type search_type;		/* Search type				<-  */
 
 		FileDesc start_search_from;	/* Start of search (for macintosh, ignores name) */
 		FileType type_to_find;		/* OSType to find			<-  */

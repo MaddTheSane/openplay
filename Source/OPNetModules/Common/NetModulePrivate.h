@@ -91,7 +91,7 @@
 
 	#ifdef INCLUDE_MODULE_NAMES
 
-		const char	*module_names[] =
+		const char	*const module_names[] =
 		{
 			"NMGetModuleInfo",
 

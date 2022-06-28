@@ -118,14 +118,14 @@ static FileError enumerate_files(struct find_file_pb *param_block)
 	long counter;
 	FileDesc temp_file;
 	NMBoolean result;
-	moduleURLs = CFBundleCopyResourceURLsOfType(param_block->start_search_from.bundle,CFSTR("bundle"),CFSTR("modules"));
+	moduleURLs = CFBundleCopyResourceURLsOfType(param_block->start_search_from.bundle, CFSTR("bundle"), CFSTR("modules"));
 	long count = CFArrayGetCount(moduleURLs);
-	DEBUG_PRINT("found %d modules",count);		
+	DEBUG_PRINT("found %d modules", count);		
 	
 	for (counter = 0;counter < count;counter++){
-		theURL = (CFURLRef)CFArrayGetValueAtIndex(moduleURLs,counter);
+		theURL = (CFURLRef)CFArrayGetValueAtIndex(moduleURLs, counter);
 		op_assert(theURL);
-		temp_file.bundle = CFBundleCreate(kCFAllocatorDefault,theURL);
+		temp_file.bundle = CFBundleCreate(kCFAllocatorDefault, theURL);
 		if (temp_file.bundle){
 			if ((param_block->search_type == _callback_only) && (param_block->callback))
 			{
@@ -134,7 +134,9 @@ static FileError enumerate_files(struct find_file_pb *param_block)
 					result = param_block->callback(&temp_file, (void *)param_block->start_search_from.bundle); /* callback with catinfo */					
 				}
 				else
+				{
 					result = param_block->callback(&temp_file, param_block->user_data); /* callback with user data */
+				}
 			}
 			CFRelease(temp_file.bundle);
 		}

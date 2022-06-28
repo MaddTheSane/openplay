@@ -101,10 +101,10 @@ void *load_proc(ConnectionRef conn_id, short proc_id)
 	{
 	#ifdef OP_API_PLUGIN_MACHO
 
-			CFStringRef funcName = CFStringCreateWithCString(kCFAllocatorDefault,module_names[proc_id],kCFStringEncodingASCII);
+			CFStringRef funcName = CFStringCreateWithCString(kCFAllocatorDefault, module_names[proc_id], kCFStringEncodingASCII);
 
 			op_assert(funcName);
-			proc_ptr = (void*)CFBundleGetFunctionPointerForName(conn_id,funcName);
+			proc_ptr = (void*)CFBundleGetFunctionPointerForName(conn_id, funcName);
 			CFRelease(funcName);
 
 	#else
@@ -115,7 +115,7 @@ void *load_proc(ConnectionRef conn_id, short proc_id)
 		#ifdef OP_API_PLUGIN_POSIX_DARWIN
 				char symbolName[128];
 
-				sprintf(symbolName,"_%s",module_names[proc_id]);
+				sprintf(symbolName, "_%s", module_names[proc_id]);
 			#else
 				char *symbolName = (char*)module_names[proc_id];
 			#endif
