@@ -290,7 +290,7 @@ ProtocolAcceptConnection(
 		if(endpoint->NMAcceptConnection)
 		{
 			Endpoint *new_endpoint;
-			NMBoolean from_cache;
+			NMBoolean from_cache = false;
 			
 			new_endpoint= create_endpoint_for_accept(endpoint, &err, &from_cache);
 			if(!err)

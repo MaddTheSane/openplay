@@ -144,7 +144,7 @@ extern "C" {
 		#else
 
 			NMErr	dprintf_err			( const char	*message, NMErr	err, const char *file,NMSInt32	line);
-			#define DEBUG_NETWORK_API(message, err)	if (err != kNMNoError) { dprintf_err(message, err, __FILE__, __LINE__);}
+			#define DEBUG_NETWORK_API(message, err)	if (err != kNMNoError) { dprintf_err(message, (NMErr)err, __FILE__, __LINE__);}
 
 		#endif
 

@@ -85,7 +85,7 @@ NMBoolean equal_filedescs(
 {
 #if (OP_API_PLUGIN_MACHO)
 	//This function isn't currently used, but it would be good to fill this in.
-	return false;
+	return CFEqual(a->bundle, b->bundle);
 #else
 	NMBoolean equal = false;
 

@@ -744,7 +744,7 @@
 	typedef NMSInt32 						NSpFlags;
 	typedef unsigned char					NSpPlayerName[kNSpStr32Len];
 
-	/* Individual player info */	
+	/** Individual player info */
 
 	struct NSpPlayerInfo {
 		NSpPlayerID 						id;
@@ -757,7 +757,7 @@
 
 	typedef NSpPlayerInfo *					NSpPlayerInfoPtr;
 
-	/* list of all players */
+	/** list of all players */
 	
 	struct NSpPlayerEnumeration {
 		NMUInt32 							count;
@@ -766,7 +766,7 @@
 	typedef struct NSpPlayerEnumeration		NSpPlayerEnumeration;
 	typedef NSpPlayerEnumeration *			NSpPlayerEnumerationPtr;
 
-	/* Individual group info */
+	/** Individual group info */
 	
 	struct NSpGroupInfo {
 		NSpGroupID 							id;
@@ -776,7 +776,7 @@
 	typedef struct NSpGroupInfo				NSpGroupInfo;
 	typedef NSpGroupInfo *					NSpGroupInfoPtr;
 
-	/* List of all groups */
+	/** List of all groups */
 	
 	struct NSpGroupEnumeration {
 		NMUInt32 							count;
@@ -785,14 +785,13 @@
 	typedef struct NSpGroupEnumeration		NSpGroupEnumeration;
 	typedef NSpGroupEnumeration *			NSpGroupEnumerationPtr;
 
-	/* Topology types */
+	/** Topology types */
 	
-	typedef NMUInt32 						NSpTopology;
-	enum {
+	typedef CF_ENUM(NMUInt32, NSpTopology) {
 		kNSpClientServer					= 0x00000001
 	};
 	
-	/* Game information */
+	/** Game information */
 
 	struct NSpGameInfo {
 		NMUInt32 							maxPlayers;
@@ -805,20 +804,20 @@
 	};
 	typedef struct NSpGameInfo				NSpGameInfo;
 	
-	/* Structure used for sending and receiving network messages */
+	/** Structure used for sending and receiving network messages */
 
 	struct NSpMessageHeader {
-		NMUInt32 							version;		/* Used by NetSprocket.  Don't touch this */
-		NMSInt32 							what;			/* The kind of message (e.g. player joined) */
-		NSpPlayerID 						from;			/* ID of the sender */
-		NSpPlayerID 						to;				/* (player or group) id of the intended recipient */
-		NMUInt32 							id;				/* Unique ID for this message & (from) player */
-		NMUInt32 							when;			/* Timestamp for the message */
-		NMUInt32 							messageLen;		/* Bytes of data in the entire message (including the header) */
+		NMUInt32 							version;		/**< Used by NetSprocket.  Don't touch this */
+		NMSInt32 							what;			/**< The kind of message (e.g. player joined) */
+		NSpPlayerID 						from;			/**< ID of the sender */
+		NSpPlayerID 						to;				/**< (player or group) id of the intended recipient */
+		NMUInt32 							id;				/**< Unique ID for this message & (from) player */
+		NMUInt32 							when;			/**< Timestamp for the message */
+		NMUInt32 							messageLen;		/**< Bytes of data in the entire message (including the header) */
 	};
 	typedef struct NSpMessageHeader NSpMessageHeader;
 
-	/* NetSprocket-defined message structures */
+	/** NetSprocket-defined message structures */
 
 	struct NSpErrorMessage {
 		NSpMessageHeader 				header;
