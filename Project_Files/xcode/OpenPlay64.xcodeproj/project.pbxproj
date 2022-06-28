@@ -57,6 +57,7 @@
 		55771442286A93230012D520 /* NSpGameSlave.h in Headers */ = {isa = PBXBuildFile; fileRef = 5577143C286A93230012D520 /* NSpGameSlave.h */; };
 		55771443286A93230012D520 /* NetSprocketLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 5577143D286A93230012D520 /* NetSprocketLib.h */; };
 		55771444286A93230012D520 /* NSpProtocolRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 5577143E286A93230012D520 /* NSpProtocolRef.h */; };
+		55771446286AF2880012D520 /* tcp_module_gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55771445286AF2880012D520 /* tcp_module_gui.cpp */; };
 		9758F2270588DE88008F071A /* module_management.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64102556F3701A80105 /* module_management.cpp */; };
 		9758F2280588DE88008F071A /* op_endpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64202556F3701A80105 /* op_endpoint.cpp */; };
 		9758F2290588DE88008F071A /* op_hi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64302556F3701A80105 /* op_hi.cpp */; };
@@ -311,6 +312,10 @@
 		5577143C286A93230012D520 /* NSpGameSlave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSpGameSlave.h; sourceTree = "<group>"; };
 		5577143D286A93230012D520 /* NetSprocketLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetSprocketLib.h; sourceTree = "<group>"; };
 		5577143E286A93230012D520 /* NSpProtocolRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSpProtocolRef.h; sourceTree = "<group>"; };
+		55771445286AF2880012D520 /* tcp_module_gui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tcp_module_gui.cpp; sourceTree = "<group>"; };
+		55771447286AF2C20012D520 /* NetModuleDarwin.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = NetModuleDarwin.exp; sourceTree = "<group>"; };
+		55771448286AF2C20012D520 /* NetModuleMach.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = NetModuleMach.exp; sourceTree = "<group>"; };
+		55771449286AF2C20012D520 /* NetModuleDarwin64.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = NetModuleDarwin64.exp; sourceTree = "<group>"; };
 		9758F24A0588DE88008F071A /* Info-OpenPlay_Framework.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-OpenPlay_Framework.plist"; sourceTree = "<group>"; };
 		9758F24B0588DE88008F071A /* OpenPlay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OpenPlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9758F2600588DE88008F071A /* Info-IP_Module.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-IP_Module.plist"; sourceTree = "<group>"; };
@@ -629,6 +634,9 @@
 		2C5B321826C403DC00217E09 /* Posix */ = {
 			isa = PBXGroup;
 			children = (
+				55771447286AF2C20012D520 /* NetModuleDarwin.exp */,
+				55771449286AF2C20012D520 /* NetModuleDarwin64.exp */,
+				55771448286AF2C20012D520 /* NetModuleMach.exp */,
 				2C5B321926C403F800217E09 /* TCP_IP */,
 			);
 			path = Posix;
@@ -640,6 +648,7 @@
 				F5530D710256BFDF01A80105 /* tcp_module_communication.cpp */,
 				F5530D720256BFDF01A80105 /* tcp_module_config.cpp */,
 				F5530D730256BFDF01A80105 /* tcp_module_enumeration.cpp */,
+				55771445286AF2880012D520 /* tcp_module_gui.cpp */,
 				F5679E09026A1F2001A80105 /* tcp_module_mac.r */,
 				F5530D750256BFDF01A80105 /* tcp_module_main.cpp */,
 				5577142F286A6BBC0012D520 /* tcp_module.h */,
@@ -1126,6 +1135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55771446286AF2880012D520 /* tcp_module_gui.cpp in Sources */,
 				9758F2570588DE88008F071A /* configuration.c in Sources */,
 				9758F2580588DE88008F071A /* ip_enumeration.c in Sources */,
 				9758F2500588DE88008F071A /* tcp_module_communication.cpp in Sources */,
@@ -1458,6 +1468,8 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EXPORTED_SYMBOLS_FILE = ../../Source/OpenPlayLib/posix/openplay_darwin64.exp;
 				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ../../Source/NetSprocketLib/NSpPrefix.h;
 				INFOPLIST_FILE = "Info-OpenPlay_Framework.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
@@ -1477,6 +1489,8 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EXPORTED_SYMBOLS_FILE = ../../Source/OpenPlayLib/posix/openplay_darwin64.exp;
 				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ../../Source/NetSprocketLib/NSpPrefix.h;
 				INFOPLIST_FILE = "Info-OpenPlay_Framework.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";

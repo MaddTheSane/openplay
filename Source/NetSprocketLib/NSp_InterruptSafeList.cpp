@@ -170,8 +170,8 @@ NSp_InterruptSafeListIterator::~NSp_InterruptSafeListIterator()
 //----------------------------------------------------------------------------------------
 // NSp_InterruptSafeListIterator::Reset 
 //----------------------------------------------------------------------------------------
-//	Returns the iterator to the beginning of the list.
-//	May be called at interrupt time.
+///	Returns the iterator to the beginning of the list.
+///	May be called at interrupt time.
 
 void
 NSp_InterruptSafeListIterator::Reset( void )
@@ -186,10 +186,10 @@ NSp_InterruptSafeListIterator::Reset( void )
 //----------------------------------------------------------------------------------------
 // NSp_InterruptSafeListIterator::Current 
 //----------------------------------------------------------------------------------------
-//	Sets outItem to the address of the current item. Returns true if the item
-//	pointer is valid.
-//
-//	May be called at interrupt time.
+///	Sets outItem to the address of the current item. Returns true if the item
+///	pointer is valid.
+///
+///	May be called at interrupt time.
 
 NMBoolean
 NSp_InterruptSafeListIterator::Current(
@@ -209,10 +209,10 @@ NSp_InterruptSafeListIterator::Current(
 //----------------------------------------------------------------------------------------
 // NSp_InterruptSafeListIterator::Next 
 //----------------------------------------------------------------------------------------
-//	Sets outItem to the address of the next item in this list. Returns true if the
-//	next item pointer is valid, false if the end of the list had been reached.
-//
-//	May be called at interrupt time.
+///	Sets outItem to the address of the next item in this list. Returns true if the
+///	next item pointer is valid, false if the end of the list had been reached.
+///
+///	May be called at interrupt time.
 
 NMBoolean
 NSp_InterruptSafeListIterator::Next(
@@ -233,7 +233,7 @@ NSp_InterruptSafeListIterator::Next(
 //----------------------------------------------------------------------------------------
 //	NSp_InterruptSafeListIterator::ListDied				[private]
 //----------------------------------------------------------------------------------------
-//	Should be called only by NSp_InterruptSafeList when the list is deleted.
+///	Should be called only by \ref NSp_InterruptSafeList when the list is deleted.
 
 void
 NSp_InterruptSafeListIterator::ListDied()

@@ -474,7 +474,7 @@ NSpGameMaster::HandleJoinRequest(
 	else
 	{
 			// dair, added NSpJoinResponseMessage support
-		if (msgJoinResponse.responseDataLen != 0)
+		if (msgJoinResponse.responseDataLen != 0 && inEndpoint != NULL)
 			status = inEndpoint->SendMessage(&msgJoinResponse.header, ((NMUInt8 *) &msgJoinResponse) + sizeof(NSpMessageHeader), kNSpSendFlag_Registered);
 
 		status = SendJoinDenied(inEndpoint, inCookie, message);
