@@ -283,7 +283,7 @@ NMSInt32 count_endpoints_of_type(
 			char temp[100];
 			
 			ep= loaded_module->first_loaded_endpoint;
-			while(ep) ep= ep->next, actual_count+= 1;
+			while(ep) {ep= ep->next; actual_count+= 1;}
 			op_vassert(actual_count==loaded_module->endpoints_instantiated,
 				csprintf(temp, "actual count: %d != %d", actual_count, loaded_module->endpoints_instantiated));
 #endif

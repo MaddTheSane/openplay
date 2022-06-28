@@ -313,7 +313,7 @@ extern "C" {
 
 	extern NMUInt32 	machine_tick_count(void);
 
-	extern	NMUInt32	GetTimestampMilliseconds();
+	extern	NMUInt32	GetTimestampMilliseconds(void);
 
 #ifdef __cplusplus
 }

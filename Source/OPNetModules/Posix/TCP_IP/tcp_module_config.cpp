@@ -107,7 +107,7 @@ static NMBoolean _build_standard_config_strings(NMConfigRef config)
       if (status)
       {
         /* put the gameName */
-        status = put_token(config->buffer, MAXIMUM_CONFIG_LENGTH, kConfigGameName, STRING_DATA, &config->name, strlen(config->name));
+        status = put_token(config->buffer, MAXIMUM_CONFIG_LENGTH, kConfigGameName, STRING_DATA, &config->name, (NMSInt32)strlen(config->name));
 
         if(status)
         {
@@ -159,7 +159,7 @@ static void _build_config_string_into_config_buffer(NMConfigRef config)
   {
     /* insert HOST name */
     status = put_token(config->buffer, MAXIMUM_CONFIG_LENGTH, kIPConfigAddress, 
-                       STRING_DATA, config->host_name, strlen(config->host_name));
+                       STRING_DATA, config->host_name, (NMSInt32)strlen(config->host_name));
 
     if (status)
     {

@@ -268,7 +268,7 @@ class OSCriticalSection
 	
 //ecf 020619 changed to a non-recursive method so large lists won't cause problems.
 
-static NMLink* NMReverseList(NMLink *headRef)
+static inline NMLink* NMReverseList(NMLink *headRef)
 {
 
 	NMLink *oldNext;

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -28,12 +28,12 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		18AD33E105D0708E006D9A32 /* OpenPlay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; };
-		18AD33EC05D070A8006D9A32 /* OpenPlay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; };
-		18AD33F005D070AF006D9A32 /* OpenPlay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; };
-		18AD33FB05D070C0006D9A32 /* OpenPlay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; };
-		18EB655A05D055CF006B1F7B /* tcpip.so.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9758F2610588DE88008F071A /* tcpip.so.bundle */; };
-		18EB657F05D05794006B1F7B /* OpenPlay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; };
+		18AD33E105D0708E006D9A32 /* OpenPlay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		18AD33EC05D070A8006D9A32 /* OpenPlay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		18AD33F005D070AF006D9A32 /* OpenPlay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		18AD33FB05D070C0006D9A32 /* OpenPlay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		18EB655A05D055CF006B1F7B /* tcpip.so.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9758F2610588DE88008F071A /* tcpip.so.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		18EB657F05D05794006B1F7B /* OpenPlay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2C25E82026C55B1A000E73E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C25E81E26C55B1A000E73E5 /* InfoPlist.strings */; };
 		2C5B321D26C4054600217E09 /* machine_lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE67002556F8801A80105 /* machine_lock.cpp */; };
 		2C5B321F26C4054600217E09 /* String_Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE67202556F8801A80105 /* String_Utils.cpp */; };
@@ -42,15 +42,21 @@
 		2C8547F126E46DC1005A70D9 /* String_Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE67202556F8801A80105 /* String_Utils.cpp */; };
 		2C8780E226D8535E00E3CAC0 /* OPUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE67102556F8801A80105 /* OPUtils.cpp */; };
 		2CF0564D26E4582C00163478 /* OpenPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; };
-		2CF0565026E4582C00163478 /* OpenPlay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; };
+		2CF0565026E4582C00163478 /* OpenPlay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2CF0565D26E4585F00163478 /* OpenPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; };
-		2CF0566026E4585F00163478 /* OpenPlay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; };
+		2CF0566026E4585F00163478 /* OpenPlay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2CF0566B26E460F600163478 /* Mini_NSp_App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0566A26E460F600163478 /* Mini_NSp_App.cpp */; };
 		2CF0566E26E4614A00163478 /* OPGetURL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0566C26E4614A00163478 /* OPGetURL.cpp */; };
 		2CF0566F26E4614A00163478 /* OPDownloadHTTP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0566D26E4614A00163478 /* OPDownloadHTTP.cpp */; };
 		2CF0567026E4616100163478 /* String_Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE67202556F8801A80105 /* String_Utils.cpp */; };
 		557713F9286A59950012D520 /* OpenPlay.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C8780D526C57E9800E3CAC0 /* OpenPlay.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55771430286A6BBC0012D520 /* tcp_module.h in Headers */ = {isa = PBXBuildFile; fileRef = 5577142F286A6BBC0012D520 /* tcp_module.h */; };
+		5577143F286A93230012D520 /* NSpGame.h in Headers */ = {isa = PBXBuildFile; fileRef = 55771439286A93230012D520 /* NSpGame.h */; };
+		55771440286A93230012D520 /* NSpGamePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 5577143A286A93230012D520 /* NSpGamePrivate.h */; };
+		55771441286A93230012D520 /* NSpGameMaster.h in Headers */ = {isa = PBXBuildFile; fileRef = 5577143B286A93230012D520 /* NSpGameMaster.h */; };
+		55771442286A93230012D520 /* NSpGameSlave.h in Headers */ = {isa = PBXBuildFile; fileRef = 5577143C286A93230012D520 /* NSpGameSlave.h */; };
+		55771443286A93230012D520 /* NetSprocketLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 5577143D286A93230012D520 /* NetSprocketLib.h */; };
+		55771444286A93230012D520 /* NSpProtocolRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 5577143E286A93230012D520 /* NSpProtocolRef.h */; };
 		9758F2270588DE88008F071A /* module_management.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64102556F3701A80105 /* module_management.cpp */; };
 		9758F2280588DE88008F071A /* op_endpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64202556F3701A80105 /* op_endpoint.cpp */; };
 		9758F2290588DE88008F071A /* op_hi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64302556F3701A80105 /* op_hi.cpp */; };
@@ -299,6 +305,12 @@
 		557713F8286A58C70012D520 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		557713FA286A5DE00012D520 /* NSpLists_OP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSpLists_OP.h; sourceTree = "<group>"; };
 		5577142F286A6BBC0012D520 /* tcp_module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp_module.h; sourceTree = "<group>"; };
+		55771439286A93230012D520 /* NSpGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSpGame.h; sourceTree = "<group>"; };
+		5577143A286A93230012D520 /* NSpGamePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSpGamePrivate.h; sourceTree = "<group>"; };
+		5577143B286A93230012D520 /* NSpGameMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSpGameMaster.h; sourceTree = "<group>"; };
+		5577143C286A93230012D520 /* NSpGameSlave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSpGameSlave.h; sourceTree = "<group>"; };
+		5577143D286A93230012D520 /* NetSprocketLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetSprocketLib.h; sourceTree = "<group>"; };
+		5577143E286A93230012D520 /* NSpProtocolRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSpProtocolRef.h; sourceTree = "<group>"; };
 		9758F24A0588DE88008F071A /* Info-OpenPlay_Framework.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-OpenPlay_Framework.plist"; sourceTree = "<group>"; };
 		9758F24B0588DE88008F071A /* OpenPlay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OpenPlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9758F2600588DE88008F071A /* Info-IP_Module.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-IP_Module.plist"; sourceTree = "<group>"; };
@@ -313,7 +325,7 @@
 		9758F2CB0588DE89008F071A /* NSpExample1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSpExample1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9758F2D80588DE89008F071A /* Info-MiniPlay.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-MiniPlay.plist"; sourceTree = "<group>"; };
 		9758F2D90588DE89008F071A /* MiniPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F5530D710256BFDF01A80105 /* tcp_module_communication.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = tcp_module_communication.cpp; sourceTree = "<group>"; };
+		F5530D710256BFDF01A80105 /* tcp_module_communication.cpp */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = tcp_module_communication.cpp; sourceTree = "<group>"; };
 		F5530D720256BFDF01A80105 /* tcp_module_config.cpp */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = tcp_module_config.cpp; sourceTree = "<group>"; };
 		F5530D730256BFDF01A80105 /* tcp_module_enumeration.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = tcp_module_enumeration.cpp; sourceTree = "<group>"; };
 		F5530D750256BFDF01A80105 /* tcp_module_main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = tcp_module_main.cpp; sourceTree = "<group>"; };
@@ -548,15 +560,21 @@
 				F5ABE64B02556F3701A80105 /* CIPEndpoint_OP.cpp */,
 				F5ABE64C02556F3701A80105 /* EntryPoint.cpp */,
 				F5ABE64D02556F3701A80105 /* NetSprocketLib.cpp */,
+				5577143D286A93230012D520 /* NetSprocketLib.h */,
 				F5ABE64E02556F3701A80105 /* NSp_InterruptSafeList.cpp */,
 				F5ABE64F02556F3701A80105 /* NSpGame.cpp */,
+				55771439286A93230012D520 /* NSpGame.h */,
 				F5ABE65002556F3701A80105 /* NSpGameMaster.cpp */,
+				5577143B286A93230012D520 /* NSpGameMaster.h */,
 				F5ABE65102556F3701A80105 /* NSpGamePrivate.cpp */,
+				5577143A286A93230012D520 /* NSpGamePrivate.h */,
 				F5ABE65202556F3701A80105 /* NSpGameSlave.cpp */,
+				5577143C286A93230012D520 /* NSpGameSlave.h */,
 				F5ABE65302556F3701A80105 /* NSpLists_OP.cpp */,
 				557713FA286A5DE00012D520 /* NSpLists_OP.h */,
 				2C85480826E52704005A70D9 /* NSpPrefix.h */,
 				F5ABE65402556F3701A80105 /* NSpProtocolRef.cpp */,
+				5577143E286A93230012D520 /* NSpProtocolRef.h */,
 				2C85480426E52655005A70D9 /* PrivateMessages.h */,
 			);
 			path = NetSprocketLib;
@@ -734,7 +752,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55771441286A93230012D520 /* NSpGameMaster.h in Headers */,
+				55771443286A93230012D520 /* NetSprocketLib.h in Headers */,
+				55771440286A93230012D520 /* NSpGamePrivate.h in Headers */,
+				5577143F286A93230012D520 /* NSpGame.h in Headers */,
 				557713F9286A59950012D520 /* OpenPlay.h in Headers */,
+				55771442286A93230012D520 /* NSpGameSlave.h in Headers */,
+				55771444286A93230012D520 /* NSpProtocolRef.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -928,9 +952,10 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 1340;
 			};
 			buildConfigurationList = 2CF360A526AE179900D26910 /* Build configuration list for PBXProject "OpenPlay64" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -1226,8 +1251,14 @@
 		2CF0565226E4582C00163478 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "Info-MiniNSpApp.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1236,8 +1267,14 @@
 		2CF0565326E4582C00163478 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "Info-MiniNSpApp.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1246,8 +1283,14 @@
 		2CF0566226E4585F00163478 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "Info-OPDownloadHTTP.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1256,8 +1299,14 @@
 		2CF0566326E4585F00163478 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "Info-OPDownloadHTTP.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1267,15 +1316,42 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"DEBUGCALLCHAIN=0",
 					"project_builder=1",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
@@ -1287,11 +1363,37 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = "project_builder=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				SDKROOT = macosx;
@@ -1301,6 +1403,7 @@
 		2CF3608726AE179700D26910 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1308,6 +1411,7 @@
 		2CF3608826AE179700D26910 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1315,9 +1419,14 @@
 		2CF3608A26AE179700D26910 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				EXPORTED_SYMBOLS_FILE = ../../Source/OPNetModules/posix/NetModuleDarwin64.exp;
 				INFOPLIST_FILE = "Info-IP_Module.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = tcpip.so;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -1326,9 +1435,14 @@
 		2CF3608B26AE179700D26910 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				EXPORTED_SYMBOLS_FILE = ../../Source/OPNetModules/posix/NetModuleDarwin64.exp;
 				INFOPLIST_FILE = "Info-IP_Module.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = tcpip.so;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -1337,6 +1451,8 @@
 		2CF3608D26AE179700D26910 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1344,6 +1460,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "Info-OpenPlay_Framework.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = OpenPlay;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
@@ -1353,6 +1470,8 @@
 		2CF3608E26AE179700D26910 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1360,6 +1479,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "Info-OpenPlay_Framework.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = OpenPlay;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
@@ -1369,8 +1489,14 @@
 		2CF3609326AE179700D26910 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "Info-NSpTest.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1379,8 +1505,14 @@
 		2CF3609426AE179700D26910 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "Info-NSpTest.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1389,8 +1521,14 @@
 		2CF3609926AE179700D26910 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "Info-OPEnumTest.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1399,8 +1537,14 @@
 		2CF3609A26AE179700D26910 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "Info-OPEnumTest.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1409,8 +1553,14 @@
 		2CF3609C26AE179700D26910 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "Info-OPExample1.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1419,8 +1569,14 @@
 		2CF3609D26AE179700D26910 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "Info-OPExample1.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1429,8 +1585,14 @@
 		2CF3609F26AE179700D26910 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "Info-NSpExample1.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1439,8 +1601,14 @@
 		2CF360A026AE179700D26910 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "Info-NSpExample1.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1449,8 +1617,14 @@
 		2CF360A226AE179700D26910 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "Info-MiniPlay.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1459,8 +1633,14 @@
 		2CF360A326AE179700D26910 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "Info-MiniPlay.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

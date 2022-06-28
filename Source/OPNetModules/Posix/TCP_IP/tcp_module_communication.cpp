@@ -74,9 +74,9 @@
 
 //	------------------------------	Private Functions
 static NMBoolean 	internally_handle_read_data(NMEndpointRef endpoint, NMSInt16 type);
-NMBoolean processEndpoints(NMBoolean block);
-void processEndPointSocket(NMEndpointPriv *theEndPoint, long socketType, fd_set *input_set, fd_set *output_set, fd_set *exc_set);
-void receive_udp_port(NMEndpointRef endpoint);
+static NMBoolean processEndpoints(NMBoolean block);
+static void processEndPointSocket(NMEndpointPriv *theEndPoint, int socketType, fd_set *input_set, fd_set *output_set, fd_set *exc_set);
+static void receive_udp_port(NMEndpointRef endpoint);
 static NMBoolean internally_handled_datagram(NMEndpointRef endpoint);
 static long socketReadResult(NMEndpointRef endpoint,int socketType);
 
@@ -95,11 +95,11 @@ static long notifierLockCount = 0;
 
 /*stuff for our worker thread*/
 #if (USE_WORKER_THREAD)
-	NMBoolean workerThreadAlive = false;
-	NMBoolean dieWorkerThread = false;
+	static NMBoolean workerThreadAlive = false;
+	static NMBoolean dieWorkerThread = false;
 	
 	#ifdef OP_API_NETWORK_SOCKETS
-		pthread_t	worker_thread;
+		static pthread_t	worker_thread;
 	#elif defined(OP_API_NETWORK_WINSOCK)
 		DWORD	worker_thread;
 		HANDLE	worker_thread_handle;
@@ -132,7 +132,7 @@ static int _lookup_machine(char *machine, unsigned short default_port, struct so
   char *colon_pos;              /* pointer to rightmost colon in name */
   unsigned short  needPort;     /* port we need */
   struct hostent  *hostInfo;
-  unsigned long	  hostIPAddr;
+  in_addr_t	  hostIPAddr;
 
 	DEBUG_ENTRY_EXIT("_lookup_machine");
 
@@ -165,7 +165,7 @@ static int _lookup_machine(char *machine, unsigned short default_port, struct so
   if (hostInfo)
   {
     /* Got an ip address by resolving name */
-    hostIPAddr = *(unsigned long *) (hostInfo->h_addr_list[0]);
+    hostIPAddr = *(in_addr_t *) (hostInfo->h_addr_list[0]);
 
     gotAddr = 1;
   }
@@ -461,8 +461,8 @@ _create_endpoint(
 	NMBoolean create_sockets,
 	long connectionMode,
 	NMBoolean netSprocketMode,
-	unsigned long version,
-	unsigned long gameID)
+	unsigned int version,
+	unsigned int gameID)
 {
 	NMEndpointRef new_endpoint;
 	int index;
@@ -615,7 +615,7 @@ static NMErr _send_data(	NMEndpointRef 		Endpoint,
                         	unsigned long 		Size, 
                         	NMFlags 			Flags)
 {
-	int result;
+	ssize_t result;
 	int done = 0;
 	int offset = 0;
 	unsigned long bytes_to_send = Size;
@@ -708,7 +708,7 @@ static NMErr _receive_data(NMEndpointRef inEndpoint, int which_socket,
 #ifdef HACKY_EAGAIN
 	SetNonBlockingMode(inEndpoint->sockets[which_socket]);
 #endif // HACKY_EAGAIN
-	result = recv(inEndpoint->sockets[which_socket], (char *)ioData, *ioSize, 0);
+	result = (NMSInt32)recv(inEndpoint->sockets[which_socket], (char *)ioData, *ioSize, 0);
 
 	if (result == 0)
 	{
@@ -1894,7 +1894,7 @@ void sendWakeMessage(void)
 {
 	char buffer[10];
 	//DEBUG_PRINT("sending wake message");
-	int result = send(wakeSocket,buffer,1,0);
+	/*int result = */ send(wakeSocket,buffer,1,0);
 	//DEBUG_PRINT("sendWakeMessage result: %d",result);
 }
 
@@ -1929,7 +1929,7 @@ void SetNonBlockingMode(int fd)
 NMBoolean processEndpoints(NMBoolean block)
 {
 	struct timeval timeout;
-	long nfds = 0;
+	int nfds = 0;
 	long numEvents;
 	NMBoolean gotEvent = false;
 	NMEndpointPriv *theEndPoint;
@@ -2092,7 +2092,7 @@ NMBoolean processEndpoints(NMBoolean block)
 }
 
 //this function is always called with access to a locked endpoint-list, remember. And it should always return a locked list.
-void processEndPointSocket(NMEndpointPriv *theEndPoint, long socketType, fd_set *input_set, fd_set *output_set, fd_set *exc_set)
+void processEndPointSocket(NMEndpointPriv *theEndPoint, int socketType, fd_set *input_set, fd_set *output_set, fd_set *exc_set)
 {
 	//cant do nothing if they've called ProtocolEnterNotifier
 	if (TRY_ENTER_NOTIFIER() == false)

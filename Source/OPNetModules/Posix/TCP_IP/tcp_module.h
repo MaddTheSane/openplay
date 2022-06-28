@@ -177,7 +177,7 @@
 	};
 
 	struct available_game_data {
-		long host;
+		int host;
 		word port;
 		word flags;
 		long ticks_at_last_response;

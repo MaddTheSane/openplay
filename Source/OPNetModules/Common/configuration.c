@@ -220,7 +220,7 @@ const char	*put_string;
 			break;
 	}
 
-	new_data_len = strlen(put_string);	/* Add 2 for ':' and '\t' */
+	new_data_len = (NMSInt32)strlen(put_string);	/* Add 2 for ':' and '\t' */
 
 	while (*p)
 	{

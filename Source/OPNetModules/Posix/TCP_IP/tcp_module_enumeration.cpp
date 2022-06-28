@@ -58,7 +58,7 @@
 
 static void _handle_game_enumeration_packet(NMConfigRef Config, 
                                             IPEnumerationResponsePacket *packet,
-                                            long host, unsigned short port)
+                                            int host, unsigned short port)
 {
 	DEBUG_ENTRY_EXIT("_handle_game_enumeration_packet");
 	if(Config && Config->enumerating)
@@ -113,7 +113,7 @@ static NMErr _handle_packets(NMConfigRef Config)
 	DEBUG_ENTRY_EXIT("_handle_packets");
 
 	struct sockaddr_in source_address;
-	int bytes_read;
+	ssize_t bytes_read;
 	int done = 0;
 	posix_size_type source_address_len = sizeof(source_address);
 
@@ -177,7 +177,7 @@ static void _send_game_request_packet(NMConfigRef Config)
 
 		struct sockaddr_in dest_address;
 		char request_packet[kQuerySize];
-		int bytes_sent;
+		ssize_t bytes_sent;
 		short packet_length;
 
 		/* Doing this from memory... */
