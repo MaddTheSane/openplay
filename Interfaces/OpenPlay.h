@@ -179,6 +179,10 @@
 		#endif
 	#endif
 	
+	#ifndef __has_attribute
+		#define __has_attribute(...) 0
+	#endif
+
 /*-------------------------------------------------------------------------------------------
 	basic types - we may need to do some redefining for 64-bit systems eventually...
 */
@@ -303,6 +307,7 @@
 		typedef  unsigned short  	word;
 
 		/* Platform independent data references */
+		//TODO: Port to Cocoa?
 		typedef	EventRecord  		NMEvent;
 		typedef	DialogPtr    		NMDialogPtr;	
 		typedef	WindowRef			NMWindowRef;
@@ -370,6 +375,43 @@
 	#endif
 		
 	
+/*-------------------------------------------------------------------------------------------
+	fixed-lenghted enums.
+*/
+
+#if __has_attribute(enum_extensibility)
+	#define __NM_ENUM_ATTRIBUTES __attribute__((enum_extensibility(open)))
+	#define __NM_OPTIONS_ATTRIBUTES __attribute__((flag_enum,enum_extensibility(open)))
+#else
+	#define __NM_ENUM_ATTRIBUTES
+	#define __NM_OPTIONS_ATTRIBUTES
+#endif
+
+#define __NM_ENUM_GET_MACRO(_1, _2, NAME, ...) NAME
+#ifndef CF_OPEN_SOURCE
+	#define __NM_ENUM_FIXED_IS_AVAILABLE (__cplusplus && __cplusplus >= 201103L && (__has_extension(cxx_strong_enums) || __has_feature(objc_fixed_enum))) || (!__cplusplus && __has_feature(objc_fixed_enum))
+#else
+	#define __NM_ENUM_FIXED_IS_AVAILABLE (__cplusplus && __cplusplus >= 201103L && (__has_extension(cxx_strong_enums) || __has_feature(objc_fixed_enum))) || (!__cplusplus && (__has_feature(objc_fixed_enum) || __has_extension(cxx_fixed_enum)))
+#endif
+
+#if __NM_ENUM_FIXED_IS_AVAILABLE
+	#define __NM_NAMED_ENUM(_type, _name)     enum __NM_ENUM_ATTRIBUTES _name : _type _name; enum _name : _type
+	#define __NM_ANON_ENUM(_type)             enum __NM_ENUM_ATTRIBUTES : _type
+	#if (__cplusplus)
+		#define NM_OPTIONS(_type, _name) _type _name; enum __NM_OPTIONS_ATTRIBUTES : _type
+	#else
+		#define NM_OPTIONS(_type, _name) enum __NM_OPTIONS_ATTRIBUTES _name : _type _name; enum _name : _type
+	#endif
+#else
+	#define __NM_NAMED_ENUM(_type, _name) _type _name; enum
+	#define __NM_ANON_ENUM(_type) enum
+	#define NM_OPTIONS(_type, _name) _type _name; enum
+#endif
+
+#define NM_ENUM(...) __NM_ENUM_GET_MACRO(__VA_ARGS__, __NM_NAMED_ENUM, __NM_ANON_ENUM, )(__VA_ARGS__)
+
+
+
 /** @addtogroup TypesAndConstants
  * @{
  */
@@ -423,7 +465,7 @@
 	typedef NMUInt32 		NMHostID;
 
 	/**Callback codes passed to an endpoint's notifier function by OpenPlay.*/
-	typedef CF_ENUM(int, NMCallbackCode)
+	typedef NM_ENUM(int, NMCallbackCode)
 	{
 		/**The endpoint has received a connection request - you should call either \ref ProtocolAcceptConnection() or \ref ProtocolRejectConnection() in response, though you do not have to do so immediately.*/
 		kNMConnectRequest	= 1,
@@ -468,7 +510,7 @@
 	} NMMaxStringLength;
 		
 	/**A \ref NMModuleInfoStruct 's flags member may contain one or more of the following values.*/
-	typedef CF_OPTIONS(NMFlags, NMNetModuleFlag)
+	typedef NM_OPTIONS(NMFlags, NMNetModuleFlag)
 	{
 		/**This NetModule can create endpoints with stream functionality.*/
 		kNMModuleHasStream			= 0x00000001,
@@ -521,7 +563,7 @@
 		kNMEnumClear
 	} NMEnumerationCommand;
 	
-	typedef CF_OPTIONS(NMFlags, NMEndpointMode)
+	typedef NM_OPTIONS(NMFlags, NMEndpointMode)
 	{
 		/**Neither packet nor stream functionality.*/
 		kNMModeNone = 0,
@@ -562,7 +604,7 @@
 	}NMDataTranferFlag;
 	
 	/**OpenPlay Error Codes */
-	typedef CF_ENUM(NMErr, NMErrorCode)
+	typedef NM_ENUM(NMErr, NMErrorCode)
 	{
 		/**OpenPlay has run out of memory. Ouch.*/
 		kNMOutOfMemoryErr			= -4999,
@@ -659,7 +701,7 @@
 	
 	typedef NMSInt16 _packet_data_size;
 	
-	CF_ENUM(_packet_data_size)
+	NM_ENUM(_packet_data_size)
 	{
 		/**Two! Two bytes! ... ah ah ah ah!*/
 		k2Byte	= -1,
@@ -703,7 +745,7 @@
 	} NMOpenFlags;
 
 	/**A few established NetModule types.*/
-	typedef CF_ENUM(NMType, NMEstablishedModuleTypes)
+	typedef NM_ENUM(NMType, NMEstablishedModuleTypes)
 	{
 		/**AppleTalk NetModule type.*/
 		kATModuleType = 'Atlk',
@@ -787,7 +829,7 @@
 
 	/** Topology types */
 	
-	typedef CF_ENUM(NMUInt32, NSpTopology) {
+	typedef NM_ENUM(NMUInt32, NSpTopology) {
 		kNSpClientServer					= 0x00000001
 	};
 	

@@ -34,13 +34,13 @@
 	#define WILDCARD_TYPE '****'
 	#define FIND_FILE_VERSION (0)
 
-	typedef CF_ENUM(NMSInt16, find_file_pb_search_type)
+	typedef NM_ENUM(NMSInt16, find_file_pb_search_type)
 	{
 		_fill_buffer, 			/*!< Fill the buffer with matches */
 		_callback_only			/*!< Ignore the buffer, and call the callback for each. */
 	};
 
-	typedef CF_OPTIONS(NMSInt16, find_file_pb_flags)
+	typedef NM_OPTIONS(NMSInt16, find_file_pb_flags)
 	{
 		_ff_create_buffer= 0x0001,	/*!< Create the destination buffer, free later w/ Dispose */
 		_ff_alphabetical= 0x0002,	/*!< Matches are returned in alphabetical order */
