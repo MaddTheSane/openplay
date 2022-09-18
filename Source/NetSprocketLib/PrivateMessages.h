@@ -96,7 +96,7 @@
 		NMUInt32			count;
 	} TThruputMessage;
 
-	const NMUInt32 kJoinApprovedPlayerInfoSize = sizeof(NSpPlayerInfo) - sizeof(NSpGroupID) - sizeof(NMUInt32);
+	static const NMUInt32 kJoinApprovedPlayerInfoSize = sizeof(NSpPlayerInfo) - sizeof(NSpGroupID) - sizeof(NMUInt32);
 
 	enum { kSendFlagsMask = 0x00FFFFFF};
 	enum { kLocalSendFlagMask = 0x0000000F};

@@ -60,17 +60,6 @@
 		NSp_InterruptSafeList	*players;
 	};
 
-	class UInt32ListMember : public NSp_InterruptSafeListMember
-	{
-	public:
-		UInt32ListMember(NMUInt32 inItem) {mValue = inItem;}
-		~UInt32ListMember() {}
-
-		inline NMUInt32 GetValue(void) {return mValue;}
-	protected:
-		NMUInt32	mValue;
-	};
-
 	class uintptrtListMember : public NSp_InterruptSafeListMember
 	{
 	public:
