@@ -115,7 +115,7 @@ void *load_proc(ConnectionRef conn_id, short proc_id)
 		#ifdef OP_API_PLUGIN_POSIX_DARWIN
 				char symbolName[128];
 
-				sprintf(symbolName, "_%s", module_names[proc_id]);
+				snprintf(symbolName, sizeof(symbolName), "_%s", module_names[proc_id]);
 			#else
 				char *symbolName = (char*)module_names[proc_id];
 			#endif

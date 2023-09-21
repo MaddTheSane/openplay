@@ -520,15 +520,15 @@ NSpProtocol_CreateIP(NMInetPort inPort, NMUInt32 inMaxRTT, NMUInt32 inMinThruput
 		// string even when you only want to override one specific value...
 		
 #ifdef OP_API_NETWORK_OT
-			sprintf(customConfig, "IPport=%u\tnetSprocket=true\0", inPort);
+			snprintf(customConfig, sizeof(customConfig), "IPport=%u\tnetSprocket=true\0", inPort);
 #else
-		sprintf(customConfig, "type=%d\tversion=256\tgameID=%u\tgameName=unknown\t"
-							"mode=%u\tIPaddr=127.0.0.1\tIPport=%u\tnetSprocket=true", 
+		snprintf(customConfig, sizeof(customConfig), "type=%d\tversion=256\tgameID=%u\tgameName=unknown\t"
+							"mode=%u\tIPaddr=127.0.0.1\tIPport=%u\tnetSprocket=true",
 							netModuleType, gameID, kUberMode, inPort);
 #endif
 	}
 	else
-		strcpy(customConfig, "netSprocket=true");
+		strncpy(customConfig, "netSprocket=true", sizeof(customConfig));
 
 	
 	status = ProtocolCreateConfig(	netModuleType,
@@ -1932,8 +1932,8 @@ NSpAddressReference NSpCreateIPAddressReference(const char *inIPAddress, const c
 	
 	gameID = (NMUInt32) gCreatorType;
 			
-	sprintf(customConfig, "type=%d\tversion=256\tgameID=%u\tgameName=unknown\t"
-							"mode=%u\tIPaddr=%s\tIPport=%s\tnetSprocket=true", 
+	snprintf(customConfig, sizeof(customConfig), "type=%d\tversion=256\tgameID=%u\tgameName=unknown\t"
+							"mode=%u\tIPaddr=%s\tIPport=%s\tnetSprocket=true",
 							netModuleType, gameID, kUberMode,
 							inIPAddress, inIPPort);
 

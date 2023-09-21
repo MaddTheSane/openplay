@@ -217,7 +217,7 @@ int main(int argc, char **argv)
 		else if (choice == 'j')
 		{
 			OPEnumGamePtr theGame = enumGameList;
-			char choice;
+			char choice = 0;
 			printf("game number to join?\n");
 			fflush(stdout);
 			while ((choice < '0') || (choice > '9'))

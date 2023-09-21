@@ -183,7 +183,7 @@ void		doSetConfigSubString(char *configStr, const char *itemName, const char *it
 	char *nameStart;
 	
 	//copy all to buffer first
-	strcpy(buffer,configStr);
+	strncpy(buffer, configStr, sizeof(buffer));
 	
 	nameStart = strstr(buffer, itemName);
 

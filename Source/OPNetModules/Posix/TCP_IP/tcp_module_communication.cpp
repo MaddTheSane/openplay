@@ -1451,7 +1451,7 @@ NMGetIdentifier(NMEndpointRef inEndpoint,  char * outIdStr, NMSInt16 inMaxLen)
     
     in_addr addr = remote_address.sin_addr;
 
-    sprintf(result, "%s", inet_ntoa(addr));
+    snprintf(result, sizeof(result), "%s", inet_ntoa(addr));
 	
     strncpy(outIdStr, result, inMaxLen - 1);
     outIdStr[inMaxLen - 1] = 0;
@@ -2369,9 +2369,9 @@ NMErr NMGetAddress(NMEndpointRef inEndpoint, NMAddressType addressType, void **o
 		    byte = (unsigned char *) &socket_address.sin_addr;
 		    *outAddress = (void *) new char[16];
 		    #if big_endian
-		    sprintf((char *) *outAddress, "%u.%u.%u.%u",byte[0],byte[1],byte[2],byte[3]);
+			snprintf((char *) *outAddress, sizeof(char) * 16, "%u.%u.%u.%u", byte[0], byte[1], byte[2], byte[3]);
 		    #else
-		    sprintf((char *) *outAddress, "%u.%u.%u.%u",byte[3],byte[2],byte[1],byte[0]);		    
+		    snprintf((char *) *outAddress, sizeof(char) * 16, "%u.%u.%u.%u", byte[3], byte[2], byte[1], byte[0]);
 		    #endif
 		break;
 

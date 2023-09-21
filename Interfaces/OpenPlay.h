@@ -492,13 +492,13 @@
 	};
 	
 	/**Special values for a \ref NMModuleInfoStruct 's maxEndpoints member.*/
-	typedef enum
+	typedef NM_ENUM(NMUInt32, NMMaxEndpointsValue)
 	{
 		/**Any number of endpoints of this type may be created.*/
 		kNMNoEndpointLimit	= 0xFFFFFFFF,
 		/**This module is not able to host (e.g. an AOL module).*/
 		kNMNoPassiveEndpoints	= 0
-	} NMMaxEndpointsValue;
+	};
 	
 	/**Max lengths for various string types.*/
 	typedef enum
@@ -553,7 +553,7 @@
 	}NMAddressType;
 
 	/**Commands sent to the \ref NMEnumerationCallbackPtr function passed to \ref ProtocolStartEnumeration(); */
-	typedef enum
+	typedef NM_ENUM(NMUInt32, NMEnumerationCommand)
 	{
 		/**The accompanying \ref NMEnumItemStruct denotes a new host has been found on the network.*/
 		kNMEnumAdd	= 1,
@@ -561,7 +561,7 @@
 		kNMEnumDelete,
 		/**The list of available hosts should be cleared.*/
 		kNMEnumClear
-	} NMEnumerationCommand;
+	};
 	
 	typedef NM_OPTIONS(NMFlags, NMEndpointMode)
 	{
@@ -597,11 +597,11 @@
 	
 	
 	/**Flags that can be passed to endpoint functions.*/
-	typedef enum
+	typedef NM_OPTIONS(NMFlags, NMDataTranferFlag)
 	{
 		/**Specifies the function is not to return until the operation is complete - waiting if necessary for data to come in, etc.  OpenPlay by default is a non-blocking system*/
 		kNMBlocking	= 0x00000001
-	}NMDataTranferFlag;
+	};
 	
 	/**OpenPlay Error Codes */
 	typedef NM_ENUM(NMErr, NMErrorCode)

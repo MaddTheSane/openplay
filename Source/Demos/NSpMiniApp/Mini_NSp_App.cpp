@@ -545,7 +545,7 @@ Join_Game_IP( NSpGameReference  &gGameObject)
 	char            		kTCP_PortStr[  kNSpStr32Len  ];
 	NMBoolean                 result = true;
 
-	sprintf( kTCP_PortStr, "%i", kTCP_Port );
+	snprintf( kTCP_PortStr, sizeof(kTCP_PortStr), "%i", kTCP_Port );
 
 	cout << "\nEnter host IP address (e.g. 152.34.7.254):  ";
 	cin >> theIPAddress;
@@ -733,7 +733,7 @@ Send_Message( NSpGameReference  gGameObject )
 	gDataToSend->header.what = kMyMessageType;
 	gDataToSend->header.to = kNSpAllPlayers;
 	gDataToSend->header.messageLen = sizeof(NSpMessageHeader) + 
-										strlen(kCannedMessage) + 1;
+	NMUInt32(strlen(kCannedMessage)) + 1;
 
 	strcpy( gDataToSend->dataStr, kCannedMessage );
 	

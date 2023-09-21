@@ -282,7 +282,7 @@ NMSInt16	length;
 	{
 	  char buffer[256];
 
-	  sprintf((char *) buffer, "%s in %s,#%u: %s", fatal ? "op_halt" : "op_pause", file, line,
+	  snprintf((char *) buffer, sizeof(buffer), "%s in %s,#%u: %s", fatal ? "op_halt" : "op_pause", file, line,
 	          information ? information : "<no reason given>");
 
 	  debug_message(buffer);
@@ -302,7 +302,7 @@ NMSInt16	length;
 	  NMSInt32	return_value;
 
 	  va_start(arglist, format);
-	  return_value = vsprintf(buffer, format, arglist);
+	  return_value = vsnprintf(buffer, sizeof(buffer), format, arglist);
 	  va_end(arglist);
 
 	  debug_message(buffer);	
