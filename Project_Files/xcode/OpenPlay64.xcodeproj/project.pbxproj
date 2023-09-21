@@ -1263,11 +1263,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 2.2r5;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Info-MiniNSpApp.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 1999-2021 Apple Inc.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 2.2r5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1279,11 +1283,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 2.2r5;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Info-MiniNSpApp.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 1999-2021 Apple Inc.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 2.2r5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1295,11 +1303,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 2.2r5;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Info-OPDownloadHTTP.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 1999-2021 Apple Inc.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 2.2r5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1311,11 +1323,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 2.2r5;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Info-OPDownloadHTTP.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 1999-2021 Apple Inc.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 2.2r5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1505,11 +1521,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 2.2r5;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Info-NSpTest.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 1999-2021 Apple Inc.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 2.2r5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1521,11 +1541,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 2.2r5;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Info-NSpTest.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 1999-2021 Apple Inc.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 2.2r5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1537,11 +1561,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 2.2r5;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Info-OPEnumTest.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 1999-2021 Apple Inc.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 2.2r5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1553,11 +1581,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 2.2r5;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Info-OPEnumTest.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 1999-2021 Apple Inc.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 2.2r5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1569,11 +1601,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 2.2r5;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Info-OPExample1.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 1999-2021 Apple Inc.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 2.2r5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1585,11 +1621,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 2.2r5;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Info-OPExample1.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 1999-2021 Apple Inc.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 2.2r5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1601,11 +1641,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 2.2r5;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Info-NSpExample1.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 1999-2021 Apple Inc.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 2.2r5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1617,11 +1661,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 2.2r5;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Info-NSpExample1.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 1999-2021 Apple Inc.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 2.2r5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1633,11 +1681,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 2.2r5;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Info-MiniPlay.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 1999-2021 Apple Inc.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 2.2r5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1649,11 +1701,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 2.2r5;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Info-MiniPlay.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 1999-2021 Apple Inc.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 2.2r5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
