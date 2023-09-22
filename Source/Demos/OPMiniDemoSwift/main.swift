@@ -33,7 +33,7 @@ while !gDone {
 	}
 }
 
-print("Closing connection, exiting...\n" )
+print("Closing connection, exiting...\n")
 fflush(stdout);
 
 closeConnection();

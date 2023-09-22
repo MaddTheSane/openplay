@@ -218,7 +218,7 @@ NMUInt32    Get_Current_TimeStamp( NSpGameReference  gGameObject );
 #if OP_PLATFORM_MAC_CFM
 static pascal NMBoolean
 #else
-NMBoolean
+static NMBoolean
 #endif
 MyAsyncMessageHandler(NSpGameReference gameRef, NSpMessageHeader *messagePtr, void *inContext);
 
@@ -226,7 +226,7 @@ MyAsyncMessageHandler(NSpGameReference gameRef, NSpMessageHeader *messagePtr, vo
 #if OP_PLATFORM_MAC_CFM
 static pascal NMBoolean
 #else
-NMBoolean
+static NMBoolean
 #endif
 MyJoinRequestHandler(NSpGameReference gameRef, NSpJoinRequestMessage *messagePtr, 
 					 void *inContext, unsigned char *outReason, NSpJoinResponseMessage *responseMsg);
