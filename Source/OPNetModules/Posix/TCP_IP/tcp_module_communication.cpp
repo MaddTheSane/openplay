@@ -2396,7 +2396,7 @@ NMErr NMFreeAddress(NMEndpointRef inEndpoint, void **outAddress)
 	op_vassert_return((outAddress != NULL),"OutAddress is NIL!",kNMParameterErr);
 	op_vassert_return((*outAddress != NULL),"*OutAddress is NIL!",kNMParameterErr);
 
-	delete (char *) *outAddress;
+	delete[] (char *) *outAddress;
 
 	return( err );
 }
