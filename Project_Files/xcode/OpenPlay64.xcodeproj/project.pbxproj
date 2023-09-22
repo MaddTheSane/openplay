@@ -58,6 +58,11 @@
 		55771443286A93230012D520 /* NetSprocketLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 5577143D286A93230012D520 /* NetSprocketLib.h */; };
 		55771444286A93230012D520 /* NSpProtocolRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 5577143E286A93230012D520 /* NSpProtocolRef.h */; };
 		55771446286AF2880012D520 /* tcp_module_gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55771445286AF2880012D520 /* tcp_module_gui.cpp */; };
+		55F906462ABC30C300918871 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F906452ABC30C300918871 /* main.swift */; };
+		55F9064B2ABC310E00918871 /* OpenPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; };
+		55F9064C2ABC310E00918871 /* OpenPlay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9758F24B0588DE88008F071A /* OpenPlay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		55F906502ABC31AD00918871 /* OPUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE67102556F8801A80105 /* OPUtils.cpp */; };
+		55F906532ABC33DB00918871 /* miniplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F906522ABC33DB00918871 /* miniplay.swift */; };
 		9758F2270588DE88008F071A /* module_management.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64102556F3701A80105 /* module_management.cpp */; };
 		9758F2280588DE88008F071A /* op_endpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64202556F3701A80105 /* op_endpoint.cpp */; };
 		9758F2290588DE88008F071A /* op_hi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABE64302556F3701A80105 /* op_hi.cpp */; };
@@ -136,6 +141,13 @@
 			remoteGlobalIDString = 2CF0565626E4585F00163478;
 			remoteInfo = OPDownloadHTTP;
 		};
+		55F9064D2ABC310F00918871 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9758F2220588DE88008F071A;
+			remoteInfo = "OpenPlay Framework";
+		};
 		9758F2E50588DE89008F071A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -211,6 +223,26 @@
 				2CF0566026E4585F00163478 /* OpenPlay.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55F906412ABC30C200918871 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		55F9064F2ABC310F00918871 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				55F9064C2ABC310E00918871 /* OpenPlay.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9758F2830588DE88008F071A /* Copy Frameworks */ = {
@@ -316,6 +348,10 @@
 		55771447286AF2C20012D520 /* NetModuleDarwin.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = NetModuleDarwin.exp; sourceTree = "<group>"; };
 		55771448286AF2C20012D520 /* NetModuleMach.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = NetModuleMach.exp; sourceTree = "<group>"; };
 		55771449286AF2C20012D520 /* NetModuleDarwin64.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = NetModuleDarwin64.exp; sourceTree = "<group>"; };
+		55F906432ABC30C200918871 /* MiniPlaySwift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MiniPlaySwift; sourceTree = BUILT_PRODUCTS_DIR; };
+		55F906452ABC30C300918871 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		55F906512ABC31D000918871 /* OPMiniDemoSwift-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OPMiniDemoSwift-BridgingHeader.h"; sourceTree = "<group>"; };
+		55F906522ABC33DB00918871 /* miniplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = miniplay.swift; sourceTree = "<group>"; };
 		9758F24A0588DE88008F071A /* Info-OpenPlay_Framework.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-OpenPlay_Framework.plist"; sourceTree = "<group>"; };
 		9758F24B0588DE88008F071A /* OpenPlay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OpenPlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9758F2600588DE88008F071A /* Info-IP_Module.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-IP_Module.plist"; sourceTree = "<group>"; };
@@ -392,6 +428,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		55F906402ABC30C200918871 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55F9064B2ABC310E00918871 /* OpenPlay.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9758F2450588DE88008F071A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -463,6 +507,7 @@
 				2CF0566426E4585F00163478 /* OPDownloadHTTP.app */,
 				9758F2AA0588DE88008F071A /* OPEnumTest.app */,
 				9758F2BB0588DE89008F071A /* OPExample1.app */,
+				55F906432ABC30C200918871 /* MiniPlaySwift */,
 			);
 			name = "Products,Libs,Frameworks";
 			sourceTree = SOURCE_ROOT;
@@ -474,6 +519,7 @@
 				2CC8FE0926C3FCFD0048E469 /* Project_Files */,
 				2C5B320426C3FEBB00217E09 /* Source */,
 				034768DDFF38A45A11DB9C8B /* Products,Libs,Frameworks */,
+				55F9064A2ABC310E00918871 /* Frameworks */,
 			);
 			name = OpenPlay;
 			sourceTree = "<group>";
@@ -494,6 +540,7 @@
 		2C5B320526C3FF4E00217E09 /* Demos */ = {
 			isa = PBXGroup;
 			children = (
+				55F9063E2ABC2F3B00918871 /* OPMiniDemoSwift */,
 				2C5B320626C3FF7000217E09 /* NSpMiniApp */,
 				2C5B320826C3FF9300217E09 /* NSpTestApp */,
 				2C5B320A26C3FFB300217E09 /* OPDownloadHTTP */,
@@ -754,6 +801,23 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		55F9063E2ABC2F3B00918871 /* OPMiniDemoSwift */ = {
+			isa = PBXGroup;
+			children = (
+				55F906452ABC30C300918871 /* main.swift */,
+				55F906522ABC33DB00918871 /* miniplay.swift */,
+				55F906512ABC31D000918871 /* OPMiniDemoSwift-BridgingHeader.h */,
+			);
+			path = OPMiniDemoSwift;
+			sourceTree = "<group>";
+		};
+		55F9064A2ABC310E00918871 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -819,6 +883,25 @@
 			productName = OPExample1;
 			productReference = 2CF0566426E4585F00163478 /* OPDownloadHTTP.app */;
 			productType = "com.apple.product-type.application";
+		};
+		55F906422ABC30C200918871 /* MiniPlaySwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55F906472ABC30C300918871 /* Build configuration list for PBXNativeTarget "MiniPlaySwift" */;
+			buildPhases = (
+				55F9063F2ABC30C200918871 /* Sources */,
+				55F906402ABC30C200918871 /* Frameworks */,
+				55F906412ABC30C200918871 /* CopyFiles */,
+				55F9064F2ABC310F00918871 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				55F9064E2ABC310F00918871 /* PBXTargetDependency */,
+			);
+			name = MiniPlaySwift;
+			productName = MiniPlaySwift;
+			productReference = 55F906432ABC30C200918871 /* MiniPlaySwift */;
+			productType = "com.apple.product-type.tool";
 		};
 		9758F2220588DE88008F071A /* OpenPlay Framework */ = {
 			isa = PBXNativeTarget;
@@ -961,7 +1044,13 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					55F906422ABC30C200918871 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
 			};
 			buildConfigurationList = 2CF360A526AE179900D26910 /* Build configuration list for PBXProject "OpenPlay64" */;
 			compatibilityVersion = "Xcode 9.3";
@@ -985,6 +1074,7 @@
 				2CF0565626E4585F00163478 /* OPDownloadHTTP */,
 				9758F29D0588DE88008F071A /* OPEnumTest */,
 				9758F2AC0588DE88008F071A /* OPExample1 */,
+				55F906422ABC30C200918871 /* MiniPlaySwift */,
 			);
 		};
 /* End PBXProject section */
@@ -1093,6 +1183,16 @@
 				2CF0566F26E4614A00163478 /* OPDownloadHTTP.cpp in Sources */,
 				2CF0566E26E4614A00163478 /* OPGetURL.cpp in Sources */,
 				2CF0567026E4616100163478 /* String_Utils.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55F9063F2ABC30C200918871 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55F906532ABC33DB00918871 /* miniplay.swift in Sources */,
+				55F906502ABC31AD00918871 /* OPUtils.cpp in Sources */,
+				55F906462ABC30C300918871 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1213,6 +1313,11 @@
 			isa = PBXTargetDependency;
 			target = 2CF0565626E4585F00163478 /* OPDownloadHTTP */;
 			targetProxy = 2CF0566826E458C300163478 /* PBXContainerItemProxy */;
+		};
+		55F9064E2ABC310F00918871 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9758F2220588DE88008F071A /* OpenPlay Framework */;
+			targetProxy = 55F9064D2ABC310F00918871 /* PBXContainerItemProxy */;
 		};
 		9758F2E60588DE89008F071A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1716,6 +1821,72 @@
 			};
 			name = Release;
 		};
+		55F906482ABC30C300918871 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/../../Source/Demos/OPMiniDemoSwift/OPMiniDemoSwift-BridgingHeader.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		55F906492ABC30C300918871 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/../../Source/Demos/OPMiniDemoSwift/OPMiniDemoSwift-BridgingHeader.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1814,6 +1985,15 @@
 			buildConfigurations = (
 				2CF3608726AE179700D26910 /* Debug */,
 				2CF3608826AE179700D26910 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55F906472ABC30C300918871 /* Build configuration list for PBXNativeTarget "MiniPlaySwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55F906482ABC30C300918871 /* Debug */,
+				55F906492ABC30C300918871 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
