@@ -191,7 +191,7 @@
 		NMType type;
 		NMUInt32 version;
 		NMSInt32 gameID;
-		long connectionMode;
+		NMSInt32 connectionMode;
 		NMBoolean netSprocketMode;
 		char host_name[256];
 	        struct sockaddr_in hostAddr;		/* remote host name */

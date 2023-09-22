@@ -222,7 +222,7 @@ static NMErr _get_standard_config_strings(char *string, NMConfigRef config)
 	}
 
 	/* get the module config version */
-	long version;
+	NMSInt32 version;
 	length = sizeof(version);
 	status = get_token(string, kConfigModuleVersion, LONG_DATA, &version, &length);
 	if (status && (version != kVersion))
@@ -312,7 +312,7 @@ static NMErr _parse_config_string(char *string, NMUInt32 GameID, NMConfigRef con
 
     if (status)
     {
-      long port = _generate_default_port(GameID);
+      NMSInt32 port = _generate_default_port(GameID);
 
       length = sizeof(port);
       status = get_token(string, kIPConfigPort, LONG_DATA, &port, &length);
