@@ -543,14 +543,14 @@
 	typedef struct NMModuleInfoStruct NMModuleInfo;
 
 	/**Define which types of address we are requesting in \Ref ProtocolGetAddress() */
-	typedef enum
+	typedef NM_ENUM(NMUInt32, NMAddressType)
 	{
 		/** Get an IP Address string (ie, 127.0.0.1:128) */
 		kNMIPAddressType,
 		/**Get an OT Address of type AF_INET, AF_DNS, etc. */
 		kNMOTAddressType
 
-	}NMAddressType;
+	};
 
 	/**Commands sent to the \ref NMEnumerationCallbackPtr function passed to \ref ProtocolStartEnumeration(); */
 	typedef NM_ENUM(NMUInt32, NMEnumerationCommand)
@@ -572,7 +572,7 @@
 		/**Stream functionality.*/
 		kNMStreamMode = 2,
 		/**Both packet and stream functionality.*/
-		kNMNormalMode = kNMStreamMode + kNMDatagramMode
+		kNMNormalMode = kNMStreamMode | kNMDatagramMode
 	};
 	
 	/**Struct which is filled out for you by OpenPlay when enumerating hosts on the network.*/
@@ -736,13 +736,13 @@
 								void 					*inCookie);
 	
 	/**Flags passed when creating an endpoint.*/
-	typedef enum
+	typedef NM_OPTIONS(NMFlags, NMOpenFlags)
 	{
 		/**Blank value - passed alone will open a passive(host) endpoint.*/
 		kOpenNone	= 0x00,
 		/**Create an active (client) endpoint.  Without this flag, a passive(host) endpoint is created.*/
 		kOpenActive	= 0x01
-	} NMOpenFlags;
+	};
 
 	/**A few established NetModule types.*/
 	typedef NM_ENUM(NMType, NMEstablishedModuleTypes)
@@ -953,7 +953,7 @@
 
 	/* Different kinds of messages.  These can NOT be bitwise ORed together */
 
-	enum {
+	NM_ENUM(NSpFlags) {
 		kNSpSendFlag_Junk			= 0x00100000,					/* will be sent (try once) when there is nothing else pending */
 		kNSpSendFlag_Normal			= 0x00200000,					/* will be sent immediately (try once) */
 		kNSpSendFlag_Registered		= 0x00400000					/* will be sent immediately (guaranteed, in order) */
@@ -962,7 +962,7 @@
 	
 	/* Options for message delivery.  These can be bitwise ORed together with each other,
 			as well as with ONE of the above */
-	enum {
+	NM_ENUM(NSpFlags) {
 		kNSpSendFlag_FailIfPipeFull	= 0x00000001,
 		kNSpSendFlag_SelfSend		= 0x00000002,
 		kNSpSendFlag_Blocking		= 0x00000004
@@ -970,14 +970,14 @@
 	
 	
 	/* Options for Hosting Joining, and Deleting games */
-	enum {
+	NM_ENUM(NSpFlags) {
 		kNSpGameFlag_DontAdvertise		= 0x00000001,
 		kNSpGameFlag_ForceTerminateGame = 0x00000002
 	};
 	
 	/* Message "what" types */
 	/* Apple reserves all negative "what" values (anything with high bit set) */
-	enum {
+	NM_ENUM(NMSInt32) {
 		kNSpSystemMessagePrefix		= (NMSInt32)0x80000000,
 
 		kNSpJoinRequest				= kNSpSystemMessagePrefix | 0x00000001,
