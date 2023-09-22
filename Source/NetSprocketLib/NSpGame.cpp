@@ -60,14 +60,14 @@ NSpGame::NSpGame(
 	mFreeQLen = mMessageQLen = mCookieQLen = 0;
 	mPendingMessages = NULL;
 
-	//Ä	Initialize the player count
+	//Æ’	Initialize the player count
 	mGameInfo.maxPlayers = (inMaxPlayers == 0) ? 0xFFFFFFFF : inMaxPlayers;
 	mNextAvailableGroupID = -2;
 	mNextMessageID = 1;
 
 	if (inGameName == NULL)
 	{
-		//Ä	Use "untitled game" if we get a NULL
+		//Æ’	Use "untitled game" if we get a NULL
 //		GetIndString(mGameInfo.name, kNSp_STRn_GameClassStrings, kUntitledGame);
 		doCopyC2PStrMax("Untitled Game", mGameInfo.name, 31);
 	}
@@ -76,7 +76,7 @@ NSpGame::NSpGame(
 		doCopyPStrMax(inGameName, mGameInfo.name, 31);
 	}
 
-	//Ä	Set up the password for entry into the game
+	//Æ’	Set up the password for entry into the game
 	if (inPassword)
 		doCopyPStrMax(inPassword, mGameInfo.password, 31);
 	else
@@ -88,7 +88,7 @@ NSpGame::NSpGame(
 	mPlayerID = 0;
 	mTimeStampDifferential = 0;
 
-	//Ä	Allocate our queues
+	//Æ’	Allocate our queues
 	mEventQ = new NMLIFO();
 	op_assert(mEventQ);
 	mEventQ->Init();
@@ -101,7 +101,7 @@ NSpGame::NSpGame(
 	op_assert(mCookieQ);
 	mCookieQ->Init();
 
-	//Ä	Lets make a bunch of event records, and add them to the free q
+	//Æ’	Lets make a bunch of event records, and add them to the free q
 	mFreeQ = new NMLIFO();
 	op_assert(mFreeQ);
 	mFreeQ->Init();
@@ -130,14 +130,14 @@ NSpGame::NSpGame(
 	}
 
 
-	//Ä	Initialize our player list
+	//Æ’	Initialize our player list
 	mPlayerList = new NSp_InterruptSafeList();
 	op_assert(mPlayerList);
 
 	mPlayerListIter = new NSp_InterruptSafeListIterator(*mPlayerList);
 	op_assert(mPlayerListIter);
 
-	//Ä	Create our group list
+	//Æ’	Create our group list
 	mGroupList = new NSp_InterruptSafeList();
 	op_assert(mGroupList);
 	
@@ -205,7 +205,7 @@ NSpGame::GetFreeERObject(NMUInt32 inSize)
 		{
 			for (i = 0; i < kQGrowthSize; i++)
 			{
-					//Ä	Do an interrupt-safe alloc
+					//Æ’	Do an interrupt-safe alloc
 					message = (NSpMessageHeader *) InterruptSafe_alloc(gStandardMessageSize);
 					if (!message){
 						status = kNSpMemAllocationErr;
@@ -305,7 +305,7 @@ ERObject
 void
 NSpGame::ReleaseERObject(ERObject *inObject)
 {
-NSpMessageHeader	*message;
+	NSpMessageHeader	*message;
 
 	if (inObject->GetMaxMessageLen() == gStandardMessageSize)
 	{
@@ -351,16 +351,16 @@ NSpGame::FreeDataBuffer(NMUInt8 *inBuf)
 void
 NSpGame::FreeNetMessage(NSpMessageHeader *inMessage)
 {
-ERObject	*theObject;
+	ERObject	*theObject;
 
-	//Ä	If it's a big message, we alloced it, so just free it
+	//Æ’	If it's a big message, we alloced it, so just free it
 	if (inMessage->messageLen > gStandardMessageSize)
 	{
 		InterruptSafe_free(inMessage);
 		return;
 	}
 
-	//Ä	It's a standard sized message.  Get a cookie to reuse it
+	//Æ’	It's a standard sized message.  Get a cookie to reuse it
 	theObject = GetCookieERObject();
 
 	if (!theObject)
@@ -369,7 +369,7 @@ ERObject	*theObject;
 		return;
 	}
 
-	//Ä	Release the message back to the free q
+	//Æ’	Release the message back to the free q
 	theObject->SetNetMessage(inMessage, gStandardMessageSize);
 	ReleaseERObject(theObject);
 }
@@ -399,7 +399,7 @@ NSpGame::NSpPlayer_GetInfo(NSpPlayerID inID, NSpPlayerInfoPtr *outInfo)
 	if (inID < 1)
 		return (kNSpInvalidPlayerIDErr);
 
-	//Ä	First find the player in the list
+	//Æ’	First find the player in the list
 	while (!found && iter.Next(&theItem))
 	{
 		thePlayer = (PlayerListItem *)theItem;
@@ -408,16 +408,16 @@ NSpGame::NSpPlayer_GetInfo(NSpPlayerID inID, NSpPlayerInfoPtr *outInfo)
 			found = true;
 	}
 
-	//Ä	If we didn't find it, bail
+	//Æ’	If we didn't find it, bail
 	if (!found)
 		return 	(kNSpInvalidPlayerIDErr);
 
-	//Ä	Our player list doesn't really contain the groups.  We need to look through
-	//Ä	the group list and determine which groups we belong to.
-	//Ä	This could be improved.
+	//Æ’	Our player list doesn't really contain the groups.  We need to look through
+	//Æ’	the group list and determine which groups we belong to.
+	//Æ’	This could be improved.
 	FillInGroups(inID, &groups, &groupCount);
 
-	//Ä	Otherwise, copy the info
+	//Æ’	Otherwise, copy the info
 	infoSize = sizeof (NSpPlayerInfo) + (((groupCount == 0) ? 0 : groupCount -1) * sizeof (NSpGroupID));
 	theInfo = (NSpPlayerInfoPtr) InterruptSafe_alloc(infoSize);
 	if (theInfo == NULL){
@@ -487,7 +487,7 @@ NSpGame::NSpPlayer_GetEnumeration(NSpPlayerEnumerationPtr *outPlayers)
 		return (kNSpNoPlayersErr);
 	}
 
-	//Ä	Allocate enough for the enumeration
+	//Æ’	Allocate enough for the enumeration
 	thePlayers = (NSpPlayerEnumerationPtr) InterruptSafe_alloc(sizeof (NSpPlayerEnumeration) +
 					(sizeof (NSpPlayerInfoPtr) * (mGameInfo.currentPlayers - kVariableLengthArray)));
 	if (thePlayers == NULL){
@@ -495,14 +495,14 @@ NSpGame::NSpPlayer_GetEnumeration(NSpPlayerEnumerationPtr *outPlayers)
 		goto error;
 	}
 
-	//Ä	We're going to increment this as we add, in case we have an allocation problem
+	//Æ’	We're going to increment this as we add, in case we have an allocation problem
 	thePlayers->count = 0;
 
 	while (iter.Next(&theItem))
 	{
 		thePlayer = (PlayerListItem *)theItem;
 
-		//Ä	This will allocate and fill in the info
+		//Æ’	This will allocate and fill in the info
 		status = NSpPlayer_GetInfo(thePlayer->id, &theInfo);
 		//ThrowIfOSErr_(status);
 		if (status)
@@ -535,20 +535,20 @@ error:
 void
 NSpGame::NSpPlayer_ReleaseEnumeration(NSpPlayerEnumerationPtr inPlayers)
 {
-NMUInt32	count = inPlayers->count;
+	NMUInt32	count = inPlayers->count;
 
 	op_vassert(NULL != inPlayers, "NSpPlayer_ReleaseEnumeration: inPlayers == NULL");
 
 	if (NULL == inPlayers)
 		return;
 
-	//Ä	NSpMessage_Release all the player info structures
+	//Æ’	NSpMessage_Release all the player info structures
 	for (NMSInt32 i = 0; i < count; i++)
 	{
 		NSpPlayer_ReleaseInfo(inPlayers->playerInfo[i]);
 	}
 
-	//Ä	Then release the players structure itself
+	//Æ’	Then release the players structure itself
 	InterruptSafe_free(inPlayers);
 }
 
@@ -622,7 +622,7 @@ NSpGame::GetPlayerListItem(NSpPlayerID inPlayerID)
 
 	//Try_
 	{
-		//Ä	First find the player in the list
+		//Æ’	First find the player in the list
 		while (!found && iter.Next(&theItem) )
 		{
 			thePlayer = (PlayerListItem *)theItem;
@@ -656,7 +656,7 @@ NSpGame::GetPlayerListItem(NSpPlayerID inPlayerID)
 NMBoolean
 NSpGame::HandlePlayerLeft(NSpPlayerLeftMessage *inMessage)
 {
-NMBoolean	handled = true;
+	NMBoolean	handled = true;
 
 	handled = RemovePlayer(inMessage->playerID, true);
 
@@ -670,10 +670,10 @@ NMBoolean	handled = true;
 NMBoolean
 NSpGame::HandlePlayerTypeChangedMessage(NSpPlayerTypeChangedMessage *inMessage)
 {
-NSp_InterruptSafeListIterator	iter(*mPlayerList);
-NSp_InterruptSafeListMember 	*theItem;
-NMBoolean						found = false;
-NMBoolean						handled = true;
+	NSp_InterruptSafeListIterator	iter(*mPlayerList);
+	NSp_InterruptSafeListMember 	*theItem;
+	NMBoolean						found = false;
+	NMBoolean						handled = true;
 
 	while (!found && iter.Next(&theItem))
 	{
@@ -722,7 +722,7 @@ NSpGame::NSpGroup_GetInfo(NSpGroupID inGroupID, NSpGroupInfoPtr *outInfo)
 	if (inGroupID > -1)
 		return (kNSpInvalidGroupIDErr);
 
-	//Ä	First find the group in the list
+	//Æ’	First find the group in the list
 	while (!found && iter.Next(&theItem))
 	{
 		theGroup = (GroupListItem *)theItem;
@@ -732,11 +732,11 @@ NSpGame::NSpGroup_GetInfo(NSpGroupID inGroupID, NSpGroupInfoPtr *outInfo)
 		}
 	}
 
-	//Ä	If we didn't find it, bail
+	//Æ’	If we didn't find it, bail
 	if (!found)
 		return (kNSpInvalidGroupIDErr);
 
-	//Ä	Otherwise, allocate enough for all the player IDs
+	//Æ’	Otherwise, allocate enough for all the player IDs
 	infoSize = sizeof (NSpGroupInfo) +
 		(((theGroup->playerCount == 0) ? 0 : theGroup->playerCount - 1) * sizeof (NSpPlayerID));
 
@@ -749,14 +749,14 @@ NSpGame::NSpGroup_GetInfo(NSpGroupID inGroupID, NSpGroupInfoPtr *outInfo)
 	theInfo->id = inGroupID;
 	theInfo->playerCount = theGroup->playerCount;
 
-	//Ä	Iterate through our player list
+	//Æ’	Iterate through our player list
 	playerIterator = new NSp_InterruptSafeListIterator(*theGroup->players);
 	if (playerIterator == NULL){
 		status = kNSpMemAllocationErr;
 		goto error;
 	}
 
-	//Ä	Fill in the info with the play IDs
+	//Æ’	Fill in the info with the play IDs
 	while (playerIterator->Next(&theItem))
 	{
 		thePlayer = (PlayerListItem *)((uintptrtListMember *)theItem)->GetValue();
@@ -764,7 +764,7 @@ NSpGame::NSpGroup_GetInfo(NSpGroupID inGroupID, NSpGroupInfoPtr *outInfo)
 		count++;
 	}
 
-	//Ä	Release the iterator
+	//Æ’	Release the iterator
 	delete playerIterator;
 
 	playerIterator = NULL;
@@ -817,7 +817,7 @@ NSpGame::NSpGroup_GetEnumeration(NSpGroupEnumerationPtr *outGroups)
 		return (kNSpNoGroupsErr);
 	}
 
-	//Ä	Allocate enough for the enumeration
+	//Æ’	Allocate enough for the enumeration
 	theGroups = (NSpGroupEnumerationPtr) InterruptSafe_alloc(sizeof (NSpGroupEnumeration) + 
 	(sizeof (NSpGroupInfoPtr) * (mGameInfo.currentGroups - kVariableLengthArray)));
 
@@ -827,14 +827,14 @@ NSpGame::NSpGroup_GetEnumeration(NSpGroupEnumerationPtr *outGroups)
 		return (kNSpMemAllocationErr);
 	}
 
-	//Ä	We're going to increment this as we add, in case we have an allocation problem
+	//Æ’	We're going to increment this as we add, in case we have an allocation problem
 	theGroups->count = 0;
 
 	while (iter.Next(&theItem))
 	{
 		theGroup = (GroupListItem *)theItem;
 
-		//Ä	This will allocate and fill in the info
+		//Æ’	This will allocate and fill in the info
 		status = NSpGroup_GetInfo(theGroup->id, &theInfo);
 
 		if (kNMNoError != status)
@@ -874,18 +874,18 @@ void NSpGame::NSpGroup_ReleaseEnumeration(NSpGroupEnumerationPtr inGroups)
 // NSpGame::NSpGroup_Create
 //----------------------------------------------------------------------------------------
 
-//Ä	This assigns a group id locally, and tells everyone else
-//Ä	Maybe it should ask the server for a group ID
+//Æ’	This assigns a group id locally, and tells everyone else
+//Æ’	Maybe it should ask the server for a group ID
 NMErr
 NSpGame::NSpGroup_Create(NSpGroupID *outGroupID)
 {
-NSpGroupID			id;
-TCreateGroupMessage	message;
-NMErr			status = kNMNoError;
+	NSpGroupID			id;
+	TCreateGroupMessage	message;
+	NMErr			status = kNMNoError;
 
-	id = mNextAvailableGroupID--;	//Ä	Group IDs go down as you 'increment'
+	id = mNextAvailableGroupID--;	//Æ’	Group IDs go down as you 'increment'
 
-	//Ä	Send a message to the server, requesting a new group
+	//Æ’	Send a message to the server, requesting a new group
 	NSpClearMessageHeader(&message.header);
 
 	message.header.to = kNSpAllPlayers;
@@ -894,8 +894,8 @@ NMErr			status = kNMNoError;
 	message.id = id;
 	message.requestingPlayer = mPlayerID;
 
-	//Ä	Handle this immediately, since the user may try to use this
-	//Ä	group ID as soon as she creates it
+	//Æ’	Handle this immediately, since the user may try to use this
+	//Æ’	group ID as soon as she creates it
 	NMBoolean handled = HandleCreateGroupMessage(&message);
 
 	if (false == handled)
@@ -916,14 +916,14 @@ NMErr			status = kNMNoError;
 // NSpGame::NSpGroup_Delete
 //----------------------------------------------------------------------------------------
 
-//Ä	Send a message to everyone, telling them to delete the group
+//Æ’	Send a message to everyone, telling them to delete the group
 NMErr
 NSpGame::NSpGroup_Delete(NSpGroupID inGroupID)
 {
-TDeleteGroupMessage		message;
-NMErr				status = kNMNoError;
+	TDeleteGroupMessage		message;
+	NMErr				status = kNMNoError;
 
-	//Ä	Send a message to everyone, including ourselves, telling them to make a new group
+	//Æ’	Send a message to everyone, including ourselves, telling them to make a new group
 	NSpClearMessageHeader(&message.header);
 
 	message.header.to = kNSpAllPlayers;
@@ -944,10 +944,10 @@ NMErr				status = kNMNoError;
 NMErr
 NSpGame::NSpGroup_AddPlayer(NSpGroupID inGroupID, NSpPlayerID inPlayerID)
 {
-TAddPlayerToGroupMessage	message;
-NMErr					status = kNMNoError;
+	TAddPlayerToGroupMessage	message;
+	NMErr					status = kNMNoError;
 
-	//Ä	Send a message to everyone, including ourselves, telling them to make a new group
+	//Æ’	Send a message to everyone, including ourselves, telling them to make a new group
 	NSpClearMessageHeader(&message.header);
 
 	message.header.to = kNSpAllPlayers;
@@ -956,7 +956,7 @@ NMErr					status = kNMNoError;
 	message.group = inGroupID;
 	message.player = inPlayerID;
 
-	//Ä	Send a message to all, telling them to create this new group
+	//Æ’	Send a message to all, telling them to create this new group
 	status = SendUserMessage(&message.header, kNSpSendFlag_Registered);
 
 	return (status);
@@ -969,8 +969,8 @@ NMErr					status = kNMNoError;
 NMErr
 NSpGame::NSpGroup_RemovePlayer(NSpGroupID inGroupID, NSpPlayerID inPlayerID)
 {
-TRemovePlayerFromGroupMessage	message;
-NMErr						status = kNMNoError;
+	TRemovePlayerFromGroupMessage	message;
+	NMErr						status = kNMNoError;
 
 #if DEBUG
 	NSp_InterruptSafeListIterator 		groupIter(*mGroupList);
@@ -986,7 +986,7 @@ NMErr						status = kNMNoError;
 	if (inPlayerID < 1 || mGameInfo.currentPlayers < 1)
 		return (kNSpInvalidPlayerIDErr);
 
-	//Ä	First find the group in the list
+	//Æ’	First find the group in the list
 	while (!found && groupIter.Next(&theItem))
 	{
 		theGroup = (GroupListItem *)theItem;
@@ -995,13 +995,13 @@ NMErr						status = kNMNoError;
 			found = true;
 	}
 
-	//Ä	If we didn't find it, bail
+	//Æ’	If we didn't find it, bail
 	if (!found)
 		return (kNSpInvalidGroupIDErr);
 
 	found = false;
 
-	//Ä	Locate this player
+	//Æ’	Locate this player
 	while (!found && playerIter.Next(&theItem))
 	{
 		thePlayer = (PlayerListItem *)theItem;
@@ -1011,13 +1011,13 @@ NMErr						status = kNMNoError;
 		}
 	}
 
-	//Ä	If we didn't find it, bail
+	//Æ’	If we didn't find it, bail
 	if (!found)
 		return (kNSpInvalidPlayerIDErr);
 
 #endif
 
-	//Ä	Send a message to everyone, including ourselves, telling them to make a new group
+	//Æ’	Send a message to everyone, including ourselves, telling them to make a new group
 	NSpClearMessageHeader(&message.header);
 
 	message.header.to = kNSpAllPlayers;
@@ -1026,7 +1026,7 @@ NMErr						status = kNMNoError;
 	message.group = inGroupID;
 	message.player = inPlayerID;
 
-	//Ä	Send a message to all, telling them to create this new group
+	//Æ’	Send a message to all, telling them to create this new group
 	status = SendUserMessage(&message.header, kNSpSendFlag_Registered);
 
 	return (status);
@@ -1036,7 +1036,7 @@ NMErr						status = kNMNoError;
 // NSpGame::FillInGroups
 //----------------------------------------------------------------------------------------
 
-//Ä	This is an O(n^2) routine.  Blegh!
+//Æ’	This is an O(n^2) routine.  Blegh!
 void
 NSpGame::FillInGroups(NSpPlayerID inPlayer, NSpGroupID **outGroups, NMUInt32 *outGroupCount)
 {
@@ -1057,8 +1057,8 @@ NSpGame::FillInGroups(NSpPlayerID inPlayer, NSpGroupID **outGroups, NMUInt32 *ou
 		return;
 	}
 
-	//Ä	We don't know how many groups this player is a member of until we iterate
-	//Ä	Through the list.  Therefore, alloc enough for all the groups
+	//Æ’	We don't know how many groups this player is a member of until we iterate
+	//Æ’	Through the list.  Therefore, alloc enough for all the groups
 	groups = (NSpGroupID *)InterruptSafe_alloc(mGameInfo.currentGroups * sizeof (NSpGroupID));
 	if (groups == NULL){
 		status = kNSpMemAllocationErr;
@@ -1143,23 +1143,23 @@ NSpGame::ReleaseGroups(NSpGroupID *inGroups)
 NMBoolean
 NSpGame::HandleCreateGroupMessage(TCreateGroupMessage *inMessage)
 {
-NSp_InterruptSafeListIterator	iter(*mGroupList);
-NSp_InterruptSafeListMember	*theItem;
-GroupListItem				*theGroup;
-NMBoolean					found = false;
-GroupListItem				*groupEntry;
+	NSp_InterruptSafeListIterator	iter(*mGroupList);
+	NSp_InterruptSafeListMember	*theItem;
+	GroupListItem				*theGroup;
+	NMBoolean					found = false;
+	GroupListItem				*groupEntry;
 
 	groupEntry = new GroupListItem;
 
 	if (NULL == groupEntry)
 		return (false);
 
-	//Ä	find the group in the list
+	//Æ’	find the group in the list
 	while ((false == found) && iter.Next(&theItem))
 	{
 		theGroup = (GroupListItem *)theItem;
 
-		//Ä	The group already exists, just ignore the message and move on
+		//Æ’	The group already exists, just ignore the message and move on
 		if (theGroup->id == inMessage->id)
 			return (true);
 	}
@@ -1171,7 +1171,7 @@ GroupListItem				*groupEntry;
 
 	mGameInfo.currentGroups++;
 
-	//Ä	Pass the message up to the client
+	//Æ’	Pass the message up to the client
 	if (NULL != mAsyncMessageHandler)
 	{
 	NSpCreateGroupMessage	clientMessage;
@@ -1197,11 +1197,11 @@ GroupListItem				*groupEntry;
 NMBoolean
 NSpGame::HandleDeleteGroupMessage(TDeleteGroupMessage *inMessage)
 {
-NMBoolean	handled;
+	NMBoolean	handled;
 
 	handled = (kNMNoError == DoDeleteGroup(inMessage->id));
 
-	//Ä	Pass the message up to the client
+	//Æ’	Pass the message up to the client
 	if ((true == handled) && (NULL != mAsyncMessageHandler))
 	{
 	NSpDeleteGroupMessage	clientMessage;
@@ -1227,10 +1227,10 @@ NMBoolean	handled;
 NMErr
 NSpGame::DoDeleteGroup(NSpGroupID inID)
 {
-NSp_InterruptSafeListIterator	iter(*mGroupList);
-NSp_InterruptSafeListMember	*theItem;
-GroupListItem				*theGroup;
-NMBoolean					bDeleteAll = false;
+	NSp_InterruptSafeListIterator	iter(*mGroupList);
+	NSp_InterruptSafeListMember	*theItem;
+	GroupListItem				*theGroup;
+	NMBoolean					bDeleteAll = false;
 
 	if (kNSpAllGroups == inID)
 		bDeleteAll = true;
@@ -1238,7 +1238,7 @@ NMBoolean					bDeleteAll = false;
 	if (mGameInfo.currentGroups < 1)
 		return (kNSpNoGroupsErr);
 
-	//Ä	find the group in the list
+	//Æ’	find the group in the list
 	while (iter.Next(&theItem))
 	{
 		theGroup = (GroupListItem *)theItem;
@@ -1275,7 +1275,7 @@ NSpGame::HandleAddPlayerToGroupMessage(TAddPlayerToGroupMessage *inMessage)
 	if (mGameInfo.currentPlayers < 1)
 		return (false);
 
-	//Ä	First find the player in the list
+	//Æ’	First find the player in the list
 	while (!found && playerIter.Next(&theItem))
 	{
 		thePlayer = (PlayerListItem *)theItem;
@@ -1285,7 +1285,7 @@ NSpGame::HandleAddPlayerToGroupMessage(TAddPlayerToGroupMessage *inMessage)
 		}
 	}
 
-	//Ä	If we didn't find it, bail
+	//Æ’	If we didn't find it, bail
 	if (!found)
 		return (false);
 
@@ -1298,7 +1298,7 @@ NSpGame::HandleAddPlayerToGroupMessage(TAddPlayerToGroupMessage *inMessage)
 	
 		found = false;
 
-		//Ä	First find the group in the list
+		//Æ’	First find the group in the list
 		while (!found && iter.Next(&theItem))
 		{
 			theGroup = (GroupListItem *)theItem;
@@ -1308,14 +1308,14 @@ NSpGame::HandleAddPlayerToGroupMessage(TAddPlayerToGroupMessage *inMessage)
 			}
 		}
 
-		//Ä	If we didn't find it, bail
+		//Æ’	If we didn't find it, bail
 		if (!found)
 			return (false);
 
-		//Ä	We found it.  Let's add the player
+		//Æ’	We found it.  Let's add the player
 		handled = theGroup->AddPlayer(thePlayer);
 
-		//Ä	Pass the message up to the client
+		//Æ’	Pass the message up to the client
 		if ((true == handled) && (NULL != mAsyncMessageHandler))
 		{
 		NSpAddPlayerToGroupMessage	clientMessage;
@@ -1364,7 +1364,7 @@ NSpGame::HandleRemovePlayerFromGroupMessage(TRemovePlayerFromGroupMessage *inMes
 	{
 		NMBoolean	handled = false;
 	
-		//Ä	First find the group in the list
+		//Æ’	First find the group in the list
 		while (!found && iter.Next(&theItem))
 		{
 			theGroup = (GroupListItem *)theItem;
@@ -1373,14 +1373,14 @@ NSpGame::HandleRemovePlayerFromGroupMessage(TRemovePlayerFromGroupMessage *inMes
 				found = true;
 		}
 
-		//Ä	If we didn't find it, bail
+		//Æ’	If we didn't find it, bail
 		if (!found)
 			return (false);
 
-		//Ä	We found it.  Let's add the player
+		//Æ’	We found it.  Let's add the player
 		handled = theGroup->RemovePlayer(inMessage->player);
 
-		//Ä	Pass the message up to the client
+		//Æ’	Pass the message up to the client
 		if ((true == handled) && (NULL != mAsyncMessageHandler))
 		{
 		NSpRemovePlayerFromGroupMessage	clientMessage;
@@ -1422,9 +1422,9 @@ NSpGame::HandleRemovePlayerFromGroupMessage(TRemovePlayerFromGroupMessage *inMes
 NMErr
 NSpGame::DoSelfSend(NSpMessageHeader *inHeader, void *inBody, NSpFlags inFlags, NMBoolean inCopy)
 {
-UNUSED_PARAMETER(inBody);
-UNUSED_PARAMETER(inFlags);
-UNUSED_PARAMETER(inCopy);
+	UNUSED_PARAMETER(inBody);
+	UNUSED_PARAMETER(inFlags);
+	UNUSED_PARAMETER(inCopy);
 
 
 	ERObject		*theERObject;
@@ -1434,11 +1434,11 @@ UNUSED_PARAMETER(inCopy);
 	if (NULL == theERObject)
 		return (kNSpFreeQExhaustedErr);
 
-	//Ä	Message headers and their data are now contiguous in memory, so
+	//Æ’	Message headers and their data are now contiguous in memory, so
 	//	we can copy them with one move...
 	machine_move_data(inHeader, theERObject->PeekNetMessage(), inHeader->messageLen);
 
-	//Ä	Set the when
+	//Æ’	Set the when
 	theERObject->PeekNetMessage()->when = ::GetTimestampMilliseconds() + mTimeStampDifferential;
 
 	HandleEventForSelf(theERObject, NULL);
@@ -1453,9 +1453,9 @@ UNUSED_PARAMETER(inCopy);
 void
 NSpGame::HandleEventForSelf(ERObject *inERObject, CEndpoint *inEndpoint)
 {
-NMBoolean	enQ = true;
+	NMBoolean	enQ = true;
 
-	//Ä	Set the endpoint and address
+	//Æ’	Set the endpoint and address
 	if (inEndpoint)
 		inERObject->SetEndpoint(inEndpoint);
 
@@ -1537,7 +1537,7 @@ NSpGame::NSpMessage_Get(NSpMessageHeader **outMessage)
 	NSpMessageHeader	*theMessage = NULL;
 	NMErr				status = kNMNoError;
 
-	//Ä	If there aren't already messages in our list, dump the q
+	//Æ’	If there aren't already messages in our list, dump the q
 	if (!mPendingMessages)
 	{
 		if (mEventQ->IsEmpty())
@@ -1559,11 +1559,11 @@ NSpGame::NSpMessage_Get(NSpMessageHeader **outMessage)
 		goto error;
 	}
 
-	//Ä	This eats out the nice creme filling and leaves only the cookie
+	//Æ’	This eats out the nice creme filling and leaves only the cookie
 	theMessage = theERObject->RemoveNetMessage();
 	*outMessage = theMessage;
 
-	//Ä	Put the ERObject in the cookie q, waiting for a new NSpMessageHeader before going back to the free q
+	//Æ’	Put the ERObject in the cookie q, waiting for a new NSpMessageHeader before going back to the free q
 	mCookieQ->Enqueue(theERObject);
 	mCookieQLen++;
 
@@ -1584,7 +1584,7 @@ error:
 NMUInt32
 NSpGame::GetRTT(NSpPlayerID inPlayer)
 {
-UNUSED_PARAMETER(inPlayer);
+	UNUSED_PARAMETER(inPlayer);
 
 	DEBUG_PRINT("GetRTT not implemented");
 
@@ -1598,7 +1598,7 @@ UNUSED_PARAMETER(inPlayer);
 NMUInt32
 NSpGame::GetThruput(NSpPlayerID inPlayer)
 {
-UNUSED_PARAMETER(inPlayer);
+	UNUSED_PARAMETER(inPlayer);
 
 	DEBUG_PRINT("GetThruput not implemented");
 
@@ -1612,8 +1612,8 @@ UNUSED_PARAMETER(inPlayer);
 NMUInt32
 NSpGame::GetCurrentTimeStamp(void)
 {
-//UnsignedWide	baseTime;
-NMUInt32			result;
+	//UnsignedWide	baseTime;
+	NMUInt32			result;
 
 //	::machine_timestamp(&baseTime);
 	

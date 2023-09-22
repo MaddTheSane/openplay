@@ -43,7 +43,7 @@ PlayerListItem::PlayerListItem()
 
 PlayerListItem::~PlayerListItem()
 {
-	//Ä	We delete the info but not the endpoint.  Someone else might own it.
+	//Æ’	We delete the info but not the endpoint.  Someone else might own it.
 	if (NULL != info)
 		InterruptSafe_free(info);
 }
@@ -80,8 +80,8 @@ GroupListItem::AddPlayer(PlayerListItem *inPlayer)
 	if (NULL == players)
 		return (false);
 		
-	//Ä	We can't just add this item, since it belongs to another list
-	//Ä	Instead add an item that contains a pointer to it
+	//Æ’	We can't just add this item, since it belongs to another list
+	//Æ’	Instead add an item that contains a pointer to it
 	item = new uintptrtListMember((uintptr_t) inPlayer);
 
 	if (NULL == item)
@@ -100,15 +100,15 @@ GroupListItem::AddPlayer(PlayerListItem *inPlayer)
 NMBoolean
 GroupListItem::RemovePlayer(NSpPlayerID inPlayer)
 {
-NSp_InterruptSafeListIterator	iter(*players);
-NSp_InterruptSafeListMember	*	theItem;
-PlayerListItem				*	player;
-NMBoolean						found = false;
+	NSp_InterruptSafeListIterator	iter(*players);
+	NSp_InterruptSafeListMember	*	theItem;
+	PlayerListItem				*	player;
+	NMBoolean						found = false;
 	
 	if (NULL == players)
 		return (false);
 		
-	//Ä	First find the player in the list
+	//Æ’	First find the player in the list
 	while ((false == found) && iter.Next(&theItem))
 	{
 		player = (PlayerListItem *) (((uintptrtListMember *) theItem)->GetValue());
@@ -117,11 +117,11 @@ NMBoolean						found = false;
 			found = true;
 	}
 
-	//Ä	If we didn't find it, bail
+	//Æ’	If we didn't find it, bail
 	if (false == found)
 		return 	(false);
 		
-	//Ä	We did find it.  Let's remove it
+	//Æ’	We did find it.  Let's remove it
 	if (players->Remove(theItem))
 		playerCount--;
 	else
@@ -148,7 +148,7 @@ SendQItem::SendQItem(void *inData, NMUInt32 inBytesSent)
 	
 	
 	
-	//Ä	Initialize everything to something boring, just in case.
+	//Æ’	Initialize everything to something boring, just in case.
 	
 	mData = NULL;
 	
@@ -157,9 +157,9 @@ SendQItem::SendQItem(void *inData, NMUInt32 inBytesSent)
 	mMessageLength = 0;
 
 
-	//Ä	Now fill them in right.
+	//Æ’	Now fill them in right.
 	
-	//Ä	If this is a non-Macintosh platform, then every path to this point
+	//Æ’	If this is a non-Macintosh platform, then every path to this point
 	//	has byte-swapped the header.  So we need to byte-swap the variable
 	//	"messageLength" again if we want to use the right value, which we
 	//	do.  

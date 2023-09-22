@@ -120,7 +120,7 @@ NSpInitialize(NMUInt32 inStandardMessageSize, NMUInt32 inBufferSize, NMUInt32 in
 	if (inBufferSize < 200000)	// if they ask for less than 200k, prealloc 200k
 		inBufferSize = 200000;
 		
-	//Ä	We shan't be initialized more than once per application
+	//Æ’	We shan't be initialized more than once per application
 	if (gPPInitialized)
 		return (kNSpAlreadyInitializedErr);
 	
@@ -130,7 +130,7 @@ NSpInitialize(NMUInt32 inStandardMessageSize, NMUInt32 inBufferSize, NMUInt32 in
 	NMErr		theErr;
 	NMSInt32	result;
 	
-	//Ä	Make sure that Mac OS 8.1 or later is installed
+	//Æ’	Make sure that Mac OS 8.1 or later is installed
 	theErr = Gestalt(gestaltSystemVersion, &result);
 	
 	if ((kNMNoError != theErr) || (result < 0x00000810))
@@ -144,7 +144,7 @@ NSpInitialize(NMUInt32 inStandardMessageSize, NMUInt32 inBufferSize, NMUInt32 in
 #endif
 
 	
-	//Ä	Set the standard message size
+	//Æ’	Set the standard message size
 	if (inStandardMessageSize == 0)
 		gStandardMessageSize = 576;					// The size of an AppleTalk packet
 	else if (inStandardMessageSize < sizeof (NSpMessageHeader))
@@ -156,14 +156,14 @@ NSpInitialize(NMUInt32 inStandardMessageSize, NMUInt32 inBufferSize, NMUInt32 in
 	
 	gDebugMode = GetDebugMode();
 	
-	//Ä	Make a new list for all the games we create in this app
+	//Æ’	Make a new list for all the games we create in this app
 	
 	gGameList = new NSp_InterruptSafeList;
 
 	if (NULL == gGameList)
 		return (kNSpInitializationFailedErr);
 
-	//Ä	Set our globals
+	//Æ’	Set our globals
 //	if (0 != inBufferSize)
 //		gBufferSize = inBufferSize;
 //	else
@@ -212,7 +212,7 @@ NSpProtocol_New(const char *inDefinitionString, NSpProtocolReference *outReferen
 	
 	op_vassert_return(NULL != inDefinitionString, "NSpProtocol_New: inDefinitionString == NULL", kNSpInvalidDefinitionErr);
 	
-	//Ä	Create the configuration...
+	//Æ’	Create the configuration...
 	
 	strcpy(customConfig, inDefinitionString);
 
@@ -254,7 +254,7 @@ NSpProtocol_Dispose(NSpProtocolReference inProtocolRef)
 {
 	NMErr status;
 	
-	//Ä	Bad!  The established NetSprocket interface doesn't allow for us
+	//Æ’	Bad!  The established NetSprocket interface doesn't allow for us
 	//  to return status!  Perhaps we should provide a new function that
 	//	performs the same function but *does* return status.  And we should
 	//	encourage developers to start using the new function.  (CRT, Aug 2000)
@@ -298,8 +298,8 @@ NSpProtocol_ExtractDefinitionString(NSpProtocolReference inProtocolRef, char *ou
 NMErr
 NSpProtocolList_New(NSpProtocolReference inProtocolRef, NSpProtocolListReference *outList)
 {
-NSpProtocolListPriv	*theList = NULL;
-NMErr			status = kNMNoError;
+	NSpProtocolListPriv	*theList = NULL;
+	NMErr			status = kNMNoError;
 
 	theList = new NSpProtocolListPriv();
 	if (theList == NULL){
@@ -327,7 +327,7 @@ NMErr			status = kNMNoError;
 void
 NSpProtocolList_Dispose(NSpProtocolListReference inProtocolList)
 {
-NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
+	NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
 
 	op_vassert(NULL != theList, "NSpProtocolList_Dispose: inProtocolList == NULL");
 
@@ -342,9 +342,9 @@ NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
 NMErr
 NSpProtocolList_Append(NSpProtocolListReference inProtocolList, NSpProtocolReference inProtocolRef)
 {
-NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
-NSpProtocolPriv		*theProtocol = (NSpProtocolPriv *)  inProtocolRef;
-NMErr			status;
+	NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
+	NSpProtocolPriv		*theProtocol = (NSpProtocolPriv *)  inProtocolRef;
+	NMErr			status;
 	
 	op_vassert_return(NULL != theList, "NSpProtocolList_Append: inProtocolList == NULL", kNSpInvalidProtocolRefErr);
 	op_vassert_return(NULL != theProtocol, "NSpProtocolList_Append: inProtocolRef == NULL", kNSpInvalidProtocolRefErr);
@@ -361,9 +361,9 @@ NMErr			status;
 NMErr
 NSpProtocolList_Remove(NSpProtocolListReference inProtocolList, NSpProtocolReference inProtocolRef)
 {
-NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
-NSpProtocolPriv		*theProtocol = (NSpProtocolPriv *)  inProtocolRef;
-NMErr			status;
+	NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
+	NSpProtocolPriv		*theProtocol = (NSpProtocolPriv *)  inProtocolRef;
+	NMErr			status;
 	
 	op_vassert_return(NULL != theList, "NSpProtocolList_Remove: inProtocolList == NULL", kNSpInvalidProtocolListErr);
 	op_vassert_return(NULL != theProtocol, "NSpProtocolList_Remove: inProtocolRef == NULL", kNSpInvalidProtocolRefErr);
@@ -380,8 +380,8 @@ NMErr			status;
 NMErr
 NSpProtocolList_RemoveIndexed(NSpProtocolListReference inProtocolList, NMUInt32 inIndex)
 {
-NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
-NMErr			status;
+	NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
+	NMErr			status;
 	
 	op_vassert_return(NULL != theList, "NSpProtocolList_RemoveIndexed: inProtocolList == NULL", kNSpInvalidProtocolListErr);
 
@@ -397,7 +397,7 @@ NMErr			status;
 NMUInt32
 NSpProtocolList_GetCount(NSpProtocolListReference inProtocolList)
 {
-NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
+	NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
 
 	op_vassert_return(NULL != theList, "NSpProtocolList_GetCount: inProtocolList == NULL", 0);
 
@@ -411,8 +411,8 @@ NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
 NSpProtocolReference
 NSpProtocolList_GetIndexedRef(NSpProtocolListReference inProtocolList, NMUInt32 inIndex)
 {
-NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
-NSpProtocolPriv		*theProtocol;
+	NSpProtocolListPriv	*theList = (NSpProtocolListPriv *) inProtocolList;
+	NSpProtocolPriv		*theProtocol;
 	
 	op_vassert_return(NULL != theList, "NSpProtocolList_GetIndexedRef: inProtocolList == NULL", NULL);
 
@@ -442,12 +442,12 @@ NSpProtocol_CreateAppleTalk(NMConstStr31Param inNBPName, NMConstStr31Param inNBP
 
 	op_vassert_return(NULL != inNBPName, "NSpProtocol_CreateAppleTalk: inNBPName == NULL", NULL);
 
-	//Ä	Fix bug 1379460, that allows you to register without specifying an nbp name
+	//Æ’	Fix bug 1379460, that allows you to register without specifying an nbp name
 	
 	if (inNBPName[0] < 1)
 		return (NULL);
 	
-	//Ä	Create the configuration...
+	//Æ’	Create the configuration...
 	
 	netModuleType = (NMType) kATModuleType;
 	
@@ -463,7 +463,7 @@ NSpProtocol_CreateAppleTalk(NMConstStr31Param inNBPName, NMConstStr31Param inNBP
 	sprintf(gameName, "%#s", inNBPName);
 		
 	
-	//Ä	Create the configuration...
+	//Æ’	Create the configuration...
 	
 	strcpy(customConfig, "netSprocket=true\0");
 	
@@ -508,7 +508,7 @@ NSpProtocol_CreateIP(NMInetPort inPort, NMUInt32 inMaxRTT, NMUInt32 inMinThruput
 	PConfigRef				theRef;	
 	
 	
-	//Ä	Create the configuration...
+	//Æ’	Create the configuration...
 	
 	netModuleType = (NMType) kIPModuleType;
 	
@@ -601,7 +601,7 @@ NSpDoModalHostDialog			(NSpProtocolListReference	ioProtocolList,
 #pragma mark === Hosting and Joining ===
 #endif
 
-//Ä	--------------------	NSpGame_Host
+//Æ’	--------------------	NSpGame_Host
 
 /*
 	Creates a new Game Master, meaning it can
@@ -640,7 +640,7 @@ NSpGame_Host(
 	op_vassert_return(kNSpClientServer == inTopology, "NSpGame_Host: inTopology is not valid", kNSpTopologyNotSupportedErr);
 	op_vassert_return(NULL != theList, "NSpGame_Host: inProtocolList == NULL", kNSpInvalidProtocolListErr);
 
-	//Ä	Create the game object
+	//Æ’	Create the game object
 	theGame = new NSpGamePrivate();
 
 	op_vassert(NULL != theGame, "NSpGame_Host: NSpGamePrivate is NULL");
@@ -650,44 +650,44 @@ NSpGame_Host(
 	}
 			
 
-	//Ä	Create the host
+	//Æ’	Create the host
 	master = new NSpGameMaster(inMaxPlayers, inGameName, inPassword, inTopology, inFlags);
 	if (master == NULL){
 		status = kNSpMemAllocationErr;
 		goto error;
 	}
 			
-	//Ä	Attach the master
+	//Æ’	Attach the master
 	theGame->SetMaster(master);
 	
 	*outGame = (NSpGameReference) theGame;
 	
 	
-	//Ä	We need to keep track of these game objects.  Create a new q element.  Do this now since it might fail
+	//Æ’	We need to keep track of these game objects.  Create a new q element.  Do this now since it might fail
 	theMember = new uintptrtListMember( (uintptr_t) theGame);
 	if (!theMember){
 		status = kNSpMemAllocationErr;
 		goto error;
 	}
 		
-	//Ä	If the user has installed a join request handler, add it now
+	//Æ’	If the user has installed a join request handler, add it now
 	if (gJoinRequestHandler)
 		status = master->InstallJoinRequestHandler(gJoinRequestHandler, gJoinRequestContext);
 	if (status)
 		goto error;
 
-	//Ä	If the user has installed an async message handler, add it now
+	//Æ’	If the user has installed an async message handler, add it now
 	if (gAsyncMessageHandler)
 		master->InstallAsyncMessageHandler(gAsyncMessageHandler, gAsyncMessageContext);
 	
-	//Ä	If the user has installed a callback handler, add it now
+	//Æ’	If the user has installed a callback handler, add it now
 	if (gCallbackHandler)
 		master->InstallCallbackHandler(gCallbackHandler, gCallbackContext);
 	
-	//Ä	Find out how many protocols we're going to be advertising on
+	//Æ’	Find out how many protocols we're going to be advertising on
 	count = theList->GetCount();
 
-	//Ä	Confirm that we want to advertise on SOMETHING
+	//Æ’	Confirm that we want to advertise on SOMETHING
 	if (count == 0)
 	{
 		status = kNSpInvalidProtocolListErr;
@@ -695,7 +695,7 @@ NSpGame_Host(
 		//Throw_(kNSpInvalidProtocolListErr);
 	}
 	
-	//Ä	For each protocol, advertise		
+	//Æ’	For each protocol, advertise		
 	for (NMSInt32 i = 0; i < count; i++)
 	{
 		theProt = theList->GetIndexedItem(i);
@@ -765,11 +765,11 @@ NSpGame_Host(
 		}
 	}
 	
-	//Ä	We've successfully created the game object.  Store it in our list
+	//Æ’	We've successfully created the game object.  Store it in our list
 	gGameList->Append(theMember);
 
 
-	//Ä	Now tell them to add the local player (if any)
+	//Æ’	Now tell them to add the local player (if any)
 
 	if (atRef)
 		status = master->AddLocalPlayer(inPlayerName, inPlayerType, atRef);		
@@ -780,7 +780,7 @@ NSpGame_Host(
 	if (status)
 		goto error;
 
-	//Ä	Set up our info structure
+	//Æ’	Set up our info structure
 	info = master->GetGameInfo();		
 	info->maxPlayers = inMaxPlayers;
 	info->topology = inTopology;
@@ -832,7 +832,7 @@ NSpProtocolPriv	*theProt = (NSpProtocolPriv *) inProtocol;
 NMBoolean		didOne = false;
 NMType ptype;
 
-//Ä	This feature was never truly implemented in NetSprocket to begin with, so until we hook up
+//Æ’	This feature was never truly implemented in NetSprocket to begin with, so until we hook up
 //	advertising via the OpenPlay layer, perhaps we should just return a "Feature Not Implemented"
 //	error...
 
@@ -904,14 +904,14 @@ NSpGame_Join(
 	NSpGameInfo			*info;
 	NMErr				status = kNMNoError;
 
-	//Ä	Create the private game object
+	//Æ’	Create the private game object
 	theGame = new NSpGamePrivate();
 	if (theGame == NULL){
 		status = kNSpMemAllocationErr;
 		goto error;
 	}
 	
-	//Ä	Create a new game object with only null initialization
+	//Æ’	Create a new game object with only null initialization
 	slave = new NSpGameSlave(inFlags);
 	if (slave == NULL){
 		status = kNSpMemAllocationErr;
@@ -928,7 +928,7 @@ NSpGame_Join(
 	if (gCallbackHandler)
 		slave->InstallCallbackHandler(gCallbackHandler, gCallbackContext);
 
-	//Ä	Insert the pointer to the game into our list
+	//Æ’	Insert the pointer to the game into our list
 	theMember = new uintptrtListMember( (uintptr_t) theGame);
 	if (theMember == NULL){
 		status = kNSpMemAllocationErr;
@@ -936,7 +936,7 @@ NSpGame_Join(
 	}
 
 	
-	//Ä	Tell the game object to join the specified game
+	//Æ’	Tell the game object to join the specified game
 	status = slave->Join(inName, inPassword, inType, inCustomData, inCustomDataLen, inAddress);
 	//ThrowIfOSErr_(err);
 	if (status)
@@ -948,7 +948,7 @@ NSpGame_Join(
 	
 	//*	Set up our info structure
 	info->maxPlayers = 0;
-	info->topology = kNSpClientServer;		//Ä HACK!!!!
+	info->topology = kNSpClientServer;		//Æ’ HACK!!!!
 
 	//*	Get password, game name sent in JoinAccepted message (2.2 or later only!)
 	if (inPassword)
@@ -1038,9 +1038,9 @@ NSpGame_GetInfo(NSpGameReference inGame, NSpGameInfo  *ioInfo)
 NMErr
 NSpMessage_Send(NSpGameReference inGame, NSpMessageHeader *inMessage, NSpFlags inFlags)
 {
-NMErr		err = kNMNoError;
-NSpGamePrivate	*theGame = (NSpGamePrivate *)inGame;
-NSpGame			*game;
+	NMErr		err = kNMNoError;
+	NSpGamePrivate	*theGame = (NSpGamePrivate *)inGame;
+	NSpGame			*game;
 	
 	op_vassert_return(NULL != inGame, "NSpMessage_Send: inGame == NULL", kNSpInvalidGameRefErr);
 
@@ -1079,9 +1079,9 @@ NSpMessage_SendTo(
 		NMUInt32			inDataLen, 
 		NSpFlags 			inFlags)
 {
-NMErr		err = kNMNoError;
-NSpGamePrivate	*theGame = (NSpGamePrivate *)inGame;
-NSpGame			*game;
+	NMErr		err = kNMNoError;
+	NSpGamePrivate	*theGame = (NSpGamePrivate *)inGame;
+	NSpGame			*game;
 	
 	op_vassert_return(NULL != inGame, "NSpMessage_SendTo: inGame == NULL", kNSpInvalidGameRefErr);
 
@@ -1188,7 +1188,7 @@ NSpMessage_Release(NSpGameReference inGame, NSpMessageHeader *inMessage)
 NSpPlayerID
 NSpPlayer_GetMyID(NSpGameReference inGame)
 {
-NSpGamePrivate	*theGame = (NSpGamePrivate *)inGame;
+	NSpGamePrivate	*theGame = (NSpGamePrivate *)inGame;
 
 	op_vassert_return(NULL != inGame, "NSpPlayer_GetMyID: inGame == NULL", 0);
 
@@ -1313,18 +1313,18 @@ NSpPlayer_ChangeType(
 		NSpPlayerID 		inPlayerID,
 		NSpPlayerType 		inNewType)
 {
-NSpGamePrivate	*theGame = (NSpGamePrivate *) inGame;
-NSpGameMaster	*server;
+	NSpGamePrivate	*theGame = (NSpGamePrivate *) inGame;
+	NSpGameMaster	*server;
 
 	op_vassert_return(NULL != inGame, "NSpPlayer_ChangeType: inGame == NULL", kNSpInvalidGameRefErr);
 
-	//Ä	Make sure that this is the server game reference
+	//Æ’	Make sure that this is the server game reference
 	server = theGame->GetMaster();
 	
 	if (NULL == server)
 		return (kNSpInvalidGameRefErr);
 
-	//Ä	Ok, we've got a server game object, ask it to apply the change
+	//Æ’	Ok, we've got a server game object, ask it to apply the change
 	return (server->ChangePlayerType(inPlayerID, inNewType));
 }
 
@@ -1335,18 +1335,18 @@ NSpGameMaster	*server;
 NMErr
 NSpPlayer_Remove(NSpGameReference inGame, NSpPlayerID inPlayerID)
 {
-NSpGamePrivate	*theGame = (NSpGamePrivate *) inGame;
-NSpGameMaster	*server;
+	NSpGamePrivate	*theGame = (NSpGamePrivate *) inGame;
+	NSpGameMaster	*server;
 
 	op_vassert_return(NULL != inGame, "NSpPlayer_Remove: inGame == NULL", kNSpInvalidGameRefErr);
 
-	//Ä	Make sure that this is the server game reference
+	//Æ’	Make sure that this is the server game reference
 	server = theGame->GetMaster();
 	
 	if (NULL == server)
 		return (kNSpInvalidGameRefErr);
 
-	//Ä	Ok, we've got a server game object, ask it to remove the player
+	//Æ’	Ok, we've got a server game object, ask it to remove the player
 	return (server->ForceRemovePlayer(inPlayerID));
 }
 
@@ -1511,7 +1511,7 @@ NSpGetVersion(void)
 #endif
 	{
 
-	//Ä	Note that we do nothing fancy to obtain the version if this is a non-Mac platform.
+	//Æ’	Note that we do nothing fancy to obtain the version if this is a non-Mac platform.
 	//	Perhaps there *is* something we can do, but that is left for the OpenSource community...
 
 		gVersion.majorRev = __NSpVersionMajor__;
@@ -1575,14 +1575,14 @@ NSpPlayer_FreeAddress(
 	NSpGamePrivate	*theGame = (NSpGamePrivate *) inGame;
 	NSpGameMaster	*server;
 
-	//Ä	Make sure that this is the server game reference
+	//Æ’	Make sure that this is the server game reference
 	server = theGame->GetMaster();
 	
 	if (NULL == server)
 		return (kNSpInvalidGameRefErr);
 
-	//Ä	Ok, our setup is kosher.  Jump into the server
-	//Ä	game object and free the address
+	//Æ’	Ok, our setup is kosher.  Jump into the server
+	//Æ’	game object and free the address
 	return (server->FreePlayerAddress((void **)outAddress));
 }
 
@@ -1599,14 +1599,14 @@ NSpPlayer_GetIPAddress(
 	NSpGamePrivate	*theGame = (NSpGamePrivate *) inGame;
 	NSpGameMaster	*server;
 
-	//Ä	Make sure that this is the server game reference
+	//Æ’	Make sure that this is the server game reference
 	server = theGame->GetMaster();
 	
 	if (NULL == server)
 		return (kNSpInvalidGameRefErr);
 
-	//Ä	Ok, our setup is kosher.  Jump into the server
-	//Ä	game object and get the address
+	//Æ’	Ok, our setup is kosher.  Jump into the server
+	//Æ’	game object and get the address
 	return (server->GetPlayerIPAddress(inPlayerID, outAddress));
 }
 
@@ -1623,20 +1623,20 @@ NSpPlayer_GetOTAddress(
 	NSpPlayerID			inPlayerID,
 	OTAddress			**outAddress)
 {
-NSpGamePrivate	*theGame = (NSpGamePrivate *) inGame;
-NSpGameMaster	*server;
+	NSpGamePrivate	*theGame = (NSpGamePrivate *) inGame;
+	NSpGameMaster	*server;
 
 	op_vassert_return(NULL != inGame, "NSpPlayer_GetOTAddress: inGame == NULL", kNSpInvalidGameRefErr);
 	op_vassert_return(NULL != outAddress, "NSpPlayer_GetOTAddress: outAddress == NULL", paramErr);
 
-	//Ä	Make sure that this is the server game reference
+	//Æ’	Make sure that this is the server game reference
 	server = theGame->GetMaster();
 	
 	if (NULL == server)
 		return (kNSpInvalidGameRefErr);
 
-	//Ä	Ok, our setup is kosher.  Jump into the server
-	//Ä	game object and get the address
+	//Æ’	Ok, our setup is kosher.  Jump into the server
+	//Æ’	game object and get the address
 	return (server->GetPlayerAddress(inPlayerID, outAddress));
 }
 
@@ -1646,61 +1646,59 @@ NSpGameMaster	*server;
 
 NSpAddressReference
 NSpConvertOTAddrToAddressReference(OTAddress *inAddress)
-{	
-	
-		PConfigRef theConfigRef;
-				
-		//Ä	Determine whether the OTAddress is an AppleTalk address or an IP address and
-		//	call the appropriate function...
-
-		if (AF_ATALK_DDPNBP == inAddress->fAddressType)
-		{
-			NBPEntity		theNBPEntity;
-			char			theName[64];
-			char			theType[64];
-			char			theZone[64];
+{
+	PConfigRef theConfigRef;
 			
-			
-			OTSetNBPEntityFromAddress(&theNBPEntity, (NMUInt8 *)  ( (DDPNBPAddress *)inAddress) -> fNBPNameBuffer, 105);
-	
-			OTExtractNBPZone(&theNBPEntity, theZone);
-			OTExtractNBPType(&theNBPEntity, theType);
-			OTExtractNBPName(&theNBPEntity, theName);
-			
-			theConfigRef = (PConfigRef) NSpCreateATlkAddressReference(theName, theType, theZone);
-		}
-		else if (AF_INET == inAddress->fAddressType)
-		{
-			InetAddress				*theInetAddressPtr;
-			NMInetPort				theInetPort;
-			InetHost				theInetHost;
-			char					theIPAddress[16];
-			char					theIPPort[16];
-			unsigned char			*byte;
+	//Æ’	Determine whether the OTAddress is an AppleTalk address or an IP address and
+	//	call the appropriate function...
 
-			//	Cast the OTAddress as an InetAddress and then pull out the parts you need...
-	
-			theInetAddressPtr = (InetAddress *) inAddress;
-	
-			theInetPort = theInetAddressPtr->fPort;
-
-			theInetHost = theInetAddressPtr->fHost;
-
-			byte = (unsigned char *) &theInetHost;
-			
-			sprintf(theIPAddress,"%u.%u.%u.%u\0", byte[0], byte[1], byte[2], byte[3]);
-
-			sprintf(theIPPort,"%d\0", theInetPort);
-			
-			theConfigRef = (PConfigRef) NSpCreateIPAddressReference(theIPAddress, theIPPort);
-		}
-		else
-		{
-			theConfigRef = NULL;
-		}
+	if (AF_ATALK_DDPNBP == inAddress->fAddressType)
+	{
+		NBPEntity		theNBPEntity;
+		char			theName[64];
+		char			theType[64];
+		char			theZone[64];
 		
-		return (NSpAddressReference) theConfigRef;
 		
+		OTSetNBPEntityFromAddress(&theNBPEntity, (NMUInt8 *)  ( (DDPNBPAddress *)inAddress) -> fNBPNameBuffer, 105);
+
+		OTExtractNBPZone(&theNBPEntity, theZone);
+		OTExtractNBPType(&theNBPEntity, theType);
+		OTExtractNBPName(&theNBPEntity, theName);
+		
+		theConfigRef = (PConfigRef) NSpCreateATlkAddressReference(theName, theType, theZone);
+	}
+	else if (AF_INET == inAddress->fAddressType)
+	{
+		InetAddress				*theInetAddressPtr;
+		NMInetPort				theInetPort;
+		InetHost				theInetHost;
+		char					theIPAddress[16];
+		char					theIPPort[16];
+		unsigned char			*byte;
+
+		//	Cast the OTAddress as an InetAddress and then pull out the parts you need...
+
+		theInetAddressPtr = (InetAddress *) inAddress;
+
+		theInetPort = theInetAddressPtr->fPort;
+
+		theInetHost = theInetAddressPtr->fHost;
+
+		byte = (unsigned char *) &theInetHost;
+		
+		sprintf(theIPAddress,"%u.%u.%u.%u\0", byte[0], byte[1], byte[2], byte[3]);
+
+		sprintf(theIPPort,"%d\0", theInetPort);
+		
+		theConfigRef = (PConfigRef) NSpCreateIPAddressReference(theIPAddress, theIPPort);
+	}
+	else
+	{
+		theConfigRef = NULL;
+	}
+	
+	return (NSpAddressReference) theConfigRef;
 }
 
 //----------------------------------------------------------------------------------------
@@ -1877,7 +1875,7 @@ NSpAddressReference NSpCreateATlkAddressReference(char *inName, char *inType, ch
 	char			customConfig[64];
 	
 	
-	//Ä	Create the configuration...
+	//Æ’	Create the configuration...
 	
 	netModuleType = (NMType) kATModuleType;
 	
@@ -1926,7 +1924,7 @@ NSpAddressReference NSpCreateIPAddressReference(const char *inIPAddress, const c
 	PConfigRef	outConfigRef = NULL;
 	
 
-	//Ä	Create the configuration...
+	//Æ’	Create the configuration...
 	
 	netModuleType = (NMType) kIPModuleType;
 	
@@ -1994,7 +1992,7 @@ NSpInstallCallbackHandler(NSpCallbackProcPtr inHandler, void *inContext)
 NMErr
 NSpInstallJoinRequestHandler(NSpJoinRequestHandlerProcPtr inHandler, void *inContext)
 {
-NMErr	err = kNMNoError;
+	NMErr	err = kNMNoError;
 	
 //	op_vassert_return(NULL != inHandler, "NSpInstallJoinRequestHandler: inHandler == NULL", paramErr);
 
@@ -2011,7 +2009,7 @@ NMErr	err = kNMNoError;
 NMErr
 NSpInstallAsyncMessageHandler(NSpMessageHandlerProcPtr inHandler, void *inContext)
 {
-NMErr	err = kNMNoError;
+	NMErr	err = kNMNoError;
 	
 //	op_vassert_return(NULL != inHandler, "NSpInstallAsyncMessageHandler: inHandler == NULL", paramErr);
 

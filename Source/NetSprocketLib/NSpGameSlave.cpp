@@ -58,7 +58,7 @@ NSpGameSlave::NSpGameSlave(NSpFlags inFlags) : NSpGame(0, NULL, NULL, kNSpClient
 
 NSpGameSlave::~NSpGameSlave()
 {
-	//Ä	delete mEndpoint;
+	//Æ’	delete mEndpoint;
 	if (mEndpoint)
 	{
 		mEndpoint->Close();
@@ -93,7 +93,7 @@ NSpGameSlave::Join(
 	char				*tokenPtr;
 	NMSInt16			configStrLen;
 	*/
-	//Ä	Require a name
+	//Æ’	Require a name
 	if (inPlayerName == NULL)
 		return (kNSpNameRequiredErr);
 
@@ -149,13 +149,13 @@ NSpGameSlave::Join(
 
 	if (kNMNoError == err)
 	{
-		//Ä	Initialize our endpoint for send/receive only
+		//Æ’	Initialize our endpoint for send/receive only
 		status = mEndpoint->InitNonAdvertiser( (NSpProtocolPriv *) inAddress);
 		//ThrowIfOSErr_(err);
 		if (status)
 			goto error;
 		
-		//Ä	Send our join request
+		//Æ’	Send our join request
 		status = SendJoinRequest(inPlayerName, inPassword, inType, inCustomData, inCustomDataLen);
 		//ThrowIfOSErr_(err);
 		if (status)
@@ -183,9 +183,9 @@ NSpGameSlave::SendJoinRequest(
 		void			*inCustomData,
 		NMUInt32		inCustomDataLen)
 {
-NMErr				status;
-NSpJoinRequestMessage	*theMessage;
-NMUInt32				messageSize;
+	NMErr				status;
+	NSpJoinRequestMessage	*theMessage;
+	NMUInt32				messageSize;
 
 
 	messageSize = sizeof (NSpJoinRequestMessage) + inCustomDataLen - 1;
@@ -227,15 +227,15 @@ NMUInt32				messageSize;
 NMErr
 NSpGameSlave::SendUserMessage(NSpMessageHeader *inMessage, NSpFlags inFlags)
 {
-NMErr status;
-NSp_InterruptSafeListIterator 	groupIter(*mGroupList);
-NSp_InterruptSafeListIterator 	*playerIter;
-NSp_InterruptSafeListMember 	*theItem;
-PlayerListItem				*thePlayer;
-GroupListItem				*theGroup;
-NMBoolean					bNoCopy = false;
-NMBoolean					bSelfSent = false;
-NMBoolean					swapBack = false;	//?? why here and not below?
+	NMErr status;
+	NSp_InterruptSafeListIterator 	groupIter(*mGroupList);
+	NSp_InterruptSafeListIterator 	*playerIter;
+	NSp_InterruptSafeListMember 	*theItem;
+	PlayerListItem				*thePlayer;
+	GroupListItem				*theGroup;
+	NMBoolean					bNoCopy = false;
+	NMBoolean					bSelfSent = false;
+	NMBoolean					swapBack = false;	//?? why here and not below?
 
 	if (mGameState == kStopped)
 		return kNSpGameTerminatedErr;
@@ -251,13 +251,13 @@ NMBoolean					swapBack = false;	//?? why here and not below?
 		bSelfSent = true;
 	}
 
-	//Ä	If it's just to ourselves, handle that special case
+	//Æ’	If it's just to ourselves, handle that special case
 	if (inMessage->to == mPlayerID && !bSelfSent)
 	{
 		status = DoSelfSend(inMessage, (NMUInt8 *)inMessage + sizeof (NSpMessageHeader), inFlags);
 		bSelfSent = true;
 	}
-	else if (inMessage->to < kNSpMasterEndpointID)	//Ä	We need to handle if its a group. In case we're a member
+	else if (inMessage->to < kNSpMasterEndpointID)	//Æ’	We need to handle if its a group. In case we're a member
 	{
 		if (!bSelfSent)
 		{
@@ -287,7 +287,7 @@ NMBoolean					swapBack = false;	//?? why here and not below?
 			}
 		}
 
-		//Ä	Now send it to the host
+		//Æ’	Now send it to the host
 		status = mEndpoint->SendMessage(inMessage, (NMUInt8 *)inMessage + sizeof (NSpMessageHeader), inFlags);
 		swapBack = true;
 	}
@@ -329,17 +329,17 @@ NSpGameSlave::IdleEndpoints(void)
 NMErr
 NSpGameSlave::SendTo(NSpPlayerID inTo, NMSInt32 inWhat, void *inData, NMUInt32 inLen, NSpFlags inFlags)
 {
-NMErr status;
-//NSpMessageHeader header;
-NSpMessageHeader				*headerPtr = NULL;
-NMUInt8							*dataPtr;
-NSp_InterruptSafeListIterator 	groupIter(*mGroupList);
-NSp_InterruptSafeListIterator 	*playerIter;
-NSp_InterruptSafeListMember 	*theItem;
-PlayerListItem					*thePlayer;
-GroupListItem					*theGroup;
-NMBoolean						bNoCopy = false;
-NMBoolean						bSelfSent = false;
+	NMErr status;
+	//NSpMessageHeader header;
+	NSpMessageHeader				*headerPtr = NULL;
+	NMUInt8							*dataPtr;
+	NSp_InterruptSafeListIterator 	groupIter(*mGroupList);
+	NSp_InterruptSafeListIterator 	*playerIter;
+	NSp_InterruptSafeListMember 	*theItem;
+	PlayerListItem					*thePlayer;
+	GroupListItem					*theGroup;
+	NMBoolean						bNoCopy = false;
+	NMBoolean						bSelfSent = false;
 
 	if (mGameState == kStopped)
 		return kNSpGameTerminatedErr;
@@ -370,7 +370,7 @@ NMBoolean						bSelfSent = false;
 		bSelfSent = true;
 	}
 
-	//Ä	If it's just to ourselves, handle that special case
+	//Æ’	If it's just to ourselves, handle that special case
 	if (inTo == mPlayerID && !bSelfSent)
 	{
 		status = DoSelfSend(headerPtr, inData, inFlags);
@@ -406,7 +406,7 @@ NMBoolean						bSelfSent = false;
 			}
 		}
 
-		//Ä	Now send it to the host
+		//Æ’	Now send it to the host
 		status = mEndpoint->SendMessage(headerPtr, (NMUInt8 *) inData, inFlags);
 	}
 	else
@@ -427,13 +427,13 @@ NMBoolean						bSelfSent = false;
 NMBoolean
 NSpGameSlave::HandleJoinApproved(TJoinApprovedMessagePrivate *inMessage, NMUInt32 inTimeReceived)
 {
-NMErr		status;
-NMBoolean		handled = true;
-NSpPlayerInfo	playerInfo;
-NSpGroupInfoPtr	groupInfoPtr;
-NMUInt32		i;
-NMUInt32		rtt;
-NMUInt32		hostProcessingTime;
+	NMErr		status;
+	NMBoolean		handled = true;
+	NSpPlayerInfo	playerInfo;
+	NSpGroupInfoPtr	groupInfoPtr;
+	NMUInt32		i;
+	NMUInt32		rtt;
+	NMUInt32		hostProcessingTime;
 
 	if (NULL == inMessage)
 		return (false);
@@ -441,7 +441,7 @@ NMUInt32		hostProcessingTime;
 	mGameInfo.currentPlayers = 0;		// This will be incremented by AddPlayer
 	mNextAvailableGroupID = inMessage->groupIDStartRange;
 
-	//Ä	Get the info for the current players
+	//Æ’	Get the info for the current players
 	if (inMessage->playerCount > 0)
 	{
 	NSpPlayerInfoPtr	p = (NSpPlayerInfoPtr) inMessage->data;
@@ -456,8 +456,8 @@ NMUInt32		hostProcessingTime;
 			q += kJoinApprovedPlayerInfoSize;
 			p = (NSpPlayerInfoPtr) q;
 
-			//Ä	We always get to other players via the server
-			//Ä	Ä This should change if we do client-client topology or fault-tolerance
+			//Æ’	We always get to other players via the server
+			//Æ’	Æ’ This should change if we do client-client topology or fault-tolerance
 			handled = AddPlayer(&playerInfo, mEndpoint);
 
 			if (!handled)
@@ -472,7 +472,7 @@ NMUInt32		hostProcessingTime;
 
 	if (handled)
 	{
-		//Ä	Record the groups state
+		//Æ’	Record the groups state
 		groupInfoPtr = (NSpGroupInfoPtr) (inMessage->data + (inMessage->playerCount * kJoinApprovedPlayerInfoSize));
 
 		if (inMessage->groupCount > 0)
@@ -480,10 +480,10 @@ NMUInt32		hostProcessingTime;
 			status = MakeGroupListFromJoinApprovedMessage(&groupInfoPtr, inMessage->groupCount);
 		}
 
-		//Ä	The to field contains our player id
+		//Æ’	The to field contains our player id
 		mPlayerID = inMessage->header.to;
 
-		//Ä	Set the timestamp differential
+		//Æ’	Set the timestamp differential
 		hostProcessingTime = inMessage->header.when - inMessage->receivedTimeStamp;
 		rtt = inTimeReceived - mEndpoint->GetLastMessageSentTimeStamp() - hostProcessingTime;
 		mTimeStampDifferential = (inMessage->receivedTimeStamp - mEndpoint->GetLastMessageSentTimeStamp()) - rtt/2;
@@ -546,7 +546,7 @@ NSpGameSlave::MakeGroupListFromJoinApprovedMessage(NSpGroupInfoPtr *inGroups, NM
 NMBoolean
 NSpGameSlave::HandleJoinDenied(NSpJoinDeniedMessage *inMessage)
 {
-UNUSED_PARAMETER(inMessage);
+	UNUSED_PARAMETER(inMessage);
 
 	NMBoolean handled = true;
 
@@ -561,10 +561,10 @@ UNUSED_PARAMETER(inMessage);
 NMBoolean
 NSpGameSlave::HandlePlayerJoined(NSpPlayerJoinedMessage *inMessage)
 {
-NMBoolean 			handled = true;
-NSpPlayerID		newPlayerID = inMessage->playerInfo.id;	
+	NMBoolean 			handled = true;
+	NSpPlayerID		newPlayerID = inMessage->playerInfo.id;	
 	
-	//Ä	If it wasn't us that joined, add them
+	//Æ’	If it wasn't us that joined, add them
 	if (newPlayerID != mPlayerID)
 		handled = AddPlayer(&(inMessage->playerInfo), mEndpoint);
 
@@ -578,7 +578,7 @@ NSpPlayerID		newPlayerID = inMessage->playerInfo.id;
 NMBoolean
 NSpGameSlave::HandleGameTerminated(NSpMessageHeader *inMessage)
 {
-UNUSED_PARAMETER(inMessage);
+	UNUSED_PARAMETER(inMessage);
 
 	mGameState = kStopped;
 
@@ -592,7 +592,7 @@ UNUSED_PARAMETER(inMessage);
 void
 NSpGameSlave::HandleEvent(ERObject *inERObject, CEndpoint *inEndpoint, void *inCookie)
 {
-UNUSED_PARAMETER(inCookie);
+	UNUSED_PARAMETER(inCookie);
 
 	NSpMessageHeader 	*theMessage = inERObject->PeekNetMessage();
 	NMBoolean			handled;
@@ -600,7 +600,7 @@ UNUSED_PARAMETER(inCookie);
 	if (theMessage == NULL)
 		return;
 
-	//Ä	Any system event should be handled immediately
+	//Æ’	Any system event should be handled immediately
 	if (theMessage->what & kNSpSystemMessagePrefix)
 	{
 		NMBoolean passToUser;
@@ -626,15 +626,15 @@ UNUSED_PARAMETER(inCookie);
 		}
 	}
 
-	//Ä	Allow the user to have a crack at it, if he installed a message handler
-	//Ä	User function returns a boolean telling whether or not to enqueue the message
+	//Æ’	Allow the user to have a crack at it, if he installed a message handler
+	//Æ’	User function returns a boolean telling whether or not to enqueue the message
 	if (mAsyncMessageHandler && !((mAsyncMessageHandler)((NSpGameReference) this->GetGameOwner(), theMessage, mAsyncMessageContext)))
 	{
 		ReleaseERObject(inERObject);
 		return;
 	}
 
-	//Ä	Set the endpoint and address
+	//Æ’	Set the endpoint and address
 	if (inEndpoint)
 		inERObject->SetEndpoint(inEndpoint);
 
@@ -675,7 +675,7 @@ NSpGameSlave::HandleNewEvent(ERObject *inERObject, CEndpoint *inEndpoint, void *
 NMUInt32
 NSpGameSlave::GetBacklog( void )
 {
- return mEndpoint->GetBacklog();
+	return mEndpoint->GetBacklog();
 }
 
 //----------------------------------------------------------------------------------------
@@ -685,16 +685,16 @@ NSpGameSlave::GetBacklog( void )
 NMErr
 NSpGameSlave::PrepareForDeletion(NSpFlags inFlags)
 {
-UNUSED_PARAMETER(inFlags);
+	UNUSED_PARAMETER(inFlags);
 
-NMErr	status = kNMNoError;
+	NMErr	status = kNMNoError;
 
 	if (mGameState == kStopped)
 	{
-		//Ä	Remove all the players, in case we never did get the disconnect
+		//Æ’	Remove all the players, in case we never did get the disconnect
 		RemovePlayer(kNSpAllPlayers, false);
 
-		//Ä	Wait for the server to disconnect us
+		//Æ’	Wait for the server to disconnect us
 		status = mEndpoint->WaitForDisconnect(5);
 		
 		if (status == kNSpTimeoutErr)
@@ -704,10 +704,10 @@ NMErr	status = kNMNoError;
 	}
 	else
 	{
-		//Ä	Do an orderly disconnect
+		//Æ’	Do an orderly disconnect
 		status = mEndpoint->Disconnect(true);
 
-		//Ä	Wait for the server to ack it
+		//Æ’	Wait for the server to ack it
 //		status = mEndpoint->WaitForDisconnect(5);
 		
 		if (status != kNMNoError)
@@ -802,7 +802,7 @@ NSpGameSlave::ProcessSystemMessage(NSpMessageHeader *inMessage)
 			mGameState = kRunning;
 			break;
 
-		//Ä	Message type handling of kNSpPlayerTypeChanged added here
+		//Æ’	Message type handling of kNSpPlayerTypeChanged added here
 		//	by Randy Thompson on July, 7, 2000.
 		case kNSpPlayerTypeChanged:
 			SwapPlayerTypeChanged(inMessage);
@@ -827,24 +827,24 @@ NSpGameSlave::ProcessSystemMessage(NSpMessageHeader *inMessage)
 NMBoolean
 NSpGameSlave::RemovePlayer(NSpPlayerID inPlayer, NMBoolean inDisconnect)
 {
-UNUSED_PARAMETER(inDisconnect);
+	UNUSED_PARAMETER(inDisconnect);
 
-NSp_InterruptSafeListIterator	iter(*mPlayerList);
-NSp_InterruptSafeListIterator	groupIter(*mGroupList);
-NSp_InterruptSafeListMember 	*theItem;
-PlayerListItem				*thePlayer;
-NMBoolean					removeAll = false;
-NMBoolean					found = false;
+	NSp_InterruptSafeListIterator	iter(*mPlayerList);
+	NSp_InterruptSafeListIterator	groupIter(*mGroupList);
+	NSp_InterruptSafeListMember 	*theItem;
+	PlayerListItem				*thePlayer;
+	NMBoolean					removeAll = false;
+	NMBoolean					found = false;
 
 	if (inPlayer == kNSpAllPlayers)
 		removeAll = true;
 
-	//Ä	Remove the player from any groups that they are in
+	//Æ’	Remove the player from any groups that they are in
 
-	//Ä	In theory we should look at the player's group list
-	//Ä	and just remove them from those.  However, we don't have
-	//Ä	any clean method for that except for sending ourselves a
-	//Ä	RemovePlayerFromGroup message and that has a lot of overhead.
+	//Æ’	In theory we should look at the player's group list
+	//Æ’	and just remove them from those.  However, we don't have
+	//Æ’	any clean method for that except for sending ourselves a
+	//Æ’	RemovePlayerFromGroup message and that has a lot of overhead.
 	while (groupIter.Next(&theItem))
 	{
 	GroupListItem	*theGroup;
@@ -854,7 +854,7 @@ NMBoolean					found = false;
 		(void) theGroup->RemovePlayer(inPlayer);
 	}
 
-	//Ä	Then remove them from the list of players
+	//Æ’	Then remove them from the list of players
 	while (!found && iter.Next(&theItem))
 	{
 		thePlayer = (PlayerListItem *)theItem;
@@ -881,14 +881,14 @@ NMBoolean					found = false;
 NMErr
 NSpGameSlave::HandleEndpointDisconnected(CEndpoint *inEndpoint)
 {
-UNUSED_PARAMETER(inEndpoint);
+	UNUSED_PARAMETER(inEndpoint);
 
-NMErr					status = kNMNoError;
-NSpGameTerminatedMessage	message;
+	NMErr					status = kNMNoError;
+	NSpGameTerminatedMessage	message;
 
 	if (mGameState != kStopped)		// Only tell the user if we didn't already
 	{
-		//Ä	Send a local message that the game has been terminated
+		//Æ’	Send a local message that the game has been terminated
 		NSpClearMessageHeader(&message.header);
 
 		message.header.what = kNSpGameTerminated;
@@ -897,14 +897,14 @@ NSpGameTerminatedMessage	message;
 		message.header.id = mNextMessageID++;
 		message.header.messageLen = sizeof (NSpGameTerminatedMessage);
 
-		//Ä	Tell the user that the game is over
+		//Æ’	Tell the user that the game is over
 		status = DoSelfSend(&message.header, NULL, kNSpSendFlag_Registered);
 	}
 
-	//Ä	Remove all the players
+	//Æ’	Remove all the players
 	RemovePlayer(kNSpAllPlayers, false);
 
-	//Ä	Receiving this message means we've been disconnected from the server
+	//Æ’	Receiving this message means we've been disconnected from the server
 	mGameState = kStopped;
 
 	return (status);

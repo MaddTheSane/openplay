@@ -76,7 +76,7 @@ NSpGameMaster::NSpGameMaster(
 	mNextAvailablePlayerNumber = 1;
 	mNextPlayersGroupStartRange = -1024;
 	
-	//Ä	Initialize our OT stuff
+	//Æ’	Initialize our OT stuff
 	bAdvertisingAT = false;
 	bAdvertisingIP = false;
 	mAdvertisingATEndpoint = NULL;
@@ -239,7 +239,7 @@ error:
 NMErr
 NSpGameMaster::UnHostAT(void)
 {
-NMErr status = kNMNoError;
+	NMErr status = kNMNoError;
 	
 	if (!bAdvertisingAT || mAdvertisingATEndpoint == NULL)
 		status = kNSpNotAdvertisingErr;
@@ -256,7 +256,7 @@ NMErr status = kNMNoError;
 NMErr
 NSpGameMaster::UnHostIP(void)
 {
-NMErr status = kNMNoError;
+	NMErr status = kNMNoError;
 	
 	if (!bAdvertisingIP || mAdvertisingIPEndpoint == NULL)
 		status = kNSpNotAdvertisingErr;
@@ -278,7 +278,7 @@ NSpGameMaster::AddLocalPlayer(NMConstStr31Param inPlayerName, NSpPlayerType inPl
 	CEndpoint	*ep = NULL;
 	
 	
-	//Ä	Check the flags.  Create a player on this workstation if necessary
+	//Æ’	Check the flags.  Create a player on this workstation if necessary
 	if (inPlayerName == NULL || inPlayerName[0] == 0)
 	{
 		bHeadlessServer = true;
@@ -288,7 +288,7 @@ NSpGameMaster::AddLocalPlayer(NMConstStr31Param inPlayerName, NSpPlayerType inPl
 	{
 		bHeadlessServer = false;
 
-		//Ä	Create our endpoint
+		//Æ’	Create our endpoint
 		if (bAdvertisingAT)
 		{
 #ifdef OP_API_NETWORK_OT
@@ -317,7 +317,7 @@ NSpGameMaster::AddLocalPlayer(NMConstStr31Param inPlayerName, NSpPlayerType inPl
 			return (kNSpNotAdvertisingErr);
 		}
 			
-		//Ä	Initialize it
+		//Æ’	Initialize it
 		status = mPlayersEndpoint->InitNonAdvertiser(theProt);
 		if (status)
 			goto error;
@@ -344,7 +344,7 @@ error:
 NMErr
 NSpGameMaster::InstallJoinRequestHandler(NSpJoinRequestHandlerProcPtr inHandler, void *inContext)
 {
-NMErr status = kNMNoError;
+	NMErr status = kNMNoError;
 	
 	mJoinRequestHandler = inHandler;
 	mJoinRequestContext = inContext;
@@ -396,9 +396,9 @@ NSpGameMaster::HandleJoinRequest(
 	//	Initialize our message string to be empty
 	message[0] = 0;
 		
-	if (inMessage->customDataLen == kCustomLocalJoinRequest)		//Ä	It's a local request
+	if (inMessage->customDataLen == kCustomLocalJoinRequest)		//Æ’	It's a local request
 	{
-		approved = true;					//Ä	Always approve the local request
+		approved = true;					//Æ’	Always approve the local request
 		localRequest = true;
 	}
 	else if (approved && mGameInfo.currentPlayers >= mGameInfo.maxPlayers)
@@ -406,13 +406,13 @@ NSpGameMaster::HandleJoinRequest(
 		doCopyC2PStr("Maximum allowed players already in game", message);
 		approved = false;	
 	}	
-	else if (approved && mJoinRequestHandler != NULL)		//Ä	Call the custom join handler, if one is installed
+	else if (approved && mJoinRequestHandler != NULL)		//Æ’	Call the custom join handler, if one is installed
 	{
 		// dair, added NSpJoinResponseMessage support
 		approved = ((NSpJoinRequestHandlerProcPtr) mJoinRequestHandler)((NSpGameReference) this->GetGameOwner(), inMessage, mJoinRequestContext, message, &msgJoinResponse);
 	}
 
-	//Ä	Reject them if they gave an incorrect password
+	//Æ’	Reject them if they gave an incorrect password
 	else if (approved && bPasswordRequired && !IsCorrectPassword(inMessage->password))
 	{
 		doCopyC2PStr("Incorrect password", message);
@@ -430,7 +430,7 @@ NSpGameMaster::HandleJoinRequest(
 	
 		player = mNextAvailablePlayerNumber++;
 
-		//Ä	Add an entry to the playermap list
+		//Æ’	Add an entry to the playermap list
 		NSpPlayerInfo	info;
 
 		info.id = player;
@@ -444,7 +444,7 @@ NSpGameMaster::HandleJoinRequest(
 		if (localRequest)
 		{
 			mPlayerID = player;
-			status = kNMNoError;		//Ä	Don't send the join approved to a local joiner
+			status = kNMNoError;		//Æ’	Don't send the join approved to a local joiner
 		}
 		else
 		{
@@ -455,19 +455,19 @@ NSpGameMaster::HandleJoinRequest(
 				status                    = commEndpoint->SendMessage(&msgJoinResponse.header, ((NMUInt8 *) &msgJoinResponse) + sizeof(NSpMessageHeader), kNSpSendFlag_Registered);
 			}
 
-			//Ä	Include the old player map for the new player	
+			//Æ’	Include the old player map for the new player	
 			status = SendJoinApproved(commEndpoint, player, inReceivedTime);
 		}
 		
 		if (status == kNMNoError)
 		{
-			//Ä	Now notify everyone else that there is a new player
-			//Ä	If this fails, we could get out of sync
+			//Æ’	Now notify everyone else that there is a new player
+			//Æ’	If this fails, we could get out of sync
 			status = NotifyPlayerJoined(&info);
 		}
 		else 
 		{
-			RemovePlayer(player, true);		//Ä	We couldn't send the approval for some reason.  Undo the add.
+			RemovePlayer(player, true);		//Æ’	We couldn't send the approval for some reason.  Undo the add.
 			DEBUG_PRINT("Failed to send Join Approved.");
 		}
 	}
@@ -564,16 +564,16 @@ NSpGameMaster::RouteMessage(NSpMessageHeader *inHeader, NMUInt8 *inBody, NSpFlag
 	fromPlayer = inHeader->from;
 	toPlayer = inHeader->to;
 	
-	if (toPlayer == kNSpAllPlayers)			//Ä	To all
+	if (toPlayer == kNSpAllPlayers)			//Æ’	To all
 	{
-		//Ä	Send to the local player first, provided he wasn't the sender.
+		//Æ’	Send to the local player first, provided he wasn't the sender.
 		//	We do this before the loop, because we must not byte-swap a
 		//	message to the local player...
 		if (fromPlayer != mPlayerID)
 			status = DoSelfSend(inHeader, inBody, inFlags);
 
 #if !big_endian
-		//Ä	Byte-swap the message for sending now, and don't do it on each call
+		//Æ’	Byte-swap the message for sending now, and don't do it on each call
 		//	to SendMessage(), or else we will have the wrong Byte-Order every
 		//	other send...
 		//  We also must perform the OR function with the inFlags prior to the byte-swap,
@@ -583,31 +583,31 @@ NSpGameMaster::RouteMessage(NSpMessageHeader *inHeader, NMUInt8 *inBody, NSpFlag
 		SwapBytesForSend(inHeader);	// This will byte-swap the header and known system message content.
 #endif
 		
-		//Ä	Now loop through all players...
+		//Æ’	Now loop through all players...
 		iter->Reset();
 		while (iter->Next(&theItem))
 		{
 			thePlayer = (PlayerListItem *)theItem;
 			
-			if (fromPlayer != thePlayer->id)	//Ä	Don't send it to the sender
+			if (fromPlayer != thePlayer->id)	//Æ’	Don't send it to the sender
 			{
-				if (thePlayer->id != mPlayerID)		//Ä	Don't byte-swap (already done).
+				if (thePlayer->id != mPlayerID)		//Æ’	Don't byte-swap (already done).
 					status = thePlayer->endpoint->SendMessage(inHeader, inBody, inFlags, false);
 			}			
 		}
 	}
-	else if (toPlayer == kNSpMasterEndpointID)		//Ä	To the host only
+	else if (toPlayer == kNSpMasterEndpointID)		//Æ’	To the host only
 	{
 		status = DoSelfSend(inHeader, inBody, inFlags);
 	}
-	else if (toPlayer == mPlayerID)			//Ä	To us
+	else if (toPlayer == mPlayerID)			//Æ’	To us
 	{
 		status = DoSelfSend(inHeader, inBody, inFlags);
 	}
-	else if (toPlayer > kNSpAllPlayers)		//Ä	To a specific player that is not us
+	else if (toPlayer > kNSpAllPlayers)		//Æ’	To a specific player that is not us
 	{
-		//Ä	Find that person
-		//Ä	How can we make this faster?
+		//Æ’	Find that person
+		//Æ’	How can we make this faster?
 		iter->Reset();
 
 		while (iter->Next(&theItem))
@@ -623,7 +623,7 @@ NSpGameMaster::RouteMessage(NSpMessageHeader *inHeader, NMUInt8 *inBody, NSpFlag
 			}
 		}
 	}
-	else if (toPlayer < kNSpMasterEndpointID)		//Ä	To a group
+	else if (toPlayer < kNSpMasterEndpointID)		//Æ’	To a group
 	{	
 		NSp_InterruptSafeListIterator 	*playerIterator = NULL;
 		GroupListItem				*theGroup = NULL;
@@ -632,7 +632,7 @@ NSpGameMaster::RouteMessage(NSpMessageHeader *inHeader, NMUInt8 *inBody, NSpFlag
 		
 		found = false;	
 
-		//Ä	First find the group in the list
+		//Æ’	First find the group in the list
 		while (!found && groupIter->Next(&theItem))
 		{
 			theGroup = (GroupListItem *)theItem;
@@ -642,12 +642,12 @@ NSpGameMaster::RouteMessage(NSpMessageHeader *inHeader, NMUInt8 *inBody, NSpFlag
 			}
 		}
 		
-		//Ä	If we didn't find it, bail
+		//Æ’	If we didn't find it, bail
 		if (!found)
 			return 	(kNSpInvalidGroupIDErr);
 
-		//Ä	Now we have the group, lets iterate over the players, sending to them
-		//Ä	Iterate through our player list
+		//Æ’	Now we have the group, lets iterate over the players, sending to them
+		//Æ’	Iterate through our player list
 		playerIterator = new NSp_InterruptSafeListIterator(*theGroup->players);
 		if (playerIterator == NULL){
 			op_vpause("NSpGameMaster::RouteMessage - playerIterator == NULL");
@@ -656,7 +656,7 @@ NSpGameMaster::RouteMessage(NSpMessageHeader *inHeader, NMUInt8 *inBody, NSpFlag
 		}
 		
 #if !big_endian
-		//Ä	Byte-swap the message for sending now, and don't do it on each call
+		//Æ’	Byte-swap the message for sending now, and don't do it on each call
 		//	to SendMessage(), or else we will have the wrong Byte-Order every
 		//	other send...
 		//  We also must perform the OR function with the inFlags prior to the byte-swap,
@@ -667,16 +667,16 @@ NSpGameMaster::RouteMessage(NSpMessageHeader *inHeader, NMUInt8 *inBody, NSpFlag
 		SwapBytesForSend(inHeader);	// This will byte-swap the header and known system message content.
 #endif
 		
-		//Ä	Now loop through all players in the group...
+		//Æ’	Now loop through all players in the group...
 		while (playerIterator->Next(&theItem))
 		{
 			thePlayer = (PlayerListItem *)((uintptrtListMember *)theItem)->GetValue();
 
 			if (thePlayer->id != fromPlayer)
 			{
-				if (thePlayer->id == mPlayerID)		//Ä	Will need to byte-swap below.
+				if (thePlayer->id == mPlayerID)		//Æ’	Will need to byte-swap below.
 					performSelfSend = true;
-				else								//Ä	Don't byte-swap (already done above).
+				else								//Æ’	Don't byte-swap (already done above).
 					status = thePlayer->endpoint->SendMessage(inHeader, inBody, inFlags, false);
 				
 				if (status != kNMNoError)
@@ -688,7 +688,7 @@ NSpGameMaster::RouteMessage(NSpMessageHeader *inHeader, NMUInt8 *inBody, NSpFlag
 			}
 		}
 		
-		//Ä	If the local player was in the group, then you have to send the message
+		//Æ’	If the local player was in the group, then you have to send the message
 		//	to him as well.  But since the message is currently byte-swapped, we
 		//	first need to swap it back...
 		if (performSelfSend)
@@ -739,33 +739,33 @@ NSpGameMaster::SendUserMessage(NSpMessageHeader *inMessage, NSpFlags inFlags)
 	inWhat = inMessage->what;
 	inData = (NMUInt8 *)inMessage + sizeof(NSpMessageHeader);
 	
-	if (inTo == kNSpAllPlayers)			//Ä	To all
+	if (inTo == kNSpAllPlayers)			//Æ’	To all
 	{
-		//Ä	First give it to ourselves
+		//Æ’	First give it to ourselves
 		if (inFlags & kNSpSendFlag_SelfSend)
 			status = DoSelfSend(inMessage, (NMUInt8 *) inData, inFlags);
 
-		//Ä	Now hand it off to the host to send to everyone
+		//Æ’	Now hand it off to the host to send to everyone
 		status = mPlayersEndpoint->SendMessage(inMessage, (NMUInt8 *) inData, inFlags);
 	}
-	else if (inTo == kNSpMasterEndpointID)		//Ä	To the host only
+	else if (inTo == kNSpMasterEndpointID)		//Æ’	To the host only
 	{
 		status = mPlayersEndpoint->SendMessage(inMessage, (NMUInt8 *) inData, inFlags);
 	}
-	else if (inTo == mPlayerID)			//Ä	To us
+	else if (inTo == mPlayerID)			//Æ’	To us
 	{
 		status = DoSelfSend(inMessage, inData, inFlags);
 #if !big_endian
-		swapBack = false;				//Ä	Message never got sent & swapped, so don't swap back.
+		swapBack = false;				//Æ’	Message never got sent & swapped, so don't swap back.
 #endif
 	}
-	else if (inTo > kNSpAllPlayers)		//Ä	To a specific player
+	else if (inTo > kNSpAllPlayers)		//Æ’	To a specific player
 	{
 		status = mPlayersEndpoint->SendMessage(inMessage, (NMUInt8 *) inData, inFlags);
 	}
-	else if (inTo < kNSpMasterEndpointID)		//Ä	To a group
+	else if (inTo < kNSpMasterEndpointID)		//Æ’	To a group
 	{
-		//Ä	If we're a member, send it to ourselves before sending to the host
+		//Æ’	If we're a member, send it to ourselves before sending to the host
 		groupIter->Reset();
 
 		while (groupIter->Next(&theItem))
@@ -794,7 +794,7 @@ NSpGameMaster::SendUserMessage(NSpMessageHeader *inMessage, NSpFlags inFlags)
 			}
 		}
 
-		//Ä	Now send it to the host
+		//Æ’	Now send it to the host
 		status = mPlayersEndpoint->SendMessage(inMessage, (NMUInt8 *) inData, inFlags);
 	}
 
@@ -842,8 +842,8 @@ NSpGameMaster::SendTo(NSpPlayerID inTo, NMSInt32 inWhat, void *inData, NMUInt32 
 	if (mGameState == kStopped)
 		return (kNSpGameTerminatedErr);
 
-	//€	Don't allow anyone to send a user message on a headless server
-	//€	Fixes bug 1366502
+	//Ã„	Don't allow anyone to send a user message on a headless server
+	//Ã„	Fixes bug 1366502
 	if (bHeadlessServer)
 		return (kNSpSendFailedErr);
 	
@@ -868,30 +868,30 @@ NSpGameMaster::SendTo(NSpPlayerID inTo, NMSInt32 inWhat, void *inData, NMUInt32 
 	
 	machine_move_data(inData, ((NMUInt8 *) headerPtr) + sizeof(NSpMessageHeader), inLen);
 
-	if (inTo == kNSpAllPlayers)			//Ä	To all
+	if (inTo == kNSpAllPlayers)			//Æ’	To all
 	{
-		//Ä	First give it to ourselves
+		//Æ’	First give it to ourselves
 		if (inFlags & kNSpSendFlag_SelfSend)
 			status = DoSelfSend(headerPtr, (NMUInt8 *) inData, inFlags);
 
-		//Ä	Now hand it off to the host to send to everyone
+		//Æ’	Now hand it off to the host to send to everyone
 		status = mPlayersEndpoint->SendMessage(headerPtr, (NMUInt8 *) inData, inFlags);
 	}
-	else if (inTo == kNSpMasterEndpointID)		//Ä	To the host only
+	else if (inTo == kNSpMasterEndpointID)		//Æ’	To the host only
 	{
 		status = mPlayersEndpoint->SendMessage(headerPtr, (NMUInt8 *) inData, inFlags);
 	}
-	else if (inTo > kNSpAllPlayers)		//Ä	To a specific player
+	else if (inTo > kNSpAllPlayers)		//Æ’	To a specific player
 	{
 		status = mPlayersEndpoint->SendMessage(headerPtr, (NMUInt8 *) inData, inFlags);
 	}
-	else if (inTo == mPlayerID)			//Ä	To us
+	else if (inTo == mPlayerID)			//Æ’	To us
 	{
 		status = DoSelfSend(headerPtr, inData, inFlags);
 	}
-	else if (inTo < kNSpMasterEndpointID)		//Ä	To a group
+	else if (inTo < kNSpMasterEndpointID)		//Æ’	To a group
 	{
-		//Ä	If we're a member, send it to ourselves before sending to the host
+		//Æ’	If we're a member, send it to ourselves before sending to the host
 		groupIter->Reset();
 
 		while (groupIter->Next(&theItem))
@@ -920,7 +920,7 @@ NSpGameMaster::SendTo(NSpPlayerID inTo, NMSInt32 inWhat, void *inData, NMUInt32 
 			}
 		}
 
-		//Ä	Now send it to the host
+		//Æ’	Now send it to the host
 		status = mPlayersEndpoint->SendMessage(headerPtr, (NMUInt8 *) inData, inFlags);
 	}
 
@@ -943,10 +943,10 @@ error:
 NMErr
 NSpGameMaster::SendJoinApproved(CEndpoint *inEndpoint, NSpPlayerID inID, NMUInt32 inReceivedTime)
 {
-NMErr					status = kNMNoError;
-TJoinApprovedMessagePrivate	*theMessage = NULL;
-NSpPlayerEnumerationPtr		thePlayers = NULL;
-NSpGroupEnumerationPtr		theGroups = NULL;
+	NMErr					status = kNMNoError;
+	TJoinApprovedMessagePrivate	*theMessage = NULL;
+	NSpPlayerEnumerationPtr		thePlayers = NULL;
+	NSpGroupEnumerationPtr		theGroups = NULL;
 	
 		
 	//	Get our player enumeration
@@ -978,7 +978,7 @@ NSpGroupEnumerationPtr		theGroups = NULL;
 			DEBUG_PRINT("Failed in SendMessage.");
 		}
 		
-		//Ä	Free the memory from the buffer.  Free the mem alloced by MakeJoinApprovedMessage
+		//Æ’	Free the memory from the buffer.  Free the mem alloced by MakeJoinApprovedMessage
 		InterruptSafe_free(theMessage);
 	}
 	
@@ -997,15 +997,15 @@ NSpGameMaster::MakeJoinApprovedMessage(
 		NSpPlayerID					inPlayer,
 		NMUInt32					inReceivedTime)
 {
-NMUInt32			playerCount, groupCount;
-NMUInt32			playerDataSize = 0;
-NMUInt32			groupDataSize = 0;
-NMUInt32			messageSize;
-NMUInt32			i;
-NSpPlayerInfoPtr	playerInfo;
-NSpGroupInfoPtr		groupInfo;
-NMErr			status = kNMNoError;
-NMUInt32			size;
+	NMUInt32			playerCount, groupCount;
+	NMUInt32			playerDataSize = 0;
+	NMUInt32			groupDataSize = 0;
+	NMUInt32			messageSize;
+	NMUInt32			i;
+	NSpPlayerInfoPtr	playerInfo;
+	NSpGroupInfoPtr		groupInfo;
+	NMErr			status = kNMNoError;
+	NMUInt32			size;
 
 	if (thePlayers == NULL)
 	{
@@ -1038,18 +1038,18 @@ NMUInt32			size;
 		}
 	}
 
-	//Ä	Now we can construct the size of the entire message
+	//Æ’	Now we can construct the size of the entire message
 	messageSize = ((sizeof (TJoinApprovedMessagePrivate) - 1) + playerDataSize + groupDataSize);
 
 	messageSize += mGameInfo.name[0] + 1;	//LR 2.2 -- we tack the game name to the end of the message
 
-	//Ä	Alloc the message
+	//Æ’	Alloc the message
 	*theMessage = (TJoinApprovedMessagePrivate *) InterruptSafe_alloc(messageSize);
 
 	if (*theMessage == NULL)
 		return (kNSpMemAllocationErr);
 		
-	//Ä	Fill in the fields we know
+	//Æ’	Fill in the fields we know
 	NSpClearMessageHeader(&((*theMessage)->header));
 	(*theMessage)->header.what = kNSpJoinApproved;
 	(*theMessage)->header.from = kNSpMasterEndpointID;
@@ -1060,11 +1060,11 @@ NMUInt32			size;
 	(*theMessage)->playerCount = playerCount;
 	(*theMessage)->groupCount = groupCount;
 
-	//Ä	Set the version
+	//Æ’	Set the version
 	(*theMessage)->header.version = kVersion10Message;
 	(*theMessage)->header.id = mNextMessageID++;
 
-	//Ä	Now fill in the player stuff and the group stuff
+	//Æ’	Now fill in the player stuff and the group stuff
 	NMUInt8 *p = (*theMessage)->data;
 
 	if (playerCount > 0)
@@ -1075,11 +1075,11 @@ NMUInt32			size;
 		{
 			playerInfo = thePlayers->playerInfo[i];
 
-			//Ä	We only copy the first three fields, since the last two are redundant with
-			//Ä	the group info sent next
+			//Æ’	We only copy the first three fields, since the last two are redundant with
+			//Æ’	the group info sent next
 			machine_move_data((NMUInt8 *) playerInfo, (NMUInt8 *) pip, kJoinApprovedPlayerInfoSize);
 
-			//Ä	Increment the pointer into our message buffer
+			//Æ’	Increment the pointer into our message buffer
 			p += kJoinApprovedPlayerInfoSize;
 			pip = (NSpPlayerInfo *)p;
 		}
@@ -1105,7 +1105,7 @@ NMUInt32			size;
 	//	while 2.2 and later will recognize the extra data and copy it to the local game info record
 	doCopyPStr( mGameInfo.name, (unsigned char *)p );
 
-	//Ä	Decrement the group range for the next player
+	//Æ’	Decrement the group range for the next player
 	mNextPlayersGroupStartRange -= 1024;
 	
 	return (status);
@@ -1115,17 +1115,17 @@ NMUInt32			size;
 // NSpGameMaster::SendJoinDenied
 //----------------------------------------------------------------------------------------
 
-//Ä	This is quirky, but since we never created a "Real" endpoint for this person,
-//Ä	We need to pass the message to the endpoint here
+//Æ’	This is quirky, but since we never created a "Real" endpoint for this person,
+//Æ’	We need to pass the message to the endpoint here
 NMErr
 NSpGameMaster::SendJoinDenied(CEndpoint *inEndpoint,  void *inCookie, const NMUInt8 *inMessage)
 {
-NSpJoinDeniedMessage	theReply;
-NMErr				err = kNMNoError;
+	NSpJoinDeniedMessage	theReply;
+	NMErr				err = kNMNoError;
 	
 	theReply.header.what = kNSpJoinDenied;
 	theReply.header.from = kNSpMasterEndpointID;
-	theReply.header.to = 0;				//Ä	This person has no honor (or playerID)
+	theReply.header.to = 0;				//Æ’	This person has no honor (or playerID)
 	theReply.header.version = kVersion10Message;
 	theReply.header.id = mNextMessageID++;
 	theReply.header.messageLen = sizeof(NSpJoinDeniedMessage);
@@ -1147,10 +1147,10 @@ NMErr				err = kNMNoError;
 void
 NSpGameMaster::HandleEvent(ERObject *inERObject, CEndpoint *inEndpoint, void *inCookie)
 {
-	//Ä	We need to forward this on to whoever is supposed to get it, possibly including us
+	//Æ’	We need to forward this on to whoever is supposed to get it, possibly including us
 	NSpMessageHeader	*theMessage = inERObject->PeekNetMessage();
 		
-	//Ä	Any system event should be handled immediately
+	//Æ’	Any system event should be handled immediately
 	if (theMessage->what & kNSpSystemMessagePrefix)
 	{
 	NMBoolean	passToUser = false;
@@ -1178,15 +1178,15 @@ NSpGameMaster::HandleEvent(ERObject *inERObject, CEndpoint *inEndpoint, void *in
 		//	see why I think this.  CRT Sep 2000.
 		
 		if (doForward)
-			ForwardMessage(theMessage);		//Ä	Forward the message to all recipients, except the sender
+			ForwardMessage(theMessage);		//Æ’	Forward the message to all recipients, except the sender
 
 		if (!passToUser)
 		{
 			ReleaseERObject(inERObject);
 			return;
 		}
-		//Ä	Allow the user to have a crack at it, if he installed a message handler
-		//Ä	User function returns a boolean telling whether or not to enqueue the message
+		//Æ’	Allow the user to have a crack at it, if he installed a message handler
+		//Æ’	User function returns a boolean telling whether or not to enqueue the message
 		else if (mAsyncMessageHandler && !((mAsyncMessageHandler)((NSpGameReference) this->GetGameOwner(), theMessage, mAsyncMessageContext)))
 		{
 			ReleaseERObject(inERObject);
@@ -1197,7 +1197,7 @@ NSpGameMaster::HandleEvent(ERObject *inERObject, CEndpoint *inEndpoint, void *in
 	}
 	else
 	{
-		ForwardMessage(theMessage);		//Ä	Forward the message to all recipients, except the sender
+		ForwardMessage(theMessage);		//Æ’	Forward the message to all recipients, except the sender
 		
 		ReleaseERObject(inERObject);
 	}
@@ -1245,26 +1245,26 @@ NMUInt32 NSpGameMaster::GetBacklog( void )
 NMErr
 NSpGameMaster::PrepareForDeletion(NSpFlags inFlags)
 {
-NMErr	status  = kNMNoError;
-NMBoolean	newHost = false;
+	NMErr	status  = kNMNoError;
+	NMBoolean	newHost = false;
 
 #if 0
 	if (!(inFlags & kNSpGameFlag_ForceTerminateGame))
 	{
-		//Ä	Negotiate for a new host
+		//Æ’	Negotiate for a new host
 		newHost = NegotiateNewHost();
 	}
 #endif
 		
 	if (newHost)
 	{
-		//Ä Fill in
+		//Æ’ Fill in
 	}
-	else if (inFlags & kNSpGameFlag_ForceTerminateGame)	//Ä	They want us to quit even if we can't find another host
+	else if (inFlags & kNSpGameFlag_ForceTerminateGame)	//Æ’	They want us to quit even if we can't find another host
 	{
 	NSpGameTerminatedMessage	message;
 
-		//Ä	Send our termination
+		//Æ’	Send our termination
 		NSpClearMessageHeader(&message.header);
 		
 		message.header.what = kNSpGameTerminated;
@@ -1274,14 +1274,14 @@ NMBoolean	newHost = false;
 
 		message.header.messageLen = sizeof(NSpGameTerminatedMessage);
 		
-		//Ä	Tell everyone the game is over
+		//Æ’	Tell everyone the game is over
 		status = SendSystemMessage(&message.header, kNSpSendFlag_Registered);
 		
 		mGameState = kStopped;
 
 		RemovePlayer(kNSpAllPlayers, true);
 		
-		//Ä	Delete our advertising endpoint
+		//Æ’	Delete our advertising endpoint
 		if (mAdvertisingATEndpoint)
 		{
 			DEBUG_PRINT("Calling Close in NSpGameMaster::PrepareForDeletion (1)");
@@ -1455,11 +1455,11 @@ NSpGameMaster::NegotiateNewHost()
 {	
 	NMErr	status;
 	
-	//Ä	Pause the game!
+	//Æ’	Pause the game!
 	mGameState = kPaused;
 	status = SendPauseGame();
 	
-	//Ä	Ask for someone else to volunteer
+	//Æ’	Ask for someone else to volunteer
 	status = SendBecomeHostRequest();
 
 	return (false);
@@ -1474,15 +1474,15 @@ NSpGameMaster::SendPauseGame()
 {
 	return (kNMNoError);
 	
-TPauseGameMessage	message;
-NMErr			status;
+	TPauseGameMessage	message;
+	NMErr			status;
 	
 	NSpClearMessageHeader(&message);
 	message.what = kNSPauseGame;
 	message.to = kNSpAllPlayers;
 	message.messageLen = sizeof(TPauseGameMessage);
 	
-	//Ä	status = SendUserMessage(&message, kNSpSendFlag_Registered);
+	//Æ’	status = SendUserMessage(&message, kNSpSendFlag_Registered);
 
 	return (status);
 }
@@ -1494,7 +1494,7 @@ NMErr			status;
 NMErr
 NSpGameMaster::SendBecomeHostRequest()
 {
-NMErr	status = kNMNoError;
+	NMErr	status = kNMNoError;
 	
 	return (status);
 }
@@ -1506,24 +1506,24 @@ NMErr	status = kNMNoError;
 NMBoolean
 NSpGameMaster::RemovePlayer(NSpPlayerID inPlayer, NMBoolean inDisconnect)
 {
-NMErr					status = kNMNoError;
-NSp_InterruptSafeListIterator	iter(*mPlayerList);
-NSp_InterruptSafeListIterator	groupIter(*mGroupList);
-NSp_InterruptSafeListMember 	*theItem;
-PlayerListItem				*thePlayer;
-GroupListItem				*theGroup;
-NMBoolean					removeAll = false;
-NMBoolean					found = false;
+	NMErr					status = kNMNoError;
+	NSp_InterruptSafeListIterator	iter(*mPlayerList);
+	NSp_InterruptSafeListIterator	groupIter(*mGroupList);
+	NSp_InterruptSafeListMember 	*theItem;
+	PlayerListItem				*thePlayer;
+	GroupListItem				*theGroup;
+	NMBoolean					removeAll = false;
+	NMBoolean					found = false;
 	
 	if (inPlayer == kNSpAllPlayers)
 		removeAll = true;
 		
-	//Ä	If we're removing all players, remove all groups, too
+	//Æ’	If we're removing all players, remove all groups, too
 	if (removeAll)
 	{
 		status = DoDeleteGroup(kNSpAllGroups);
 	}
-	else if (mGameInfo.currentGroups > 0)	//Ä	Remove this player from any groups
+	else if (mGameInfo.currentGroups > 0)	//Æ’	Remove this player from any groups
 	{
 		while (groupIter.Next(&theItem))
 		{
@@ -1581,19 +1581,19 @@ NMBoolean					found = false;
 NMErr
 NSpGameMaster::HandleEndpointDisconnected(CEndpoint *inEndpoint)
 {
-NMErr					status;
-NSp_InterruptSafeListIterator	iter(*mPlayerList);
-NSp_InterruptSafeListMember 	*theItem;
-PlayerListItem				*thePlayer;
-NMBoolean					found = false;
-NSpPlayerLeftMessage 		message;
-NSpPlayerID					thePlayerID = 0;
-NSpPlayerName				thePlayerName;
+	NMErr					status;
+	NSp_InterruptSafeListIterator	iter(*mPlayerList);
+	NSp_InterruptSafeListMember 	*theItem;
+	PlayerListItem				*thePlayer;
+	NMBoolean					found = false;
+	NSpPlayerLeftMessage 		message;
+	NSpPlayerID					thePlayerID = 0;
+	NSpPlayerName				thePlayerName;
 
 	if (inEndpoint == mPlayersEndpoint)
 		return (kNMNoError);
 		
-	//Ä	Find out which player it was
+	//Æ’	Find out which player it was
 	while (!found && iter.Next(&theItem))
 	{
 		thePlayer = (PlayerListItem *)theItem;
@@ -1609,10 +1609,10 @@ NSpPlayerName				thePlayerName;
 	if (thePlayerID == 0)
 		return (kNSpInvalidPlayerIDErr);
 	
-	//Ä	First remove this person from our list
+	//Æ’	First remove this person from our list
 	RemovePlayer(thePlayerID, false);
 
-	//Ä	Notify everyone that this player has left the game
+	//Æ’	Notify everyone that this player has left the game
 	NSpClearMessageHeader(&message.header);
 	
 	message.header.what = kNSpPlayerLeft;
@@ -1636,8 +1636,8 @@ NSpPlayerName				thePlayerName;
 NMErr
 NSpGameMaster::SendJoinRequest(NMConstStr31Param inPlayerName, NSpPlayerType inType)
 {
-NMErr				status;
-NSpJoinRequestMessage	theMessage;
+	NMErr				status;
+	NSpJoinRequestMessage	theMessage;
 
 	NSpClearMessageHeader(&theMessage.header);
 
@@ -1645,7 +1645,7 @@ NSpJoinRequestMessage	theMessage;
 	theMessage.header.messageLen = sizeof(NSpJoinRequestMessage);
 	theMessage.header.to = kNSpMasterEndpointID;
 	theMessage.theType = inType;
-	theMessage.customDataLen = kCustomLocalJoinRequest;			//Ä	Signifying a local join request
+	theMessage.customDataLen = kCustomLocalJoinRequest;			//Æ’	Signifying a local join request
 	doCopyPStrMax(inPlayerName, theMessage.name, 31);
 
 	status = SendUserMessage( &theMessage.header, kNSpSendFlag_Registered);
@@ -1692,10 +1692,10 @@ NSpGameMaster::FreePlayerAddress(void **outAddress)
 NMErr
 NSpGameMaster::GetPlayerIPAddress(const NSpPlayerID inPlayerID, char **outAddress)
 {
-NMErr							theError = kNMNoError;
-NSp_InterruptSafeListIterator	iter(*mPlayerList);
-NSp_InterruptSafeListMember 	*theItem;
-PlayerListItem					*thePlayer;
+	NMErr							theError = kNMNoError;
+	NSp_InterruptSafeListIterator	iter(*mPlayerList);
+	NSp_InterruptSafeListMember 	*theItem;
+	PlayerListItem					*thePlayer;
 
 	while (iter.Next(&theItem))
 	{
@@ -1728,10 +1728,10 @@ PlayerListItem					*thePlayer;
 NMErr
 NSpGameMaster::GetPlayerAddress(const NSpPlayerID inPlayerID, OTAddress **outAddress)
 {
-NMErr							theError = kNMNoError;
-NSp_InterruptSafeListIterator	iter(*mPlayerList);
-NSp_InterruptSafeListMember 	*theItem;
-PlayerListItem					*thePlayer;
+	NMErr							theError = kNMNoError;
+	NSp_InterruptSafeListIterator	iter(*mPlayerList);
+	NSp_InterruptSafeListMember 	*theItem;
+	PlayerListItem					*thePlayer;
 
 	while (iter.Next(&theItem))
 	{
@@ -1764,11 +1764,11 @@ PlayerListItem					*thePlayer;
 NMErr
 NSpGameMaster::ChangePlayerType(const NSpPlayerID inPlayerID, const NSpPlayerType inNewType)
 {
-NSp_InterruptSafeListIterator	iter(*mPlayerList);
-NSp_InterruptSafeListMember 	*theItem;
-PlayerListItem				*thePlayer;
-NMBoolean					found = false;
-NMErr					status = kNMNoError;
+	NSp_InterruptSafeListIterator	iter(*mPlayerList);
+	NSp_InterruptSafeListMember 	*theItem;
+	PlayerListItem				*thePlayer;
+	NMBoolean					found = false;
+	NMErr					status = kNMNoError;
 	
 	while (!found && iter.Next(&theItem))
 	{
@@ -1819,11 +1819,11 @@ NMErr					status = kNMNoError;
 NMErr
 NSpGameMaster::ForceRemovePlayer(const NSpPlayerID inPlayerID)
 {
-NSp_InterruptSafeListIterator	iter(*mPlayerList);
-NSp_InterruptSafeListMember 	*theItem;
-PlayerListItem				*thePlayer;
-NMBoolean					found = false;
-NMErr					status = kNMNoError;
+	NSp_InterruptSafeListIterator	iter(*mPlayerList);
+	NSp_InterruptSafeListMember 	*theItem;
+	PlayerListItem				*thePlayer;
+	NMBoolean					found = false;
+	NMErr					status = kNMNoError;
 
 	if (0 >= inPlayerID)		// Can't remove a group or all players.  So PlayerID must be greater than 0.
 		return (kNSpInvalidPlayerIDErr);
@@ -1840,10 +1840,10 @@ NMErr					status = kNMNoError;
 
 			machine_move_data(thePlayer->info->name, message.playerName, sizeof (NSpPlayerName));
 		
-			//Ä	First remove this person from our list
+			//Æ’	First remove this person from our list
 			RemovePlayer(inPlayerID, false);
 		
-			//Ä	Then notify everyone that this player has left the game
+			//Æ’	Then notify everyone that this player has left the game
 			NSpClearMessageHeader(&message.header);
 			
 			message.header.what = kNSpPlayerLeft;
