@@ -352,6 +352,9 @@
 		55F906452ABC30C300918871 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = main.swift; sourceTree = "<group>"; };
 		55F906512ABC31D000918871 /* OPMiniDemoSwift-BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "OPMiniDemoSwift-BridgingHeader.h"; sourceTree = "<group>"; };
 		55F906522ABC33DB00918871 /* miniplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = miniplay.swift; sourceTree = "<group>"; };
+		55F906542ABE4F0B00918871 /* OPGetURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPGetURL.h; sourceTree = "<group>"; };
+		55F906552ABE4F4600918871 /* network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = network.h; sourceTree = "<group>"; };
+		55F906562ABE4F4600918871 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		9758F24A0588DE88008F071A /* Info-OpenPlay_Framework.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-OpenPlay_Framework.plist"; sourceTree = "<group>"; };
 		9758F24B0588DE88008F071A /* OpenPlay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OpenPlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9758F2600588DE88008F071A /* Info-IP_Module.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-IP_Module.plist"; sourceTree = "<group>"; };
@@ -408,7 +411,7 @@
 		F5ABE67302556F8801A80105 /* TPointerArray.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = TPointerArray.cpp; sourceTree = "<group>"; };
 		F5CE6E01025AF68701A80105 /* NSpTestApp.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = NSpTestApp.cpp; sourceTree = "<group>"; };
 		F5CE6E11025AF8AC01A80105 /* OPEnumTest.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = OPEnumTest.cpp; sourceTree = "<group>"; };
-		F5FE302102558CD301A80105 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		F5FE302102558CD301A80105 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -494,10 +497,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		034768DDFF38A45A11DB9C8B /* Products,Libs,Frameworks */ = {
+		034768DDFF38A45A11DB9C8B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F5FE302102558CD301A80105 /* Carbon.framework */,
 				9758F24B0588DE88008F071A /* OpenPlay.framework */,
 				9758F2610588DE88008F071A /* tcpip.so.bundle */,
 				2CF0565426E4582C00163478 /* MiniNSpApp.app */,
@@ -509,8 +511,8 @@
 				9758F2BB0588DE89008F071A /* OPExample1.app */,
 				55F906432ABC30C200918871 /* MiniPlaySwift */,
 			);
-			name = "Products,Libs,Frameworks";
-			sourceTree = SOURCE_ROOT;
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0867D691FE84028FC02AAC07 /* OpenPlay */ = {
 			isa = PBXGroup;
@@ -518,7 +520,7 @@
 				2CC8FE0826C3FCDD0048E469 /* Interfaces */,
 				2CC8FE0926C3FCFD0048E469 /* Project_Files */,
 				2C5B320426C3FEBB00217E09 /* Source */,
-				034768DDFF38A45A11DB9C8B /* Products,Libs,Frameworks */,
+				034768DDFF38A45A11DB9C8B /* Products */,
 				55F9064A2ABC310E00918871 /* Frameworks */,
 			);
 			name = OpenPlay;
@@ -572,6 +574,7 @@
 			children = (
 				2CF0566D26E4614A00163478 /* OPDownloadHTTP.cpp */,
 				2CF0566C26E4614A00163478 /* OPGetURL.cpp */,
+				55F906542ABE4F0B00918871 /* OPGetURL.h */,
 			);
 			path = OPDownloadHTTP;
 			sourceTree = "<group>";
@@ -588,6 +591,8 @@
 			isa = PBXGroup;
 			children = (
 				F587B687025C6DD401A80105 /* main.c */,
+				55F906562ABE4F4600918871 /* main.h */,
+				55F906552ABE4F4600918871 /* network.h */,
 				F587B68C025C70BB01A80105 /* nsp_network.c */,
 				F587B688025C6DD401A80105 /* op_network.cpp */,
 			);
@@ -814,6 +819,7 @@
 		55F9064A2ABC310E00918871 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F5FE302102558CD301A80105 /* Carbon.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1060,7 +1066,7 @@
 				en,
 			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* OpenPlay */;
-			productRefGroup = 034768DDFF38A45A11DB9C8B /* Products,Libs,Frameworks */;
+			productRefGroup = 034768DDFF38A45A11DB9C8B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
