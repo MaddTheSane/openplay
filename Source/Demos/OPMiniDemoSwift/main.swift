@@ -27,19 +27,19 @@ if mode == 0x73 || mode == 0x53 {
 while !gDone {
 	   
 	if !gInServerMode {
-		Do_Client_Menu()
+		doClientMenu()
 	} else if gLocalEndpoint == nil {
-		Do_Server_Menu()
+		doServerMenu()
 	}
 }
 
 print("Closing connection, exiting...\n" )
 fflush(stdout);
 
-Close_Connection();
+closeConnection();
 
 if gInServerMode {
-	Print_Packets()
+	printPackets()
 }
 
 print("\nDone!")

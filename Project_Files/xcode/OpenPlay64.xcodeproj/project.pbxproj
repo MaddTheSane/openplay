@@ -349,9 +349,9 @@
 		55771448286AF2C20012D520 /* NetModuleMach.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = NetModuleMach.exp; sourceTree = "<group>"; };
 		55771449286AF2C20012D520 /* NetModuleDarwin64.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = NetModuleDarwin64.exp; sourceTree = "<group>"; };
 		55F906432ABC30C200918871 /* MiniPlaySwift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MiniPlaySwift; sourceTree = BUILT_PRODUCTS_DIR; };
-		55F906452ABC30C300918871 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		55F906512ABC31D000918871 /* OPMiniDemoSwift-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OPMiniDemoSwift-BridgingHeader.h"; sourceTree = "<group>"; };
-		55F906522ABC33DB00918871 /* miniplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = miniplay.swift; sourceTree = "<group>"; };
+		55F906452ABC30C300918871 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = main.swift; sourceTree = "<group>"; };
+		55F906512ABC31D000918871 /* OPMiniDemoSwift-BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "OPMiniDemoSwift-BridgingHeader.h"; sourceTree = "<group>"; };
+		55F906522ABC33DB00918871 /* miniplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = miniplay.swift; sourceTree = "<group>"; };
 		9758F24A0588DE88008F071A /* Info-OpenPlay_Framework.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-OpenPlay_Framework.plist"; sourceTree = "<group>"; };
 		9758F24B0588DE88008F071A /* OpenPlay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OpenPlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9758F2600588DE88008F071A /* Info-IP_Module.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-IP_Module.plist"; sourceTree = "<group>"; };

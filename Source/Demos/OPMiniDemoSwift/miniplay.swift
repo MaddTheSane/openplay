@@ -73,17 +73,17 @@ private var gEnumHostName: String = ""
 
 /// 'Nuff said.
 /// @param err Error value to check
-func IsError(_ err: NMErr ) -> Bool {
+private func IsError(_ err: NMErr ) -> Bool {
 	// OpenPlay returns negative numbers for all errors.
 	
-	return ( err < 0 ) ? true : false
+	return (err < 0) ? true : false
 }
 
 
 
 /// Cheesy little console menu to get user input. Hey,
 /// at least it's cross-platform. ;-)
-internal func Do_Client_Menu() {
+internal func doClientMenu() {
 	
 	print( "\nSelect:\n" );
 	print( "\t1 - Open AppleTalk Connection to Server" );
@@ -117,14 +117,14 @@ internal func Do_Client_Menu() {
 		}
 		let hostIPStr = String(cString: cHostIPStr)
 		
-		print("\nStarting TCP/IP client, connecting to host %s...", hostIPStr)
+		print("\nStarting TCP/IP client, connecting to host \(hostIPStr)...")
 		fflush(stdout)
 		_=openConnection( endpoint: .client, protocol: .TCP, host: hostIPStr)
 		
 	case 0x33 /* '3' */:
 		print("Sending packet...")
 		fflush(stdout)
-		Send_Packet()
+		sendPacket()
 
 	case 0x34 /* '4' */:
 		gDone = true
@@ -137,7 +137,7 @@ internal func Do_Client_Menu() {
 
 /// Cheesy little console menu to get user input. Hey,
 /// at least it's cross-platform. ;-)
-func Do_Server_Menu() {
+func doServerMenu() {
 	var success = true
 	var selection: Int32 = 0
 
@@ -213,8 +213,8 @@ private func getProtocol(type: inout NMType, target protocolTarget: ProtocolType
 	
 	if !IsError( err ) {
 
-		type = theProtocol.type;  // Copy by value, it's safe.
-		status = true;
+		type = theProtocol.type  // Copy by value, it's safe.
+		status = true
 	} else {
 		print("ERROR: \(err) from GetIndexedProtocol()...")
 		fflush(stdout)
@@ -225,8 +225,8 @@ private func getProtocol(type: inout NMType, target protocolTarget: ProtocolType
 
 /// Sends a packet down the endpoint.
 ///
-/// In MiniPlay, only the client will call `Send_Packet()`.
-func Send_Packet() {
+/// In MiniPlay, only the client will call `sendPacket()`.
+func sendPacket() {
 	var  err: NMErr = 0
 	var  packetID: NMUInt32 = 0;
 	struct InternalPacket {
@@ -293,7 +293,7 @@ private func Create_Endpoint(config: PConfigRef?, active: Bool) -> PEndpointRef?
 	
 	// OpenPlay API
 	let err = ProtocolOpenEndpoint(config,
-								OpenPlay_Callback,
+								OpenPlayCallback,
 								nil,
 								&newEndpoint,
 								flags)
@@ -317,11 +317,11 @@ private func Create_Endpoint(config: PConfigRef?, active: Bool) -> PEndpointRef?
 /// of essentials, I flirt with disaster using `print()`'s. As
 /// long as they don't show up in the `kNMDatagramData` case,
 /// all seems to flow smoothly.
-private func OpenPlay_Callback(_ inEndpoint: PEndpointRef?,
-							   _ inContext: UnsafeMutableRawPointer?,
-							   _ inCode: NMCallbackCode,
-							   _ inError: NMErr,
-							   _ inCookie: UnsafeMutableRawPointer?) {
+private func OpenPlayCallback(endpoint inEndpoint: PEndpointRef?,
+							  context inContext: UnsafeMutableRawPointer?,
+							  code inCode: NMCallbackCode,
+							  error inError: NMErr,
+							  cookie inCookie: UnsafeMutableRawPointer?) {
 	guard !gDone else {
 		return
 	}
@@ -329,7 +329,7 @@ private func OpenPlay_Callback(_ inEndpoint: PEndpointRef?,
 	switch inCode {
 	case .connectRequest:
 		//printf( "Got a connection request!\n" );
-		Accept_Connection(inEndpoint, inCookie)
+		acceptConnection(endpoint: inEndpoint, cookie: inCookie)
 		break
 
 	case .datagramData:
@@ -438,7 +438,7 @@ private func createConfig(_ endpointType: EndpointType,
 		// to module-defined constant data types instead of having to
 		// hardcode it themselves.
 
-		configStr = String(format: "%s=%d\t%s=%u\t%s=%d\t%s=%s\t%s=%u\t%s=%s\t%s=%u",
+		configStr = String(format: "%@=%d\t%@=%u\t%@=%d\t%@=%@\t%@=%u\t%@=%@\t%@=%u",
 						   kTypeTag, nmProtocol,
 						   kVersionTag, 0x00000100,
 						   kGameIDTag, kGameID,
@@ -558,7 +558,7 @@ private func openConnection(endpoint endpointType: EndpointType, protocol protoc
 }
 
 /// Attempt to complete a connection request.
-private func Accept_Connection(_ inEndpoint: PEndpointRef?, _ inCookie: UnsafeMutableRawPointer?) {
+private func acceptConnection(endpoint inEndpoint: PEndpointRef?, cookie inCookie: UnsafeMutableRawPointer?) {
 	var err: NMErr = 0
 
 	// Only accept a single client for this test app...
@@ -567,7 +567,7 @@ private func Accept_Connection(_ inEndpoint: PEndpointRef?, _ inCookie: UnsafeMu
 		// OpenPlay API
 		err = ProtocolAcceptConnection(inEndpoint,
 									   inCookie,
-									   OpenPlay_Callback,
+									   OpenPlayCallback,
 									   nil)
 			
 		if !IsError( err ) {
@@ -597,7 +597,7 @@ private func Accept_Connection(_ inEndpoint: PEndpointRef?, _ inCookie: UnsafeMu
 }
 
 /// Shuts down the endpoint.
-func Close_Connection() {
+func closeConnection() {
 	let mPython = "The Comfy Chair!";  // Not actually used in this function.
 	// But a mighty fine sketch....
 	
@@ -650,11 +650,11 @@ private func doEnumeration(with config: PConfigRef?) {
 	print("Bind to Host \(gEnumHostName) / ID \(gEnumHostID)? (y/n):  ", terminator: "")
 	fflush(stdout)
 	
-	while c != 0x79 && c != 0x59 && c != 0x6E && c != 0x4E {
+	while c != 0x79 /* 'y' */ && c != 0x59 /* 'Y' */ && c != 0x6E /* 'n' */ && c != 0x4E /* 'N' */ {
 		c = getchar()
 	}
 	
-	if c == 0x79 || c == 0x59 {
+	if c == 0x79 /* 'y' */ || c == 0x59 /* 'Y' */ {
 		err = ProtocolBindEnumerationToConfig(config, gEnumHostID)
 		
 		if IsError(err) {
@@ -668,8 +668,8 @@ private func doEnumeration(with config: PConfigRef?) {
 
 /// Prints out any packets that may have been collected
 /// before the client disconnected.
-internal func Print_Packets() {
-	print( "Packets received: \(gPacketCount)\n" )
+internal func printPackets() {
+	print("Packets received: \(gPacketCount)\n")
 	fflush(stdout)
 	
 	for x in 0 ..< min(Int(gPacketCount), kMaxPackets) {
