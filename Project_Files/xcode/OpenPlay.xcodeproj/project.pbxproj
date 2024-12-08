@@ -1731,6 +1731,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = ../../Source/OpenPlayLib/posix/openplay_darwin.exp;
+				"EXPORTED_SYMBOLS_FILE[arch=arm64]" = ../../Source/OpenPlayLib/posix/openplay_darwin64.exp;
+				"EXPORTED_SYMBOLS_FILE[arch=arm64e]" = ../../Source/OpenPlayLib/posix/openplay_darwin64.exp;
+				"EXPORTED_SYMBOLS_FILE[arch=ppc64]" = ../../Source/OpenPlayLib/posix/openplay_darwin64.exp;
+				"EXPORTED_SYMBOLS_FILE[arch=x86_64]" = ../../Source/OpenPlayLib/posix/openplay_darwin64.exp;
+				"EXPORTED_SYMBOLS_FILE[arch=x86_64h]" = ../../Source/OpenPlayLib/posix/openplay_darwin64.exp;
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "Info-OpenPlay_Framework.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
@@ -1746,6 +1751,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = ../../Source/OpenPlayLib/posix/openplay_darwin.exp;
+				"EXPORTED_SYMBOLS_FILE[arch=arm64]" = ../../Source/OpenPlayLib/posix/openplay_darwin64.exp;
+				"EXPORTED_SYMBOLS_FILE[arch=arm64e]" = ../../Source/OpenPlayLib/posix/openplay_darwin64.exp;
+				"EXPORTED_SYMBOLS_FILE[arch=ppc64]" = ../../Source/OpenPlayLib/posix/openplay_darwin64.exp;
+				"EXPORTED_SYMBOLS_FILE[arch=x86_64]" = ../../Source/OpenPlayLib/posix/openplay_darwin64.exp;
+				"EXPORTED_SYMBOLS_FILE[arch=x86_64h]" = ../../Source/OpenPlayLib/posix/openplay_darwin64.exp;
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "Info-OpenPlay_Framework.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
